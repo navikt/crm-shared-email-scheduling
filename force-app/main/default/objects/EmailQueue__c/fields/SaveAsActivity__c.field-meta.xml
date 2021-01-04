@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SaveAsActivity__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>EmailMessage SObject can automatically create a Task/Activity for the email for logging purposes and viewing if the email has been opened</description>
+    <externalId>false</externalId>
+    <inlineHelpText>EmailMessage SObject can automatically create a Task/Activity for the email for logging purposes and viewing if the email has been opened</inlineHelpText>
+    <label>Save As Activity</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

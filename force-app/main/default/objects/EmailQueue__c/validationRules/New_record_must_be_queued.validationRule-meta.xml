@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_record_must_be_queued</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISNEW()
+    &amp;&amp;
+! ISPICKVAL( Status__c , &apos;Queued&apos; )</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>Cannot create new record and not have status as queued</errorMessage>
+</ValidationRule>
