@@ -1,38 +1,14 @@
-Template repository for PO Arbeidsgiver Salesforce packages. Necessary steps after using template:
+# crm-platform-email-scheduling
 
-1. Add secrets (see [description](https://github.com/navikt/crm-workflows-base))
-    - PROD_SFDX_URL ```[REQUIRED]```
-    - PREPROD_SFDX_URL ```[REQUIRED]```
-    - INTEGRATION_SANDBOX_SFDX_URL ```[REQUIRED]```
-    - PACKAGE_KEY ```[REQUIRED]```
-    - DEPLOYMENT_PAT ```[REQUIRED]```
-    - UAT_SFDX_URL ```[OPTIONAL]```
-    - DEV_SFDX_URL ```[OPTIONAL]```
-    - DEPLOY_TO_DEV_AFTER_PACKAGE_CREATION ```[OPTIONAL]```
-    - DEPLOY_TO_UAT_AFTER_PACKAGE_CREATION ```[OPTIONAL]```
-2. Create file `.sfdx/sfdx-config.json`
-    - Add `{"defaultdevhubusername": "[your_devhub_user]","defaultusername": "" }` to it and change the DevHub username
-3. Create a package in SFDX
-    - `sfdx force:package:create -n YourPackageName -t Unlocked -r force-app`
-4. Create an init release in GitHub
-5. Update `README.md` (this file)
-6. Push changes made to `README.md` and `sfdx-project.json`
+[![Build](https://github.com/navikt/crm-platform-email-scheduling/workflows/master/badge.svg)](https://github.com/navikt/crm-platform-email-scheduling/actions?query=workflow%3ABuild)
+[![GitHub version](https://badgen.net/github/release/navikt/crm-platform-email-scheduling/stable)](https://github.com/navikt/crm-platform-email-scheduling)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/navikt/crm-platform-email-scheduling/blob/master/LICENSE)
 
-# crm-arbeidsgiver-template
-
-[![Build](https://github.com/navikt/XXXXXXXXXXXXX/workflows/master/badge.svg)](https://github.com/navikt/XXXXXXXXXXXXX/actions?query=workflow%3ABuild)
-[![GitHub version](https://badgen.net/github/release/navikt/XXXXXXXXXXXXX/stable)](https://github.com/navikt/XXXXXXXXXXXXX)
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/navikt/XXXXXXXXXXXXX/blob/master/LICENSE)
-
-[DESCRIPTION]
+An email scheduling interfaces to queue emails and be within daily email limits from Salesforce.
 
 ## Dependencies
 
-Pakken er avhengig av følgende pakker:
-
-* [XXXXXXXXXXXXX](https://github.com/navikt/XXXXXXXXXXXXX)
-* [XXXXXXXXXXXXX](https://github.com/navikt/XXXXXXXXXXXXX)
-
+Pakken er ikke avhengig av noen andre pakker.
 
 ## Komme i gang
 
