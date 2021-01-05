@@ -19,7 +19,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Priority__c</field>
+                <field>Importance__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
