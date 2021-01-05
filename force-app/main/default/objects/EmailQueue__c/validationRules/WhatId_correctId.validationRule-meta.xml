@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>WhatId_correctId</fullName>
     <active>true</active>
-    <errorConditionFormula>!REGEX( WhatId__c, &apos;[a-zA-Z0-9]{18}|[a-zA-Z0-9]{15}&apos; )</errorConditionFormula>
+    <errorConditionFormula>!REGEX( WhatId__c, &apos;[a-zA-Z0-9]{18}|[a-zA-Z0-9]{15}|^$&apos; )</errorConditionFormula>
     <errorDisplayField>WhatId__c</errorDisplayField>
     <errorMessage>WhatId__c must be 15 or 18 characters</errorMessage>
 </ValidationRule>
