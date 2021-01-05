@@ -3,12 +3,9 @@
     <fullName>Queued</fullName>
     <columns>NAME</columns>
     <columns>Priority__c</columns>
+    <columns>DaysSinceScheduled__c</columns>
     <columns>CREATEDBY_USER</columns>
     <columns>CREATED_DATE</columns>
-    <columns>TargetObjectId__c</columns>
-    <columns>WhatId__c</columns>
-    <columns>OrgWideEmailAddressId__c</columns>
-    <columns>TemplateId__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Status__c</field>

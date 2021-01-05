@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Priority__c</fullName>
-    <description>1 is highest priority</description>
+    <description>5 is highest priority</description>
     <externalId>false</externalId>
-    <inlineHelpText>1 is highest priority</inlineHelpText>
+    <inlineHelpText>5 is highest priority</inlineHelpText>
     <label>Priority</label>
     <required>true</required>
     <trackTrending>false</trackTrending>
@@ -13,19 +13,9 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>5</fullName>
+                <fullName>1</fullName>
                 <default>true</default>
-                <label>5</label>
-            </value>
-            <value>
-                <fullName>4</fullName>
-                <default>false</default>
-                <label>4</label>
-            </value>
-            <value>
-                <fullName>3</fullName>
-                <default>false</default>
-                <label>3</label>
+                <label>1</label>
             </value>
             <value>
                 <fullName>2</fullName>
@@ -33,9 +23,19 @@
                 <label>2</label>
             </value>
             <value>
-                <fullName>1</fullName>
+                <fullName>3</fullName>
                 <default>false</default>
-                <label>1</label>
+                <label>3</label>
+            </value>
+            <value>
+                <fullName>4</fullName>
+                <default>false</default>
+                <label>4</label>
+            </value>
+            <value>
+                <fullName>5</fullName>
+                <default>false</default>
+                <label>5</label>
             </value>
         </valueSetDefinition>
     </valueSet>
