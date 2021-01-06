@@ -16,12 +16,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmailQueue__c.ScheduledPriority__c</field>
+        <field>EmailQueue__c.Month__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>EmailQueue__c.SaveAsActivity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmailQueue__c.ScheduledPriority__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
