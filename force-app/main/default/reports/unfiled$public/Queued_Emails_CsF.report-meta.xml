@@ -8,15 +8,14 @@
             <axisBinding>y</axisBinding>
             <column>RowCount</column>
         </chartSummaries>
-        <chartType>Donut</chartType>
+        <chartType>HorizontalBar</chartType>
         <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>false</expandOthers>
+        <expandOthers>true</expandOthers>
         <groupingColumn>EmailQueue__c.Importance__c</groupingColumn>
-        <legendPosition>Right</legendPosition>
         <location>CHART_BOTTOM</location>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
-        <showTotal>true</showTotal>
+        <showTotal>false</showTotal>
         <showValues>false</showValues>
         <size>Medium</size>
         <summaryAxisRange>Auto</summaryAxisRange>
@@ -43,7 +42,7 @@
         <field>EmailQueue__c.Importance__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Queued Emails</name>
+    <name>Email Queue - Importance</name>
     <params>
         <name>co</name>
         <value>1</value>

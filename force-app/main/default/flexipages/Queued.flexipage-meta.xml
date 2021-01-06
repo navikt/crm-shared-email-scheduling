@@ -39,6 +39,10 @@
                 <value>1440</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
+                <name>label</name>
+                <value>Importance</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>reportName</name>
                 <value>Queued_Emails_CsF</value>
             </componentInstanceProperties>

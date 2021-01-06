@@ -25,6 +25,10 @@
                 <behavior>Readonly</behavior>
                 <field>DaysSinceScheduled__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Priority__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>

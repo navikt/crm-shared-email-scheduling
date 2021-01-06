@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Importance__c</fullName>
-    <description>5 is highest priority</description>
+    <description>5 is highest</description>
     <externalId>false</externalId>
-    <inlineHelpText>5 is highest priority</inlineHelpText>
-    <label>Priority</label>
+    <inlineHelpText>5 is highest</inlineHelpText>
+    <label>Importance</label>
     <required>true</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -13,30 +13,29 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>1</fullName>
-                <default>true</default>
-                <label>1</label>
-            </value>
-            <value>
-                <fullName>2</fullName>
+                <fullName>5</fullName>
                 <default>false</default>
-                <label>2</label>
-            </value>
-            <value>
-                <fullName>3</fullName>
-                <default>false</default>
-                
-                <label>3</label>
+                <label>Crucial</label>
             </value>
             <value>
                 <fullName>4</fullName>
                 <default>false</default>
-                <label>4</label>
+                <label>Higher</label>
             </value>
             <value>
-                <fullName>5</fullName>
+                <fullName>3</fullName>
                 <default>false</default>
-                <label>5</label>
+                <label>High</label>
+            </value>
+            <value>
+                <fullName>2</fullName>
+                <default>false</default>
+                <label>Medium</label>
+            </value>
+            <value>
+                <fullName>1</fullName>
+                <default>true</default>
+                <label>Low</label>
             </value>
         </valueSetDefinition>
     </valueSet>
