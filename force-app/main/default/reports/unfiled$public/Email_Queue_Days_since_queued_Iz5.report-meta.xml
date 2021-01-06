@@ -11,9 +11,9 @@
         <chartType>HorizontalBar</chartType>
         <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>EmailQueue__c.Priority__c</groupingColumn>
+        <groupingColumn>EmailQueue__c.DaysSinceScheduled__c</groupingColumn>
         <location>CHART_BOTTOM</location>
-        <showAxisLabels>true</showAxisLabels>
+        <showAxisLabels>false</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
         <showValues>false</showValues>
@@ -39,10 +39,10 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>EmailQueue__c.Priority__c</field>
+        <field>EmailQueue__c.DaysSinceScheduled__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Email Queue - Priority</name>
+    <name>Email Queue - Days since queued</name>
     <params>
         <name>co</name>
         <value>1</value>
