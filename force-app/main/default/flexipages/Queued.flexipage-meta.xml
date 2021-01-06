@@ -55,7 +55,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>reportName</name>
-                <value>Email_Queue_Scheduled_Priority_fPh</value>
+                <value>Email_Queue_Days_scheduled_priority</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>showRefreshButton</name>
