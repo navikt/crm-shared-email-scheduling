@@ -3,8 +3,8 @@
     <fullName>Queued</fullName>
     <columns>NAME</columns>
     <columns>DaysSinceScheduled__c</columns>
-    <columns>Importance__c</columns>
     <columns>Priority__c</columns>
+    <columns>ScheduledPriority__c</columns>
     <columns>CREATEDBY_USER</columns>
     <columns>CREATED_DATE</columns>
     <filterScope>Everything</filterScope>

@@ -16,7 +16,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmailQueue__c.Priority__c</field>
+        <field>EmailQueue__c.ScheduledPriority__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

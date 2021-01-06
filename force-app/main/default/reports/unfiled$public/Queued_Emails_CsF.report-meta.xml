@@ -11,7 +11,7 @@
         <chartType>HorizontalBar</chartType>
         <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>EmailQueue__c.Importance__c</groupingColumn>
+        <groupingColumn>EmailQueue__c.Priority__c</groupingColumn>
         <location>CHART_BOTTOM</location>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
@@ -39,7 +39,7 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>EmailQueue__c.Importance__c</field>
+        <field>EmailQueue__c.Priority__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Email Queue - Importance</name>
