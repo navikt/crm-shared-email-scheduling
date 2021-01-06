@@ -1,0 +1,30 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "EmailTemplate",
+                "referenceId": "EmailTemplateRef1"
+            },
+            "DeveloperName": "myEmailTemplate ",
+            "Name": "myEmailTemplate ",
+            "IsActive": true,
+            "UiType": "sfx ",
+            "TemplateType": "custom",
+            "Subject": "My email template",
+            "HtmlValue": "<html><head></head><body><p>Hei {{{Recipient.Name}}}!</p></body></html> "
+        },
+        {
+            "attributes": {
+                "type": "EmailTemplate",
+                "referenceId": "EmailTemplateRef2"
+            },
+            "DeveloperName": "myEmailTemplate2 ",
+            "Name": "myEmailTemplate2 ",
+            "IsActive": true,
+            "UiType": "sfx ",
+            "TemplateType": "custom",
+            "Subject": "My email template2",
+            "HtmlValue": "<html><head></head><body><p>Hei {{{Recipient.Name}}}! Du er kul!</p></body></html> "
+        }
+    ]
+}

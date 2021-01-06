@@ -1,0 +1,58 @@
+[
+    {
+        "sobject": "Account",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": [
+            "Account.json"
+        ]
+    },
+    {
+        "sobject": "Contact",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": [
+            "Contacts.json"
+        ]
+    },
+    {
+        "sobject": "Lead",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": [
+            "Leads.json"
+        ]
+    },
+    {
+        "sobject": "Case",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": [
+            "Cases.json"
+        ]
+    },
+    {
+        "sobject": "EmailTemplate",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": [
+            "EmailTemplates.json"
+        ]
+    },
+    {
+        "sobject": "EmailQueue__c",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": [
+            "EmailQueue.json",
+            "EmailQueue_2020_12.json",
+            "EmailQueue_2020_11.json",
+            "EmailQueue_2020_10.json",
+            "EmailQueue_sent.json",
+            "EmailQueue_sent_2020_12.json",
+            "EmailQueue_sent_2020_11.json",
+            "EmailQueue_sent_2020_10.json",
+            "EmailQueue_sent_2020_09.json"
+        ]
+    }
+]
