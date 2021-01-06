@@ -42,7 +42,7 @@
         <field>EmailQueue__c.ScheduledPriority__c</field>
         <sortOrder>Desc</sortOrder>
     </groupingsDown>
-    <name>Email Queue - Scheduled priority</name>
+    <name>Email Queue - Queue - Scheduled priority</name>
     <params>
         <name>co</name>
         <value>1</value>

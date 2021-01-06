@@ -29,6 +29,17 @@
             </componentInstanceProperties>
             <componentName>flexipage:filterListCard</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>listViewApiName</name>
+                <value>Error</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>sObjectApiName</name>
+                <value>EmailQueue__c</value>
+            </componentInstanceProperties>
+            <componentName>listViewButton</componentName>
+        </componentInstances>
         <name>region1</name>
         <type>Region</type>
     </flexiPageRegions>

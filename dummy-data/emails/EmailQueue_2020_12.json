@@ -12,7 +12,7 @@
             "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef1",
-            "CreatedDate": "2020-12-03T10:20:10Z"
+            "CreatedDate": "2020-12-04T10:20:10Z"
         },
         {
             "attributes": {
@@ -26,7 +26,7 @@
             "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "@CaseRef1",
-            "CreatedDate": "2020-12-05T10:20:10Z"
+            "CreatedDate": "2020-12-04T10:20:10Z"
         },
         {
             "attributes": {
@@ -40,7 +40,7 @@
             "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef2",
-            "CreatedDate": "2020-12-06T10:20:10Z"
+            "CreatedDate": "2020-12-04T10:20:10Z"
         },
         {
             "attributes": {
@@ -54,7 +54,7 @@
             "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "@CaseRef2",
-            "CreatedDate": "2020-12-09T10:20:10Z"
+            "CreatedDate": "2020-12-04T10:20:10Z"
         },
         {
             "attributes": {
@@ -68,7 +68,7 @@
             "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef3",
-            "CreatedDate": "2020-12-14T10:20:10Z"
+            "CreatedDate": "2020-12-12T10:20:10Z"
         },
         {
             "attributes": {
@@ -82,7 +82,7 @@
             "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "@CaseRef3",
-            "CreatedDate": "2020-12-17T10:20:10Z"
+            "CreatedDate": "2020-12-12T10:20:10Z"
         },
         {
             "attributes": {

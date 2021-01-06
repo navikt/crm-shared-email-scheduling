@@ -20,6 +20,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>EmailQueue__c.OrgWideEmailAddressId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>EmailQueue__c.SaveAsActivity__c</field>
         <readable>true</readable>
@@ -27,6 +32,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>EmailQueue__c.ScheduledPriority__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmailQueue__c.SendTime__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

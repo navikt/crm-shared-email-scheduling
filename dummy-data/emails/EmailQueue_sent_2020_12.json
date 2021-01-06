@@ -12,23 +12,8 @@
             "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef1",
-            "LastModifiedDate": "2020-12-03T10:20:10Z",
+            "LastModifiedDate": "2020-12-03T13:20:10Z",
             "CreatedDate": "2020-12-03T10:20:10Z"
-        },
-        {
-            "attributes": {
-                "type": "EmailQueue__c",
-                "referenceId": "EmailQueue__cRef2"
-            },
-            "Priority__c": "1",
-            "SaveAsActivity__c": true,
-            "Status__c": "Sent",
-            "TargetObjectId__c": "@ContactRef1",
-            "OrgWideEmailAddressId__c": "",
-            "TemplateId__c": "@EmailTemplateRef2",
-            "WhatId__c": "@CaseRef1",
-            "LastModifiedDate": "2020-12-05T10:20:10Z",
-            "CreatedDate": "2020-12-05T10:20:10Z"
         },
         {
             "attributes": {
@@ -42,7 +27,7 @@
             "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef2",
-            "LastModifiedDate": "2020-12-06T10:20:10Z",
+            "LastModifiedDate": "2020-12-06T14:20:10Z",
             "CreatedDate": "2020-12-06T10:20:10Z"
         },
         {
@@ -57,7 +42,7 @@
             "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "@CaseRef2",
-            "LastModifiedDate": "2020-12-09T10:20:10Z",
+            "LastModifiedDate": "2020-12-09T18:20:10Z",
             "CreatedDate": "2020-12-09T10:20:10Z"
         },
         {
@@ -72,7 +57,7 @@
             "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef3",
-            "LastModifiedDate": "2020-12-14T10:20:10Z",
+            "LastModifiedDate": "2020-12-14T19:20:10Z",
             "CreatedDate": "2020-12-14T10:20:10Z"
         },
         {
@@ -87,7 +72,7 @@
             "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "@CaseRef3",
-            "LastModifiedDate": "2020-12-17T10:20:10Z",
+            "LastModifiedDate": "2020-12-17T15:20:10Z",
             "CreatedDate": "2020-12-17T10:20:10Z"
         },
         {
@@ -102,7 +87,7 @@
             "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "",
-            "LastModifiedDate": "2020-12-24T10:20:10Z",
+            "LastModifiedDate": "2020-12-24T10:50:10Z",
             "CreatedDate": "2020-12-24T10:20:10Z"
         },
         {
@@ -117,7 +102,7 @@
             "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "",
-            "LastModifiedDate": "2020-12-27T10:20:10Z",
+            "LastModifiedDate": "2020-12-27T10:40:10Z",
             "CreatedDate": "2020-12-27T10:20:10Z"
         }
     ]

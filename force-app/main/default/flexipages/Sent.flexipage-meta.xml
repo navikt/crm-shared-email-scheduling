@@ -29,6 +29,17 @@
             </componentInstanceProperties>
             <componentName>flexipage:filterListCard</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>listViewApiName</name>
+                <value>Sent</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>sObjectApiName</name>
+                <value>EmailQueue__c</value>
+            </componentInstanceProperties>
+            <componentName>listViewButton</componentName>
+        </componentInstances>
         <name>region1</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -37,6 +48,10 @@
             <componentInstanceProperties>
                 <name>cacheAge</name>
                 <value>1440</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>label</name>
+                <value>Month View</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>reportName</name>

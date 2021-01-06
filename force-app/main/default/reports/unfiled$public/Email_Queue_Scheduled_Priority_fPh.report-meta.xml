@@ -43,9 +43,9 @@
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>EmailQueue__c.Month__c</field>
-        <sortOrder>Asc</sortOrder>
+        <sortOrder>Desc</sortOrder>
     </groupingsDown>
-    <name>Email Queue - Month View</name>
+    <name>Email Queue - Sent - Month View</name>
     <params>
         <name>co</name>
         <value>1</value>
