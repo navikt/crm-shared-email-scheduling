@@ -1,6 +1,14 @@
 {
     "packageDirectories": [
         {
+            "path": "settings",
+            "default": false
+        },
+        {
+            "path": "permset",
+            "default": false
+        },
+        {
             "path": "force-app",
             "default": true,
             "package": "crm-platform-email-scheduling",

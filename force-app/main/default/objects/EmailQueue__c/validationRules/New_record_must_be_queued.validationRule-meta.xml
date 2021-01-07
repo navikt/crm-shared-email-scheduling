@@ -4,7 +4,9 @@
     <active>true</active>
     <errorConditionFormula>ISNEW()
     &amp;&amp;
-! ISPICKVAL( Status__c , &apos;Queued&apos; )</errorConditionFormula>
+!ISPICKVAL( Status__c , &apos;Queued&apos; )
+    &amp;&amp;
+!$Permission.IgnoreValidation</errorConditionFormula>
     <errorDisplayField>Status__c</errorDisplayField>
     <errorMessage>Cannot create new record and not have status as queued</errorMessage>
 </ValidationRule>

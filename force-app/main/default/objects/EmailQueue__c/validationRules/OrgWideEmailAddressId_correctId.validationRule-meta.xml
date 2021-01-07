@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>OrgWideEmailAddressId_correctId</fullName>
     <active>true</active>
-    <errorConditionFormula>!REGEX( OrgWideEmailAddressId__c, &apos;[a-zA-Z0-9]{18}|[a-zA-Z0-9]{15}&apos; ) 
+    <errorConditionFormula>!REGEX( OrgWideEmailAddressId__c, &apos;[a-zA-Z0-9]{18}|[a-zA-Z0-9]{15}|^$&apos; ) 
   &amp;&amp;
 !BEGINS( OrgWideEmailAddressId__c, &apos;0D2&apos;)</errorConditionFormula>
     <errorDisplayField>OrgWideEmailAddressId__c</errorDisplayField>

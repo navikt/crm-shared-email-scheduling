@@ -1,0 +1,116 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef1"
+            },
+            "Priority__c": "1",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "OrgWideEmailAddressId__c": "",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@CaseRef1",
+            "CreatedDate": "2020-12-04T10:20:10Z"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef2"
+            },
+            "Priority__c": "1",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "OrgWideEmailAddressId__c": "",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@CaseRef1",
+            "CreatedDate": "2020-12-04T10:20:10Z"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef3"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "OrgWideEmailAddressId__c": "",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@CaseRef2",
+            "CreatedDate": "2020-12-04T10:20:10Z"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef4"
+            },
+            "Priority__c": "2",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef2",
+            "OrgWideEmailAddressId__c": "",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@CaseRef2",
+            "CreatedDate": "2020-12-04T10:20:10Z"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef5"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "OrgWideEmailAddressId__c": "",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "@CaseRef3",
+            "CreatedDate": "2020-12-12T10:20:10Z"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef6"
+            },
+            "Priority__c": "3",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef3",
+            "OrgWideEmailAddressId__c": "",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@CaseRef3",
+            "CreatedDate": "2020-12-12T10:20:10Z"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef7"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@LeadRef1",
+            "OrgWideEmailAddressId__c": "",
+            "TemplateId__c": "@EmailTemplateRef1",
+            "WhatId__c": "",
+            "CreatedDate": "2020-12-24T10:20:10Z"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef8"
+            },
+            "Priority__c": "5",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@LeadRef1",
+            "OrgWideEmailAddressId__c": "",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "",
+            "CreatedDate": "2020-12-27T10:20:10Z"
+        }
+    ]
+}

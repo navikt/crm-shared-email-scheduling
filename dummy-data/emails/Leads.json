@@ -1,0 +1,15 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Lead",
+                "referenceId": "LeadRef1"
+            },
+            "Email": "heidi.larsen@nav.no",
+            "Status": "Open",
+            "FirstName": "Heidi",
+            "LastName": "Larsen",
+            "Company": "My Company"
+        }
+    ]
+}
