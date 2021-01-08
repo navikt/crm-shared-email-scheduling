@@ -2,28 +2,28 @@
 public with sharing class EmailQueueJob implements Queueable, Database.AllowsCallouts {
 
 	private List<EmailQueue__c> emailQueues { get; set; }
-	Map<Id, EmailTemplate> emailTemplates { get; set; }
 
-	public EmailQueueJob( List<EmailQueue__c> emailQueues, Map<Id, EmailTemplate> emailTemplates ) {
+	public EmailQueueJob( List<EmailQueue__c> emailQueues ) {
 		this.emailQueues = emailQueues;
-		this.emailTemplates = emailTemplates;
 	}
 
 	public void execute( QueueableContext context ) {
 
-		// for(Object var : Source) {
-		//     Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
+		List<Messaging.SingleEmailMessage> messages = new List<Messaging.SingleEmailMessage>();
 
-		// 		Id contactId = req.recipientContact != null ? req.recipientContact.Id : req.recipientContactId;
+		for ( EmailQueue__c emailQueue : this.emailQueues ) {
 
-		// 		if ( orgWideEmailId != null && req.useDoNotReply ) { message.setOrgWideEmailAddressId( orgWideEmailId ); }
-		// 		if ( templateId != null ) { message.setTemplateId( templateId ); }
-		// 		message.setWhatId( req.relatedToId );
-		// 		message.setTargetObjectId( contactId );
-		// 		message.setSaveAsActivity( req.saveAsActivity );
+			Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
 
-		// 		messages.add( message );
-		// }
+			// message.setOrgWideEmailAddressId( orgWideEmailId );
+			message.setWhatId(          emailQueue.WhatId__c );
+			message.setTemplateId(      emailQueue.TemplateId__c );
+			message.setTargetObjectId(  emailQueue.TargetObjectId__c );
+			message.setSaveAsActivity(  emailQueue.SaveAsActivity__c );
 
+			messages.add( message );
+		}
+
+		List<Messaging.SendEmailResult> results = Messaging.sendEmail ( messages, false );
 	}
 }

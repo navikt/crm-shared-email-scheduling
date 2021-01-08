@@ -8,28 +8,45 @@ public with sharing class EmailQueueData {
 
 	private List<EmailQueue__c> emailQueues { get; set; }
 	private List<List<EmailQueue__c> > emailQueuesSeparated { get; set; }
-	private Map<Id, EmailTemplate> emailTemplates { get; set; }
 
 	public EmailQueueData() {
 		createEmailQueues();
 		createEmailQueuesSeparated();
-		createEmailTemplates();
 	}
 
-	public static void createEmailQueues() {
+	public void createEmailQueues() {
+		this.emailQueues = [SELECT SaveAsActivity__c, ScheduledPriority__c, WhatId__c, TemplateId__c, TargetObjectId__c, Id FROM EmailQueue__c WHERE Status__c = 'Queued' ORDER BY ScheduledPriority__c DESC NULLS LAST LIMIT : MAX_EMAILS_TO_QUERY];
 	}
 
-	public static void createEmailQueuesSeparated() {
+	public void createEmailQueuesSeparated() {
+
+		List<List<EmailQueue__c> > emailQueuesSeparated = new List<List<EmailQueue__c> >();
+		List<EmailQueue__c> emailQueues = new List<EmailQueue__c>();
+		Integer i = 1;
+
+		for ( EmailQueue__c emailQueue : this.emailQueues ) {
+			emailQueues.add( emailQueue );
+
+			if ( Math.mod( i, 10 ) == 0 ) {
+				emailQueuesSeparated.add( emailQueues );
+				emailQueues = new List<EmailQueue__c>();
+			}
+
+			i++;
+		}
+
+		if ( Math.mod( i, 10 ) != 0 ) {
+			emailQueuesSeparated.add( emailQueues );
+		}
+
+		this.emailQueuesSeparated = emailQueuesSeparated;
 	}
 
-	public static void createEmailTemplates() {
+	public List<EmailQueue__c> getEmailQueues() {
+		return this.emailQueues;
 	}
 
 	public List<List<EmailQueue__c> > getEmailQueuesSeparated() {
 		return this.emailQueuesSeparated;
-	}
-
-	public Map<Id, EmailTemplate> getEmailTemplates() {
-		return this.emailTemplates;
 	}
 }
