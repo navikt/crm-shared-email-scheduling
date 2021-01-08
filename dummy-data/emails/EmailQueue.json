@@ -9,7 +9,6 @@
             "SaveAsActivity__c": true,
             "Status__c": "Queued",
             "TargetObjectId__c": "@ContactRef1",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef1"
         },
@@ -22,7 +21,6 @@
             "SaveAsActivity__c": true,
             "Status__c": "Queued",
             "TargetObjectId__c": "@ContactRef2",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef2"
         },
@@ -35,7 +33,6 @@
             "SaveAsActivity__c": true,
             "Status__c": "Queued",
             "TargetObjectId__c": "@ContactRef2",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "@CaseRef2"
         },
@@ -48,7 +45,6 @@
             "SaveAsActivity__c": true,
             "Status__c": "Queued",
             "TargetObjectId__c": "@ContactRef2",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "@CaseRef2"
         },
@@ -61,7 +57,6 @@
             "SaveAsActivity__c": true,
             "Status__c": "Queued",
             "TargetObjectId__c": "@ContactRef3",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef3"
         },
@@ -74,7 +69,6 @@
             "SaveAsActivity__c": true,
             "Status__c": "Queued",
             "TargetObjectId__c": "@ContactRef3",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "@CaseRef3"
         },
@@ -87,7 +81,6 @@
             "SaveAsActivity__c": true,
             "Status__c": "Queued",
             "TargetObjectId__c": "@LeadRef1",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": ""
         },
@@ -100,7 +93,6 @@
             "SaveAsActivity__c": true,
             "Status__c": "Queued",
             "TargetObjectId__c": "@LeadRef1",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": ""
         },
@@ -113,7 +105,6 @@
             "SaveAsActivity__c": true,
             "Status__c": "Queued",
             "TargetObjectId__c": "@LeadRef1",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": ""
         },
@@ -126,7 +117,6 @@
             "SaveAsActivity__c": true,
             "Status__c": "Queued",
             "TargetObjectId__c": "@LeadRef1",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": ""
         }
