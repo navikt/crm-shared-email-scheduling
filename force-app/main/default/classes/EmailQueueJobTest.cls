@@ -4,24 +4,58 @@ private without sharing class EmailQueueJobTest {
 	@isTest
 	private static void testQueue() {
 
-		EmailQueueDataTest.createData( 24, null, false );
+		Integer amount = 15;
 
-		System.assertEquals( 24, [SELECT Id FROM EmailQueue__c].size(), '24 emails in queue' );
+		EmailQueueDataTest.createData( amount, null, true );
+
+		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), 'amount emails in queue' );
 		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent before jobs' );
 
 		Test.StartTest();
 		EmailQueueData data = new EmailQueueData();
-
 		for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
 			System.enqueueJob( new EmailQueueJob( emailQueuesToSend, null ) );
 		}
-
 		Test.StopTest();
 
-		System.assertEquals( 24, [SELECT Id FROM EmailQueue__c].size(), '24 emails in queue' );
-		System.assertEquals( 15, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(), 'EmailQueue__c status should have been updated to "Sent" for 15 (max in tests)' );
+		System.assertEquals( amount, [SELECT Id FROM EmailMessage].size(), amount + ' emails sent after jobs' );
+		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), amount + ' emails in queue' );
+		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(), 'EmailQueue__c status should have been updated to "Sent"' );
 		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Queued'].size(), 'no more EmailQueue__c records with status "Queued"' );
-		System.assertEquals( 9, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Error'].size(), 'no EmailQueue__c records with status "Error"' );
+		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Error'].size(), 'no EmailQueue__c records with status "Error"' );
+	}
 
+	@isTest
+	private static void testQueue_malformedId() {
+
+		Integer amount = 15;
+
+		EmailQueueDataTest.createData( amount, null, true );
+		List<EmailQueue__c> emailQueues = [SELECT Id FROM EmailQueue__c];
+		for ( EmailQueue__c emailQueue : emailQueues ) {
+			emailQueue.WhatId__c = 'a003N000002tMTGBAD'; // malformed ID
+		}
+		update emailQueues;
+
+		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), 'amount emails in queue' );
+		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent before jobs' );
+
+		Test.StartTest();
+		EmailQueueData data = new EmailQueueData();
+		for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
+			System.enqueueJob( new EmailQueueJob( emailQueuesToSend, null ) );
+		}
+		Test.StopTest();
+
+		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), 'no emails sent after jobs as all should fail' );
+		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), amount + ' emails in queue' );
+		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(), 'EmailQueue__c status should have been updated to "Sent"' );
+		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Queued'].size(), 'no more EmailQueue__c records with status "Queued"' );
+
+		emailQueues = [SELECT Id, Error__c FROM EmailQueue__c WHERE Status__c = 'Error'];
+		System.assertEquals( amount, emailQueues.size(), 'no EmailQueue__c records with status "Error"' );
+		for ( EmailQueue__c emailQueue : emailQueues ) {
+			System.assertEquals( 'MALFORMED_ID\nmalformed id a003N000002tMTGBAD', emailQueue.Error__c, 'The error message should have been set because all emails had malformed WhatId' );
+		}
 	}
 }
