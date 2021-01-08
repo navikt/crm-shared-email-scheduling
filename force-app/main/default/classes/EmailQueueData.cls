@@ -4,7 +4,8 @@ public with sharing class EmailQueueData {
 	private static final Id ORG_WIDE_EMAIL_ID = ORG_WIDE_ADDRESSES.size() == 1 ? ORG_WIDE_ADDRESSES[0].Id : null;
 
 	private static final Integer AMOUNT_OF_EMAILS_LEFT = Limits.getLimitEmailInvocations();
-	private static final Integer MAX_EMAILS_TO_QUERY = 350; // 350 emails / 10 emails per batch => 35 batches
+	private static final Integer EMAILS_PER_BATCH = 15; // only 15 emails can be sent per transactions (each queueable job gets reset limits)
+	private static final Integer MAX_EMAILS_TO_QUERY = 450; // 450 total emails / 15 emails per batch => 30 batches (max creatable per schedule is 50, but max in queue is 100 for ALL jobs, thus lower amount is preferable)
 
 	private List<EmailQueue__c> emailQueues { get; set; }
 	private List<List<EmailQueue__c> > emailQueuesSeparated { get; set; }
@@ -15,7 +16,10 @@ public with sharing class EmailQueueData {
 	}
 
 	public void createEmailQueues() {
+		// TODO utilise AMOUNT_OF_EMAILS_LEFT
 		this.emailQueues = [SELECT SaveAsActivity__c, ScheduledPriority__c, WhatId__c, TemplateId__c, TargetObjectId__c, Id FROM EmailQueue__c WHERE Status__c = 'Queued' ORDER BY ScheduledPriority__c DESC NULLS LAST LIMIT : MAX_EMAILS_TO_QUERY];
+		// TODO query emailTemplates by developerName and add to TemplateId__c
+		// TODO remove orgWideEmailAddress field
 	}
 
 	public void createEmailQueuesSeparated() {
@@ -27,7 +31,7 @@ public with sharing class EmailQueueData {
 		for ( EmailQueue__c emailQueue : this.emailQueues ) {
 			emailQueues.add( emailQueue );
 
-			if ( Math.mod( i, 10 ) == 0 ) {
+			if ( Math.mod( i, EMAILS_PER_BATCH ) == 0 ) {
 				emailQueuesSeparated.add( emailQueues );
 				emailQueues = new List<EmailQueue__c>();
 			}
@@ -35,7 +39,7 @@ public with sharing class EmailQueueData {
 			i++;
 		}
 
-		if ( Math.mod( i, 10 ) != 0 ) {
+		if ( Math.mod( i, EMAILS_PER_BATCH ) != 0 ) {
 			emailQueuesSeparated.add( emailQueues );
 		}
 
@@ -48,5 +52,9 @@ public with sharing class EmailQueueData {
 
 	public List<List<EmailQueue__c> > getEmailQueuesSeparated() {
 		return this.emailQueuesSeparated;
+	}
+
+	public Id getOrgWideEmailId() {
+		return ORG_WIDE_EMAIL_ID;
 	}
 }

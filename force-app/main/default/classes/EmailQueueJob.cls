@@ -2,28 +2,15 @@
 public with sharing class EmailQueueJob implements Queueable, Database.AllowsCallouts {
 
 	private List<EmailQueue__c> emailQueues { get; set; }
+	private Id orgWideEmailId { get; set; }
 
-	public EmailQueueJob( List<EmailQueue__c> emailQueues ) {
+	public EmailQueueJob( List<EmailQueue__c> emailQueues, Id orgWideEmailId ) {
 		this.emailQueues = emailQueues;
+		this.orgWideEmailId = orgWideEmailId;
 	}
 
 	public void execute( QueueableContext context ) {
-
-		List<Messaging.SingleEmailMessage> messages = new List<Messaging.SingleEmailMessage>();
-
-		for ( EmailQueue__c emailQueue : this.emailQueues ) {
-
-			Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
-
-			// message.setOrgWideEmailAddressId( orgWideEmailId );
-			message.setWhatId(          emailQueue.WhatId__c );
-			message.setTemplateId(      emailQueue.TemplateId__c );
-			message.setTargetObjectId(  emailQueue.TargetObjectId__c );
-			message.setSaveAsActivity(  emailQueue.SaveAsActivity__c );
-
-			messages.add( message );
-		}
-
-		List<Messaging.SendEmailResult> results = Messaging.sendEmail ( messages, false );
+		List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail( this.emailQueues, this.orgWideEmailId );
+		EmailQueueJobHelper.updateEmailQueues( this.emailQueues, emailResults );
 	}
 }

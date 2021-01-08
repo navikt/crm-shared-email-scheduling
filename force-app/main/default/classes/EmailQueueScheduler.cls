@@ -9,7 +9,7 @@ global class EmailQueueScheduler implements Schedulable {
 	public static String processEmailQueue() {
 		EmailQueueData data = new EmailQueueData();
 		for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
-			System.enqueueJob( new EmailQueueJob( emailQueuesToSend ) );
+			System.enqueueJob( new EmailQueueJob( emailQueuesToSend, data.getOrgWideEmailId() ) );
 		}
 
 		return 'Started processing ' + data.getEmailQueues().size() + ' queued emails.';
