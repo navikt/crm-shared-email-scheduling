@@ -6,10 +6,12 @@ global class EmailQueueScheduler implements Schedulable {
 	}
 
 	@AuraEnabled
-	public static void processEmailQueue() {
+	public static String processEmailQueue() {
 		EmailQueueData data = new EmailQueueData();
 		for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
 			System.enqueueJob( new EmailQueueJob( emailQueuesToSend ) );
 		}
+
+		return 'Started processing ' + data.getEmailQueues().size() + ' queued emails.';
 	}
 }
