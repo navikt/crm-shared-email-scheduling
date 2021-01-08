@@ -55,10 +55,6 @@
                 <behavior>Required</behavior>
                 <field>TargetObjectId__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>OrgWideEmailAddressId__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
