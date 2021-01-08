@@ -32,19 +32,8 @@ public with sharing class EmailQueueJobHelper {
 
 					List<String> errorMsg = new List<String> ();
 					for ( Messaging.SendEmailError error : emailResults[i].getErrors() ) {
-						errorMsg.add( '-----------------------------------' );
-						errorMsg.add( 'getFields()' );
-						errorMsg.addAll( error.getFields() );
-						errorMsg.add( '' );
-
-						errorMsg.add( 'getMessage()' );
-						errorMsg.add( error.getMessage() );
-						errorMsg.add( '' );
-
-						errorMsg.add( 'getStatusCode()' );
 						errorMsg.add( error.getStatusCode().name() );
-						errorMsg.add( '' );
-
+						errorMsg.add( error.getMessage() );
 						errorMsg.add( '' );
 					}
 					emailQueues[i].Error__c = String.join( errorMsg, '\n' );
