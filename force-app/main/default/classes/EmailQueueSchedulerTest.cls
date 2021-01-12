@@ -3,7 +3,7 @@ private without sharing class EmailQueueSchedulerTest {
 
 	@TestSetup
 	static void makeData() {
-		EmailQueueDataTest.makeData();
+		EmailQueueDataTest.createData( 48, null, false );
 	}
 
 	@isTest

@@ -4,6 +4,8 @@ public without sharing class EmailQueueDataTest {
 	@isTest
 	private static void testGetEmailQueues() {
 
+		createData( 48, null, false );
+
 		Test.StartTest();
 		EmailQueueData data = new EmailQueueData();
 		List<EmailQueue__c> results = data.getEmailQueues();
@@ -13,19 +15,51 @@ public without sharing class EmailQueueDataTest {
 	}
 
 	@isTest
+	private static void testGetEmailQueues_overMax() {
+
+		createData( 1245, null, false );
+
+		Test.StartTest();
+		EmailQueueData data = new EmailQueueData();
+		List<EmailQueue__c> results = data.getEmailQueues();
+		Test.StopTest();
+
+		System.assertEquals( 1000, results.size(), '1000 emails should have been fetched, because that\'s the cap' );
+	}
+
+	@isTest
 	private static void testGetEmailQueuesSeparated() {
+
+		createData( 657, null, false );
 
 		Test.StartTest();
 		EmailQueueData data = new EmailQueueData();
 		List<List<EmailQueue__c> > results = data.getEmailQueuesSeparated();
 		Test.StopTest();
 
-		System.assertEquals( 4, results.size(), '4 batches of emails should have been fetched' );
+		System.assertEquals( 7, results.size(), '7 batches of emails should have been fetched' );
 
 		for ( Integer i = 0; i < results.size() - 1; i++ ) {
-			System.assertEquals( 15, results[i].size(), '10 emails in each batch' );
+			System.assertEquals( 100, results[i].size(), '100 emails in each batch' );
 		}
-		System.assertEquals( 3, results[results.size() - 1].size(), '3 emails in the last batch' );
+		System.assertEquals( 57, results[results.size() - 1].size(), '57 emails in the last batch' );
+	}
+
+	@isTest
+	private static void testGetEmailQueuesSeparated_overMax() {
+
+		createData( 1450, null, false );
+
+		Test.StartTest();
+		EmailQueueData data = new EmailQueueData();
+		List<List<EmailQueue__c> > results = data.getEmailQueuesSeparated();
+		Test.StopTest();
+
+		System.assertEquals( 10, results.size(), '10 batches of emails should have been fetched' );
+
+		for ( Integer i = 0; i < results.size(); i++ ) {
+			System.assertEquals( 100, results[i].size(), '100 emails in each batch' );
+		}
 	}
 
 	@isTest
@@ -43,11 +77,6 @@ public without sharing class EmailQueueDataTest {
 
 	// TEST DATA
 	// -----------------------------------
-
-	@TestSetup
-	public static void makeData() {
-		createData( 48, null, false );
-	}
 
 	public static void createData( Integer amount, String priority, Boolean saveAsActivity ) {
 		EmailTemplate emailTemplate = new EmailTemplate( DeveloperName = 'MY_UNIQUE_TEMPLATE', Name = 'MY_UNIQUE_TEMPLATE', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'Test', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}!.</p></body></html>' );
