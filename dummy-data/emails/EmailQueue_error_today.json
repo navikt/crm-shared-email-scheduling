@@ -10,7 +10,9 @@
             "Status__c": "Error",
             "TargetObjectId__c": "@ContactRef1",
             "TemplateId__c": "@EmailTemplateRef1",
-            "WhatId__c": "@CaseRef1"
+            "WhatId__c": "@CaseRef1",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -22,7 +24,9 @@
             "Status__c": "Error",
             "TargetObjectId__c": "@ContactRef2",
             "TemplateId__c": "@EmailTemplateRef1",
-            "WhatId__c": "@CaseRef2"
+            "WhatId__c": "@CaseRef2",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -34,7 +38,9 @@
             "Status__c": "Error",
             "TargetObjectId__c": "@ContactRef2",
             "TemplateId__c": "@EmailTemplateRef2",
-            "WhatId__c": "@CaseRef2"
+            "WhatId__c": "@CaseRef2",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -46,7 +52,9 @@
             "Status__c": "Error",
             "TargetObjectId__c": "@ContactRef2",
             "TemplateId__c": "@EmailTemplateRef2",
-            "WhatId__c": "@CaseRef2"
+            "WhatId__c": "@CaseRef2",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -58,7 +66,9 @@
             "Status__c": "Error",
             "TargetObjectId__c": "@ContactRef3",
             "TemplateId__c": "@EmailTemplateRef1",
-            "WhatId__c": "@CaseRef3"
+            "WhatId__c": "@CaseRef3",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -70,7 +80,9 @@
             "Status__c": "Error",
             "TargetObjectId__c": "@ContactRef3",
             "TemplateId__c": "@EmailTemplateRef2",
-            "WhatId__c": "@CaseRef3"
+            "WhatId__c": "@CaseRef3",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -82,7 +94,9 @@
             "Status__c": "Error",
             "TargetObjectId__c": "@LeadRef1",
             "TemplateId__c": "@EmailTemplateRef1",
-            "WhatId__c": ""
+            "WhatId__c": "",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -94,7 +108,9 @@
             "Status__c": "Error",
             "TargetObjectId__c": "@LeadRef1",
             "TemplateId__c": "@EmailTemplateRef2",
-            "WhatId__c": ""
+            "WhatId__c": "",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -106,7 +122,9 @@
             "Status__c": "Error",
             "TargetObjectId__c": "@LeadRef1",
             "TemplateId__c": "@EmailTemplateRef2",
-            "WhatId__c": ""
+            "WhatId__c": "",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -118,7 +136,9 @@
             "Status__c": "Error",
             "TargetObjectId__c": "@LeadRef1",
             "TemplateId__c": "@EmailTemplateRef2",
-            "WhatId__c": ""
+            "WhatId__c": "",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
         }
     ]
 }
