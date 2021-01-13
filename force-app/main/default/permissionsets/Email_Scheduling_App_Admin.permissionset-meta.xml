@@ -69,11 +69,11 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Queued_Emails</tab>
+        <tab>Queued</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Sent_Emails</tab>
+        <tab>Sent</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>
