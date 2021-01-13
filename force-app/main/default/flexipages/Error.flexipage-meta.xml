@@ -73,6 +73,10 @@
                 <value>1440</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
+                <name>label</name>
+                <value>Month View</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>reportName</name>
                 <value>Email_Queue_Error_Month_View_0qZ</value>
             </componentInstanceProperties>

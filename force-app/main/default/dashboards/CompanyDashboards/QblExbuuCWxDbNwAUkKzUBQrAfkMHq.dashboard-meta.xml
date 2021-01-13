@@ -87,8 +87,8 @@
                 <componentType>Metric</componentType>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
+                <drillDownUrl>/lightning/n/Errors</drillDownUrl>
                 <groupingSortProperties/>
-                <header>Error</header>
                 <indicatorBreakpoint1>10.0</indicatorBreakpoint1>
                 <indicatorBreakpoint2>40.0</indicatorBreakpoint2>
                 <indicatorHighColor>#E32400</indicatorHighColor>
@@ -155,9 +155,9 @@
     </dashboardGridLayout>
     <dashboardType>SpecifiedUser</dashboardType>
     <isGridLayout>true</isGridLayout>
-    <runningUser>test-2pxcudeeu2fi@example.com</runningUser>
+    <runningUser>test-6pzsrmwhni6s@example.com</runningUser>
     <textColor>#000000</textColor>
-    <title>Email Queue - Overview</title>
+    <title>Overview</title>
     <titleColor>#000000</titleColor>
     <titleSize>12</titleSize>
 </Dashboard>
