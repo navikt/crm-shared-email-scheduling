@@ -10,7 +10,7 @@ public with sharing class EmailQueueJob implements Queueable, Database.AllowsCal
 	}
 
 	public void execute( QueueableContext context ) {
-		List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail( this.emailQueues, this.orgWideEmailId );
-		EmailQueueJobHelper.updateEmailQueues( this.emailQueues, emailResults );
+		// List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail( this.emailQueues, this.orgWideEmailId );
+		// EmailQueueJobHelper.updateEmailQueues( this.emailQueues, emailResults );
 	}
 }

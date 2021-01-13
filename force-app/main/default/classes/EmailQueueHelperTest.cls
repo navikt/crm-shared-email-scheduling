@@ -1,5 +1,5 @@
 @isTest
-private without sharing class EmailQueueJobHelperTest {
+private without sharing class EmailQueueHelperTest {
 
 	// 10 emails, 0 fail
 	// ------------------------------
@@ -11,7 +11,7 @@ private without sharing class EmailQueueJobHelperTest {
 		EmailQueueData data = new EmailQueueData();         // fetch data
 
 		Test.StartTest();
-		List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail( data.getEmailQueues(), null );
+		List<Messaging.SendEmailResult> emailResults = EmailQueueHelper.sendEmail( data.getEmailQueues(), null );
 		Test.StopTest();
 
 		System.assertEquals( 10, emailResults.size(), '10 records, 10 emails' );
@@ -25,10 +25,10 @@ private without sharing class EmailQueueJobHelperTest {
 
 		EmailQueueDataTest.createData( 10, null, false );   // create test data
 		EmailQueueData data = new EmailQueueData();         // fetch data
-		List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail( data.getEmailQueues(), null );
+		List<Messaging.SendEmailResult> emailResults = EmailQueueHelper.sendEmail( data.getEmailQueues(), null );
 
 		Test.StartTest();
-		EmailQueueJobHelper.updateEmailQueues( data.getEmailQueues(), emailResults );
+		EmailQueueHelper.updateEmailQueues( data.getEmailQueues(), emailResults );
 		Test.StopTest();
 
 		System.assertEquals( 10, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(), 'EmailQueue__c status should have been updated to "Sent"' );
@@ -45,7 +45,7 @@ private without sharing class EmailQueueJobHelperTest {
 		EmailQueueData data = new EmailQueueData();         // fetch data
 
 		Test.StartTest();
-		List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail( data.getEmailQueues(), null );
+		List<Messaging.SendEmailResult> emailResults = EmailQueueHelper.sendEmail( data.getEmailQueues(), null );
 		Test.StopTest();
 
 
@@ -62,10 +62,10 @@ private without sharing class EmailQueueJobHelperTest {
 
 		EmailQueueDataTest.createData( 16, null, false );   // create test data
 		EmailQueueData data = new EmailQueueData();         // fetch data
-		List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail( data.getEmailQueues(), null );
+		List<Messaging.SendEmailResult> emailResults = EmailQueueHelper.sendEmail( data.getEmailQueues(), null );
 
 		Test.StartTest();
-		EmailQueueJobHelper.updateEmailQueues( data.getEmailQueues(), emailResults );
+		EmailQueueHelper.updateEmailQueues( data.getEmailQueues(), emailResults );
 		Test.StopTest();
 
 		System.assertEquals( 15, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(), 'EmailQueue__c status should have been updated to "Sent"' );
@@ -81,11 +81,11 @@ private without sharing class EmailQueueJobHelperTest {
 
 		EmailQueueDataTest.createData( 16, null, false );   // create test data
 		EmailQueueData data = new EmailQueueData();         // fetch data
-		List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail( data.getEmailQueues(), null );
+		List<Messaging.SendEmailResult> emailResults = EmailQueueHelper.sendEmail( data.getEmailQueues(), null );
 		emailResults.remove( 1 );
 
 		Test.StartTest();
-		EmailQueueJobHelper.updateEmailQueues( data.getEmailQueues(), emailResults );
+		EmailQueueHelper.updateEmailQueues( data.getEmailQueues(), emailResults );
 		Test.StopTest();
 
 		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(), 'EmailQueue__c status should have been updated to "Sent"' );
