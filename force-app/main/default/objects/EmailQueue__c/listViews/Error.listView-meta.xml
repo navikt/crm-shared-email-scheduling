@@ -5,7 +5,7 @@
     <columns>CREATEDBY_USER</columns>
     <columns>LAST_UPDATE</columns>
     <columns>TargetObjectId__c</columns>
-    <columns>Error__c</columns>
+    <columns>ErrorType__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Status__c</field>
