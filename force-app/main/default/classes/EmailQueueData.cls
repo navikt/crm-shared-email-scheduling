@@ -17,8 +17,6 @@ public with sharing class EmailQueueData {
 
 	public void createEmailQueues() {
 		this.emailQueues = [SELECT SaveAsActivity__c, ScheduledPriority__c, WhatId__c, TemplateId__c, TargetObjectId__c, Id FROM EmailQueue__c WHERE Status__c = 'Queued' ORDER BY ScheduledPriority__c DESC NULLS LAST LIMIT : MAX_EMAILS_TO_QUERY];
-		// TODO query emailTemplates by developerName and add to TemplateId__c
-		// TODO gjør TargetObjectId om til Contact lookup
 	}
 
 	public void createEmailQueuesSeparated() {
