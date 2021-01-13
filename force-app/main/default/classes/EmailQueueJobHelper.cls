@@ -31,11 +31,12 @@ public with sharing class EmailQueueJobHelper {
 					emailQueues[i].Status__c = 'Error';
 
 					List<String> errorMsg = new List<String> ();
+					List<String> errorType = new List<String> ();
 					for ( Messaging.SendEmailError error : emailResults[i].getErrors() ) {
-						errorMsg.add( error.getStatusCode().name() );
+						errorType.add( error.getStatusCode().name() );
 						errorMsg.add( error.getMessage() );
-						errorMsg.add( '' );
 					}
+					emailQueues[i].ErrorType__c = String.join( errorType, ', ' );
 					emailQueues[i].Error__c = String.join( errorMsg, '\n' );
 				}
 			}

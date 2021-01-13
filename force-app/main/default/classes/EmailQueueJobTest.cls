@@ -73,10 +73,11 @@ private without sharing class EmailQueueJobTest {
 		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(), 'EmailQueue__c status should have been updated to "Sent"' );
 		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Queued'].size(), 'no more EmailQueue__c records with status "Queued"' );
 
-		emailQueues = [SELECT Id, Error__c FROM EmailQueue__c WHERE Status__c = 'Error'];
+		emailQueues = [SELECT Id, Error__c, ErrorType__c FROM EmailQueue__c WHERE Status__c = 'Error'];
 		System.assertEquals( amount, emailQueues.size(), 'no EmailQueue__c records with status "Error"' );
 		for ( EmailQueue__c emailQueue : emailQueues ) {
-			System.assertEquals( 'MALFORMED_ID\nmalformed id a003N000002tMTGBAD', emailQueue.Error__c, 'The error message should have been set because all emails had malformed WhatId' );
+			System.assertEquals( 'MALFORMED_ID', emailQueue.ErrorType__c, 'The error message should have been set because all emails had malformed WhatId' );
+			System.assertEquals( 'malformed id a003N000002tMTGBAD', emailQueue.Error__c, 'The error message should have been set because all emails had malformed WhatId' );
 		}
 	}
 }
