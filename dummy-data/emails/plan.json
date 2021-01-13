@@ -44,15 +44,19 @@
         "saveRefs": false,
         "resolveRefs": true,
         "files": [
-            "EmailQueue.json",
-            "EmailQueue_2020_12.json",
-            "EmailQueue_2020_11.json",
-            "EmailQueue_2020_10.json",
+            "EmailQueue_queued.json",
+            "EmailQueue_queued_2020_12.json",
+            "EmailQueue_queued_2020_11.json",
+            "EmailQueue_queued_2020_10.json",
             "EmailQueue_sent.json",
             "EmailQueue_sent_2020_12.json",
             "EmailQueue_sent_2020_11.json",
             "EmailQueue_sent_2020_10.json",
-            "EmailQueue_sent_2020_09.json"
+            "EmailQueue_sent_2020_09.json",
+            "EmailQueue_error.json",
+            "EmailQueue_error_2020_12.json",
+            "EmailQueue_error_2020_11.json",
+            "EmailQueue_error_2020_10.json"
         ]
     }
 ]

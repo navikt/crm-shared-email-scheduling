@@ -11,33 +11,20 @@
             "TargetObjectId__c": "@ContactRef1",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef1",
-            "CreatedDate": " 2020-10-07T10:20:10Z"
+            "CreatedDate": "2020-11-03T10:20:10Z"
         },
         {
             "attributes": {
                 "type": "EmailQueue__c",
-                "referenceId": "EmailQueue__cRef3"
+                "referenceId": "EmailQueue__cRef2"
             },
-            "Priority__c": "2",
+            "Priority__c": "1",
             "SaveAsActivity__c": true,
             "Status__c": "Queued",
-            "TargetObjectId__c": "@ContactRef2",
-            "TemplateId__c": "@EmailTemplateRef1",
-            "WhatId__c": "@CaseRef2",
-            "CreatedDate": " 2020-10-07T10:20:10Z"
-        },
-        {
-            "attributes": {
-                "type": "EmailQueue__c",
-                "referenceId": "EmailQueue__cRef4"
-            },
-            "Priority__c": "2",
-            "SaveAsActivity__c": true,
-            "Status__c": "Queued",
-            "TargetObjectId__c": "@ContactRef2",
+            "TargetObjectId__c": "@ContactRef1",
             "TemplateId__c": "@EmailTemplateRef2",
-            "WhatId__c": "@CaseRef2",
-            "CreatedDate": " 2020-10-07T10:20:10Z"
+            "WhatId__c": "@CaseRef1",
+            "CreatedDate": "2020-11-03T10:20:10Z"
         },
         {
             "attributes": {
@@ -50,7 +37,7 @@
             "TargetObjectId__c": "@ContactRef3",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef3",
-            "CreatedDate": " 2020-10-17T10:20:10Z"
+            "CreatedDate": "2020-11-13T10:20:10Z"
         },
         {
             "attributes": {
@@ -63,7 +50,7 @@
             "TargetObjectId__c": "@ContactRef3",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "@CaseRef3",
-            "CreatedDate": " 2020-10-17T10:20:10Z"
+            "CreatedDate": "2020-11-13T10:20:10Z"
         },
         {
             "attributes": {
@@ -76,7 +63,7 @@
             "TargetObjectId__c": "@LeadRef1",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "",
-            "CreatedDate": " 2020-10-27T10:20:10Z"
+            "CreatedDate": "2020-11-23T10:20:10Z"
         },
         {
             "attributes": {
@@ -89,7 +76,7 @@
             "TargetObjectId__c": "@LeadRef1",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "",
-            "CreatedDate": " 2020-10-27T10:20:10Z"
+            "CreatedDate": "2020-11-23T10:20:10Z"
         }
     ]
 }
