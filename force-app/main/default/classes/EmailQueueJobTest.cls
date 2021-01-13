@@ -9,7 +9,6 @@ private without sharing class EmailQueueJobTest {
 
 		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), 'amount emails in queue' );
 		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent before jobs' );
-		System.assertEquals( 0, Limits.getEmailInvocations(), 'zero emails sent' );
 
 		Test.StartTest();
 		EmailQueueData data = new EmailQueueData();
@@ -25,37 +24,27 @@ private without sharing class EmailQueueJobTest {
 		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Error'].size(), 'no EmailQueue__c records with status "Error"' );
 	}
 
+	@isTest
+	private static void testEmailJobs_overMax() {
 
-	// @isTest
-	// private static void testEmailJobs_limitExceeded() {
-	// 	system.debug( 'getLimitEmailInvocations: ' + Limits.getLimitEmailInvocations() );
-	// 	system.debug( 'getEmailInvocations: ' + Limits.getEmailInvocations() );
+		Integer amount = 1005;
+		EmailQueueDataTest.createData( amount, null, true );
 
-	// 	Integer amount = 15;
-	// 	EmailQueueDataTest.createData( amount, null, true );
+		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), 'amount emails in queue' );
+		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent before jobs' );
 
-	// 	System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), 'amount emails in queue' );
-	// 	System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent before jobs' );
-	// 	System.assertEquals( 0, Limits.getEmailInvocations(), 'zero emails sent' );
+		Test.StartTest();
+		EmailQueueData data = new EmailQueueData();
+		for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
+			System.enqueueJob( new EmailQueueJob( emailQueuesToSend, null ) );
+		}
+		Test.StopTest();
 
-	// 	Test.StartTest();
-	// 	EmailQueueData data = new EmailQueueData();
-	// 	for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
-	// 		System.enqueueJob( new EmailQueueJob( emailQueuesToSend, null ) );
-	// 	}
-	// 	Test.StopTest();
-
-	// 	System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), amount + ' emails in queue' );
-	// 	System.assertEquals( amount, [SELECT Id FROM EmailMessage].size(), amount + ' emails sent before jobs' );
-
-	// 	insert new EmailQueue__c( Priority__c = '1', SaveAsActivity__c = true, Status__c = 'Queued', TargetObjectId__c = [SELECT Id FROM Contact LIMIT 1].Id, TemplateId__c = [SELECT Id FROM EmailTemplate LIMIT 1].Id );
-
-	// 	data = new EmailQueueData();
-	// 	system.debug( 'getLimitEmailInvocations: ' + Limits.getLimitEmailInvocations() );
-	// 	system.debug( 'getEmailInvocations: ' + Limits.getEmailInvocations() );
-
-	// 	System.assertEquals( 0, data.getEmailQueues().size(), 'no EmailQueue__c records fetched because the email limit is exceeded' );
-	// }
+		System.assert ( [SELECT Id FROM EmailMessage].size() >= 15, 'at least 15 EmailMessage records' );
+		System.assert ( [SELECT Id FROM EmailQueue__c].size() >= 15, 'at least 15 emails in EmailQueue' );
+		System.assert ( [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size() >= 15, 'at least 15 EmailQueues with status sent' );
+		System.assert ( [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Queued'].size() >= 5, 'Should still be some unsent emails' ); // scratch org limits to 15 emails total (regardless of X amount of jobs or Y amount of transactions), but sandboxes have a higher limit
+	}
 
 	@isTest
 	private static void testEmailJobs_malformedId() {
@@ -71,7 +60,6 @@ private without sharing class EmailQueueJobTest {
 
 		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), 'amount emails in queue' );
 		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent before jobs' );
-		System.assertEquals( 0, Limits.getEmailInvocations(), 'zero emails sent' );
 
 		Test.StartTest();
 		EmailQueueData data = new EmailQueueData();
