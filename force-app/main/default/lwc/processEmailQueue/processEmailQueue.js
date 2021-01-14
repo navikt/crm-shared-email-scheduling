@@ -22,8 +22,10 @@ export default class ProcessEmailQueue extends LightningElement {
             this.isLoading = false;
             this.jobIds = result;
             this.totalJobs = result.length;
-            this.finished = 0;
-            this.startProgressBar();
+            if (result.length > 0) {
+                this.startProgressBar();
+                this.buttonText = "Process More Emails";
+            }
         }).catch(error => {
             this.isLoading = false;
             this.error = error.body.message;
@@ -33,7 +35,7 @@ export default class ProcessEmailQueue extends LightningElement {
     startProgressBar() {
 
         this.isRunning = true;
-        this.buttonText = "Process More Emails";
+        this.completedJobs = 0;
 
         // eslint-disable-next-line @lwc/lwc/no-async-operation
         this._interval = setInterval(() => {
