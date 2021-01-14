@@ -17,4 +17,18 @@ private without sharing class EmailQueueSchedulerTest {
 		// ! no tests, as queueable is not possible to run inside scheduled class
 		// ! full tests are performed in EmailQueueJobTest
 	}
+
+	@isTest
+	private static void testGetJobStatus() {
+
+		Test.StartTest();
+		List<Id> jobIds = EmailQueueScheduler.processEmailQueue();
+		Test.StopTest();
+
+		System.assertEquals( 1, jobIds.size(), 'should only be one batch, and one job' );
+
+		Integer finishedJobs = EmailQueueScheduler.getJobStatus( jobIds );
+
+		System.assertEquals( 1, finishedJobs, 'should only be one batch, and one job which should be finished' );
+	}
 }
