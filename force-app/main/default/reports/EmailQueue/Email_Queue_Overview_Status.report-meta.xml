@@ -12,7 +12,7 @@
         <field>EmailQueue__c.Status__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>[Email Queue] [Overview] Status</name>
+    <name>[Overview] Status</name>
     <params>
         <name>co</name>
         <value>1</value>

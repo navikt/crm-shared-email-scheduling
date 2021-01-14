@@ -8,14 +8,15 @@
             <axisBinding>y</axisBinding>
             <column>RowCount</column>
         </chartSummaries>
-        <chartType>HorizontalBar</chartType>
+        <chartType>Donut</chartType>
         <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>true</expandOthers>
-        <groupingColumn>EmailQueue__c.ScheduledPriority__c</groupingColumn>
+        <expandOthers>false</expandOthers>
+        <groupingColumn>EmailQueue__c.ErrorType__c</groupingColumn>
+        <legendPosition>Bottom</legendPosition>
         <location>CHART_BOTTOM</location>
         <showAxisLabels>false</showAxisLabels>
-        <showPercentage>false</showPercentage>
-        <showTotal>false</showTotal>
+        <showPercentage>true</showPercentage>
+        <showTotal>true</showTotal>
         <showValues>true</showValues>
         <size>Medium</size>
         <summaryAxisRange>Auto</summaryAxisRange>
@@ -27,22 +28,25 @@
     <columns>
         <field>CUST_NAME</field>
     </columns>
+    <columns>
+        <field>CUST_LAST_UPDATE</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>EmailQueue__c.Status__c</column>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Queued</value>
+            <value>Error</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>EmailQueue__c.ScheduledPriority__c</field>
-        <sortOrder>Desc</sortOrder>
+        <field>EmailQueue__c.ErrorType__c</field>
+        <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>[Email Queue] [Queue] Scheduled priority</name>
+    <name>[Error] Error Type</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -52,6 +56,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
+    <sortColumn>CUST_LAST_UPDATE</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>CUST_CREATED_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

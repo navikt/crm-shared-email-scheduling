@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>EmailQueue__c.SendTimeInHours__c:AVG</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA1</developerName>
+        <isActive>false</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Average Send Time</masterLabel>
+        <scale>0</scale>
+    </aggregates>
     <chart>
         <backgroundColor1>#FFFFFF</backgroundColor1>
         <backgroundColor2>#FFFFFF</backgroundColor2>
         <backgroundFadeDir>Diagonal</backgroundFadeDir>
         <chartSummaries>
+            <aggregate>Average</aggregate>
             <axisBinding>y</axisBinding>
-            <column>RowCount</column>
+            <column>EmailQueue__c.SendTimeInHours__c</column>
         </chartSummaries>
-        <chartType>Line</chartType>
+        <chartType>Donut</chartType>
         <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>true</expandOthers>
-        <groupingColumn>EmailQueue__c.SendTimeInHours__c</groupingColumn>
+        <expandOthers>false</expandOthers>
+        <groupingColumn>EmailQueue__c.Status__c</groupingColumn>
+        <legendPosition>Right</legendPosition>
         <location>CHART_BOTTOM</location>
-        <showAxisLabels>false</showAxisLabels>
+        <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
-        <showTotal>false</showTotal>
+        <showTotal>true</showTotal>
         <showValues>false</showValues>
         <size>Medium</size>
         <summaryAxisRange>Auto</summaryAxisRange>
@@ -25,10 +36,8 @@
         <titleSize>18</titleSize>
     </chart>
     <columns>
-        <field>CUST_NAME</field>
-    </columns>
-    <columns>
-        <field>CUST_LAST_UPDATE</field>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>EmailQueue__c.SendTimeInHours__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -42,10 +51,10 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>EmailQueue__c.SendTimeInHours__c</field>
+        <field>EmailQueue__c.Status__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>[Email Queue] [Sent] Send Time</name>
+    <name>[Sent] Average Send Time</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -55,8 +64,6 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>CUST_LAST_UPDATE</sortColumn>
-    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>CUST_CREATED_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

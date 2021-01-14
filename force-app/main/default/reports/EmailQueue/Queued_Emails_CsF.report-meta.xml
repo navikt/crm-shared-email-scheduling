@@ -1,32 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
-    <aggregates>
-        <calculatedFormula>EmailQueue__c.SendTimeInHours__c:AVG</calculatedFormula>
-        <datatype>number</datatype>
-        <developerName>FORMULA1</developerName>
-        <isActive>false</isActive>
-        <isCrossBlock>false</isCrossBlock>
-        <masterLabel>Average Send Time</masterLabel>
-        <scale>0</scale>
-    </aggregates>
     <chart>
         <backgroundColor1>#FFFFFF</backgroundColor1>
         <backgroundColor2>#FFFFFF</backgroundColor2>
         <backgroundFadeDir>Diagonal</backgroundFadeDir>
         <chartSummaries>
-            <aggregate>Average</aggregate>
             <axisBinding>y</axisBinding>
-            <column>EmailQueue__c.SendTimeInHours__c</column>
+            <column>RowCount</column>
         </chartSummaries>
-        <chartType>Donut</chartType>
+        <chartType>HorizontalBar</chartType>
         <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>false</expandOthers>
-        <groupingColumn>EmailQueue__c.Status__c</groupingColumn>
-        <legendPosition>Right</legendPosition>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>EmailQueue__c.Priority__c</groupingColumn>
         <location>CHART_BOTTOM</location>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
-        <showTotal>true</showTotal>
+        <showTotal>false</showTotal>
         <showValues>false</showValues>
         <size>Medium</size>
         <summaryAxisRange>Auto</summaryAxisRange>
@@ -36,25 +25,24 @@
         <titleSize>18</titleSize>
     </chart>
     <columns>
-        <aggregateTypes>Average</aggregateTypes>
-        <field>EmailQueue__c.SendTimeInHours__c</field>
+        <field>CUST_NAME</field>
     </columns>
     <filter>
         <criteriaItems>
             <column>EmailQueue__c.Status__c</column>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Sent</value>
+            <value>Queued</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>EmailQueue__c.Status__c</field>
+        <field>EmailQueue__c.Priority__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>[Email Queue] [Sent] Average Send Time</name>
+    <name>[Queue] Priority</name>
     <params>
         <name>co</name>
         <value>1</value>
