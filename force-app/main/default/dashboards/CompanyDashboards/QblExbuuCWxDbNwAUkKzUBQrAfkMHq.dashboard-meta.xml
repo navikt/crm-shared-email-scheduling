@@ -106,9 +106,9 @@
                 <header>Sent Emails</header>
                 <indicatorBreakpoint1>33.0</indicatorBreakpoint1>
                 <indicatorBreakpoint2>67.0</indicatorBreakpoint2>
-                <indicatorHighColor>#63D0FF</indicatorHighColor>
-                <indicatorLowColor>#63D0FF</indicatorLowColor>
-                <indicatorMiddleColor>#63D0FF</indicatorMiddleColor>
+                <indicatorHighColor>#2991D1</indicatorHighColor>
+                <indicatorLowColor>#2991D1</indicatorLowColor>
+                <indicatorMiddleColor>#2991D1</indicatorMiddleColor>
                 <metricLabel>This Month</metricLabel>
                 <report>EmailQueue/Sent_Average_Send_Time_This_Month_D7Q</report>
                 <showRange>false</showRange>
@@ -201,9 +201,9 @@
                 <header>Errors</header>
                 <indicatorBreakpoint1>10.0</indicatorBreakpoint1>
                 <indicatorBreakpoint2>40.0</indicatorBreakpoint2>
-                <indicatorHighColor>#C23A34</indicatorHighColor>
-                <indicatorLowColor>#00716B</indicatorLowColor>
-                <indicatorMiddleColor>#FFB75C</indicatorMiddleColor>
+                <indicatorHighColor>#2991D1</indicatorHighColor>
+                <indicatorLowColor>#2991D1</indicatorLowColor>
+                <indicatorMiddleColor>#2991D1</indicatorMiddleColor>
                 <metricLabel>All Time</metricLabel>
                 <report>EmailQueue/Email_Queue_Error_Error_Type_sOT</report>
                 <showRange>false</showRange>
