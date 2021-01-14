@@ -7,12 +7,14 @@
             },
             "Priority__c": "1",
             "SaveAsActivity__c": true,
-            "Status__c": "Queued",
+            "Status__c": "Error",
             "TargetObjectId__c": "@ContactRef1",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef1",
-            "CreatedDate": " 2020-11-03T10:20:10Z"
+            "CreatedDate": "2020-11-03T10:20:10Z",
+            "LastModifiedDate": "2020-11-03T10:20:10Z",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -21,12 +23,14 @@
             },
             "Priority__c": "1",
             "SaveAsActivity__c": true,
-            "Status__c": "Queued",
+            "Status__c": "Error",
             "TargetObjectId__c": "@ContactRef1",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "@CaseRef1",
-            "CreatedDate": " 2020-11-03T10:20:10Z"
+            "CreatedDate": "2020-11-03T10:20:10Z",
+            "LastModifiedDate": "2020-11-03T10:20:10Z",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -35,12 +39,14 @@
             },
             "Priority__c": "3",
             "SaveAsActivity__c": true,
-            "Status__c": "Queued",
+            "Status__c": "Error",
             "TargetObjectId__c": "@ContactRef3",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef3",
-            "CreatedDate": " 2020-11-13T10:20:10Z"
+            "CreatedDate": "2020-11-13T10:20:10Z",
+            "LastModifiedDate": "2020-11-13T10:20:10Z",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -49,12 +55,14 @@
             },
             "Priority__c": "3",
             "SaveAsActivity__c": true,
-            "Status__c": "Queued",
+            "Status__c": "Error",
             "TargetObjectId__c": "@ContactRef3",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "@CaseRef3",
-            "CreatedDate": " 2020-11-13T10:20:10Z"
+            "CreatedDate": "2020-11-13T10:20:10Z",
+            "LastModifiedDate": "2020-11-13T10:20:10Z",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -63,12 +71,14 @@
             },
             "Priority__c": "5",
             "SaveAsActivity__c": true,
-            "Status__c": "Queued",
+            "Status__c": "Error",
             "TargetObjectId__c": "@LeadRef1",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "",
-            "CreatedDate": " 2020-11-23T10:20:10Z"
+            "CreatedDate": "2020-11-23T10:20:10Z",
+            "LastModifiedDate": "2020-11-23T10:20:10Z",
+            "ErrorType__c": "MALFORMED_ID",
+            "Error__c": "malformed id"
         },
         {
             "attributes": {
@@ -77,12 +87,14 @@
             },
             "Priority__c": "5",
             "SaveAsActivity__c": true,
-            "Status__c": "Queued",
+            "Status__c": "Error",
             "TargetObjectId__c": "@LeadRef1",
-            "OrgWideEmailAddressId__c": "",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "",
-            "CreatedDate": " 2020-11-23T10:20:10Z"
+            "CreatedDate": "2020-11-23T10:20:10Z",
+            "LastModifiedDate": "2020-11-23T10:20:10Z",
+            "ErrorType__c": "EMAIL_LIMIT_EXCEEDED",
+            "Error__c": "malformed id"
         }
     ]
 }

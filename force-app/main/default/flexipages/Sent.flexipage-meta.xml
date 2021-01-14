@@ -89,7 +89,7 @@
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Sent Emails</masterLabel>
+    <masterLabel>Sent</masterLabel>
     <template>
         <name>flexipage:appHomeTemplateTwoColumnsStacked</name>
     </template>

@@ -108,7 +108,7 @@
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Queued Emails</masterLabel>
+    <masterLabel>Queue</masterLabel>
     <template>
         <name>flexipage:appHomeTemplateTwoColumnsStacked</name>
     </template>

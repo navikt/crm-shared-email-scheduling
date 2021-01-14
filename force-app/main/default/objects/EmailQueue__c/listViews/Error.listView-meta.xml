@@ -4,11 +4,8 @@
     <columns>NAME</columns>
     <columns>CREATEDBY_USER</columns>
     <columns>LAST_UPDATE</columns>
-    <columns>TargetObjectId__c</columns>
-    <columns>WhatId__c</columns>
-    <columns>OrgWideEmailAddressId__c</columns>
-    <columns>TemplateId__c</columns>
-    <columns>Error__c</columns>
+    <columns>TargetObjectIdURL__c</columns>
+    <columns>ErrorType__c</columns>
     <filterScope>Everything</filterScope>
     <filters>
         <field>Status__c</field>

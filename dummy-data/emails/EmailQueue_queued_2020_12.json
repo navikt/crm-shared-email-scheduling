@@ -7,12 +7,24 @@
             },
             "Priority__c": "1",
             "SaveAsActivity__c": true,
-            "Status__c": "Sent",
+            "Status__c": "Queued",
             "TargetObjectId__c": "@ContactRef1",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef1",
-            "LastModifiedDate": "2020-12-03T13:20:10Z",
-            "CreatedDate": "2020-12-03T10:20:10Z"
+            "CreatedDate": "2020-12-04T10:20:10Z"
+        },
+        {
+            "attributes": {
+                "type": "EmailQueue__c",
+                "referenceId": "EmailQueue__cRef2"
+            },
+            "Priority__c": "1",
+            "SaveAsActivity__c": true,
+            "Status__c": "Queued",
+            "TargetObjectId__c": "@ContactRef1",
+            "TemplateId__c": "@EmailTemplateRef2",
+            "WhatId__c": "@CaseRef1",
+            "CreatedDate": "2020-12-04T10:20:10Z"
         },
         {
             "attributes": {
@@ -21,12 +33,11 @@
             },
             "Priority__c": "2",
             "SaveAsActivity__c": true,
-            "Status__c": "Sent",
+            "Status__c": "Queued",
             "TargetObjectId__c": "@ContactRef2",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef2",
-            "LastModifiedDate": "2020-12-06T14:20:10Z",
-            "CreatedDate": "2020-12-06T10:20:10Z"
+            "CreatedDate": "2020-12-04T10:20:10Z"
         },
         {
             "attributes": {
@@ -35,12 +46,11 @@
             },
             "Priority__c": "2",
             "SaveAsActivity__c": true,
-            "Status__c": "Sent",
+            "Status__c": "Queued",
             "TargetObjectId__c": "@ContactRef2",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "@CaseRef2",
-            "LastModifiedDate": "2020-12-09T18:20:10Z",
-            "CreatedDate": "2020-12-09T10:20:10Z"
+            "CreatedDate": "2020-12-04T10:20:10Z"
         },
         {
             "attributes": {
@@ -49,12 +59,11 @@
             },
             "Priority__c": "3",
             "SaveAsActivity__c": true,
-            "Status__c": "Sent",
+            "Status__c": "Queued",
             "TargetObjectId__c": "@ContactRef3",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "@CaseRef3",
-            "LastModifiedDate": "2020-12-14T19:20:10Z",
-            "CreatedDate": "2020-12-14T10:20:10Z"
+            "CreatedDate": "2020-12-12T10:20:10Z"
         },
         {
             "attributes": {
@@ -63,12 +72,11 @@
             },
             "Priority__c": "3",
             "SaveAsActivity__c": true,
-            "Status__c": "Sent",
+            "Status__c": "Queued",
             "TargetObjectId__c": "@ContactRef3",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "@CaseRef3",
-            "LastModifiedDate": "2020-12-17T15:20:10Z",
-            "CreatedDate": "2020-12-17T10:20:10Z"
+            "CreatedDate": "2020-12-12T10:20:10Z"
         },
         {
             "attributes": {
@@ -77,11 +85,10 @@
             },
             "Priority__c": "5",
             "SaveAsActivity__c": true,
-            "Status__c": "Sent",
+            "Status__c": "Queued",
             "TargetObjectId__c": "@LeadRef1",
             "TemplateId__c": "@EmailTemplateRef1",
             "WhatId__c": "",
-            "LastModifiedDate": "2020-12-24T10:50:10Z",
             "CreatedDate": "2020-12-24T10:20:10Z"
         },
         {
@@ -91,11 +98,10 @@
             },
             "Priority__c": "5",
             "SaveAsActivity__c": true,
-            "Status__c": "Sent",
+            "Status__c": "Queued",
             "TargetObjectId__c": "@LeadRef1",
             "TemplateId__c": "@EmailTemplateRef2",
             "WhatId__c": "",
-            "LastModifiedDate": "2020-12-27T10:40:10Z",
             "CreatedDate": "2020-12-27T10:20:10Z"
         }
     ]

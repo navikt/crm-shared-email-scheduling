@@ -4,9 +4,18 @@
         <application>Email_Scheduling</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <classAccesses>
+        <apexClass>EmailQueueScheduler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <fieldPermissions>
         <editable>false</editable>
         <field>EmailQueue__c.DaysSinceScheduled__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmailQueue__c.ErrorType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -16,12 +25,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmailQueue__c.Month__c</field>
+        <field>EmailQueue__c.HoursSinceScheduled__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>EmailQueue__c.OrgWideEmailAddressId__c</field>
+        <field>EmailQueue__c.MonthShort__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmailQueue__c.Month__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -42,6 +56,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>EmailQueue__c.SendTime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmailQueue__c.TargetObjectIdURL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmailQueue__c.TemplateIdURL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>EmailQueue__c.WhatIdURL__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -69,11 +98,11 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Queued_Emails</tab>
+        <tab>Queued</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Sent_Emails</tab>
+        <tab>Sent</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>
