@@ -1,5 +1,5 @@
 
-public with sharing class EmailQueueJob implements Queueable, Database.AllowsCallouts {
+public without sharing class EmailQueueJob implements Queueable, Database.AllowsCallouts {
 
 	private List<EmailQueue__c> emailQueues { get; set; }
 	private Id orgWideEmailId { get; set; }

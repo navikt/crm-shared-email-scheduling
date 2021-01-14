@@ -1,4 +1,4 @@
-public with sharing class EmailQueueJobHelper {
+public without sharing class EmailQueueJobHelper {
 
 	public static List<Messaging.SendEmailResult> sendEmail( List<EmailQueue__c> emailQueues, Id orgWideEmailId ) {
 

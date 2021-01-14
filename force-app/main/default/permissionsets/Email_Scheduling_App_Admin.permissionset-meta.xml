@@ -4,6 +4,10 @@
         <application>Email_Scheduling</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <classAccesses>
+        <apexClass>EmailQueueScheduler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <fieldPermissions>
         <editable>false</editable>
         <field>EmailQueue__c.DaysSinceScheduled__c</field>
