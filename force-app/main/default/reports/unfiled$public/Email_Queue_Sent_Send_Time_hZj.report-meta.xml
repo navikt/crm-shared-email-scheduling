@@ -45,7 +45,7 @@
         <field>EmailQueue__c.SendTimeInHours__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Email Queue - Sent - Send Time</name>
+    <name>[Email Queue] [Sent] Send Time</name>
     <params>
         <name>co</name>
         <value>1</value>

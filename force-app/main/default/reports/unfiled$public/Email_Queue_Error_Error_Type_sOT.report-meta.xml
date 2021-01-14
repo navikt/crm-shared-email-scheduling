@@ -46,7 +46,7 @@
         <field>EmailQueue__c.ErrorType__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Email Queue - Error - Error Type</name>
+    <name>[Email Queue] [Error] Error Type</name>
     <params>
         <name>co</name>
         <value>1</value>

@@ -42,7 +42,7 @@
         <field>EmailQueue__c.DaysSinceScheduled__c</field>
         <sortOrder>Desc</sortOrder>
     </groupingsDown>
-    <name>Email Queue - Queue - Days since queued</name>
+    <name>[Email Queue] [Queue] Days since queued</name>
     <params>
         <name>co</name>
         <value>1</value>

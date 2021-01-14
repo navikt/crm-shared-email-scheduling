@@ -54,7 +54,7 @@
         <field>EmailQueue__c.Status__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Email Queue - Sent - Average Send Time</name>
+    <name>[Email Queue] [Sent] Average Send Time</name>
     <params>
         <name>co</name>
         <value>1</value>

@@ -42,7 +42,7 @@
         <field>EmailQueue__c.Priority__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Email Queue - Queue - Priority</name>
+    <name>[Email Queue] [Queue] Priority</name>
     <params>
         <name>co</name>
         <value>1</value>

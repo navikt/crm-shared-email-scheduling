@@ -45,7 +45,7 @@
         <field>EmailQueue__c.Month__c</field>
         <sortOrder>Desc</sortOrder>
     </groupingsDown>
-    <name>Email Queue - Sent - Month View</name>
+    <name>[Email Queue] [Sent] Month View</name>
     <params>
         <name>co</name>
         <value>1</value>
