@@ -13,7 +13,7 @@
             "default": true,
             "package": "crm-platform-email-scheduling",
             "versionName": "ver 1.0",
-            "versionNumber": "1.0.0.NEXT"
+            "versionNumber": "1.1.0.NEXT"
         }
     ],
     "namespace": "",
