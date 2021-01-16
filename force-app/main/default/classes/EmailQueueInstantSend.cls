@@ -1,9 +1,8 @@
 public without sharing class EmailQueueInstantSend {
 
 	public static void process( List<EmailQueue__c> emailQueue ) {
-		List<EmailQueue__c> filteredQueue = new List<EmailQueue__c>();
-		if ( filteredQueue.size() > 0 ) {
-
+		if ( findInstantRecords( emailQueue ).size() > 0 ) {
+			EmailQueueScheduler.processEmailQueue( 'Instant' );
 		}
 	}
 

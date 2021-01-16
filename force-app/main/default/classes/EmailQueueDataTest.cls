@@ -2,12 +2,57 @@
 public without sharing class EmailQueueDataTest {
 
 	@isTest
-	private static void testGetEmailQueues() {
+	private static void testGetEmailQueues_queued() {
 
 		createData( 48, null, false );
 
 		Test.StartTest();
 		EmailQueueData data = new EmailQueueData( 'Queued' );
+		List<EmailQueue__c> results = data.getEmailQueues();
+		Test.StopTest();
+
+		System.assertEquals( 48, results.size(), '48 emails should have been fetched' );
+	}
+
+	@isTest
+	private static void testGetEmailQueues_error() {
+
+		createData( 48, null, false );
+
+		Test.StartTest();
+		EmailQueueData data = new EmailQueueData( 'Error' );
+		List<EmailQueue__c> results = data.getEmailQueues();
+		Test.StopTest();
+
+		System.assertEquals( 0, results.size(), '0 emails should have been fetched' );
+	}
+
+	@isTest
+	private static void testGetEmailQueues_noInstant() {
+
+		createData( 48, null, false );
+
+		Test.StartTest();
+		EmailQueueData data = new EmailQueueData( 'Instant' );
+		List<EmailQueue__c> results = data.getEmailQueues();
+		Test.StopTest();
+
+		System.assertEquals( 0, results.size(), '0 emails should have been fetched' );
+	}
+
+	@isTest
+	private static void testGetEmailQueues_Instant() {
+
+		createData( 48, null, false );
+
+		List<EmailQueue__c> emailQueue = [SELECT Id FROM EmailQueue__c];
+		for ( EmailQueue__c queue : emailQueue ) {
+			queue.Status__c = 'Instant';
+		}
+		update emailQueue;
+
+		Test.StartTest();
+		EmailQueueData data = new EmailQueueData( 'Instant' );
 		List<EmailQueue__c> results = data.getEmailQueues();
 		Test.StopTest();
 

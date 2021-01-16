@@ -13,9 +13,9 @@ private without sharing class EmailQueueInstantSendTest {
 		for ( Integer i = 0; i < 5; i++ ) {
 			emailQueues.add( new EmailQueue__c( Priority__c = '1', SaveAsActivity__c = true, Status__c = 'Instant', TargetObjectId__c = con.Id, TemplateId__c = emailTemplate.Id ) );
 		}
-		insert emailQueues;
 
 		Test.StartTest();
+		insert emailQueues;
 		Test.StopTest();
 
 		System.assertEquals( 5, [SELECT Id FROM EmailMessage].size(), '5 emails sent after jobs' );
@@ -29,16 +29,16 @@ private without sharing class EmailQueueInstantSendTest {
 	@isTest
 	private static void testUpdate() {
 
-		EmailQueueDataTest.createData( 10, null, false );   // create test data
+		EmailQueueDataTest.createData( 5, null, true );   // create test data
 
 		List<EmailQueue__c> emailQueue = [SELECT Id FROM EmailQueue__c];
 		for ( EmailQueue__c queue : emailQueue ) {
 			queue.Status__c = 'Instant';
 		}
 
-		update emailQueue;
 
 		Test.StartTest();
+		update emailQueue;
 		Test.StopTest();
 
 		System.assertEquals( 5, [SELECT Id FROM EmailMessage].size(), '5 emails sent after jobs' );
