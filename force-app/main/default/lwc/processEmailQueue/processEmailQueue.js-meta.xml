@@ -7,4 +7,11 @@
     <targets>
         <target>lightning__UtilityBar</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__UtilityBar">
+            <property name="status" type="String" label="Status to Process" placeholder="Queued" datasource="Queued,Instant,Error" required="true" />
+            <property name="title" type="String" label="Title" placeholder="Title" required="true" />
+            <property name="buttonName" type="String" label="Button Name" placeholder="Button Name"  required="true" />
+        </targetConfig>
+    </targetConfigs>
   </LightningComponentBundle>

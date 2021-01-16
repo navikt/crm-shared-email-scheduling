@@ -1,5 +1,5 @@
 
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 import processEmails from "@salesforce/apex/EmailQueueScheduler.processEmailQueue";
 import getJobStatus from '@salesforce/apex/EmailQueueScheduler.getJobStatus';
 
@@ -12,7 +12,10 @@ export default class ProcessEmailQueue extends LightningElement {
     @track isRunning;
     @track error;
     @track buttonText = 'Process';
-    status = 'Queued';
+
+    @api status;
+    @api title;
+    @api buttonName;
 
     processEmails(evt) {
 
@@ -25,7 +28,7 @@ export default class ProcessEmailQueue extends LightningElement {
             this.totalJobs = result.length;
             if (result.length > 0) {
                 this.startProgressBar();
-                this.buttonText = "Process More Emails";
+                this.buttonName = this.buttonName + " again";
             }
         }).catch(error => {
             this.isLoading = false;
