@@ -8,7 +8,7 @@ private without sharing class EmailQueueJobHelperTest {
 	private static void testSendEmail() {
 
 		EmailQueueDataTest.createData( 10, null, false );   // create test data
-		EmailQueueData data = new EmailQueueData();         // fetch data
+		EmailQueueData data = new EmailQueueData( 'Queued' );         // fetch data
 
 		Test.StartTest();
 		List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail( data.getEmailQueues(), null );
@@ -24,7 +24,7 @@ private without sharing class EmailQueueJobHelperTest {
 	private static void testUpdateEmailQueues() {
 
 		EmailQueueDataTest.createData( 10, null, false );   // create test data
-		EmailQueueData data = new EmailQueueData();         // fetch data
+		EmailQueueData data = new EmailQueueData( 'Queued' );         // fetch data
 		List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail( data.getEmailQueues(), null );
 
 		Test.StartTest();
@@ -42,7 +42,7 @@ private without sharing class EmailQueueJobHelperTest {
 	private static void testSendEmail_oneError() {
 
 		EmailQueueDataTest.createData( 16, null, false );   // create test data
-		EmailQueueData data = new EmailQueueData();         // fetch data
+		EmailQueueData data = new EmailQueueData( 'Queued' );         // fetch data
 
 		Test.StartTest();
 		List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail( data.getEmailQueues(), null );
@@ -61,7 +61,7 @@ private without sharing class EmailQueueJobHelperTest {
 	private static void testUpdateEmailQueues_oneError() {
 
 		EmailQueueDataTest.createData( 16, null, false );   // create test data
-		EmailQueueData data = new EmailQueueData();         // fetch data
+		EmailQueueData data = new EmailQueueData( 'Queued' );         // fetch data
 		List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail( data.getEmailQueues(), null );
 
 		Test.StartTest();
@@ -80,7 +80,7 @@ private without sharing class EmailQueueJobHelperTest {
 	private static void testUpdateEmailQueues_sizeMismatch() {
 
 		EmailQueueDataTest.createData( 16, null, false );   // create test data
-		EmailQueueData data = new EmailQueueData();         // fetch data
+		EmailQueueData data = new EmailQueueData( 'Queued' );         // fetch data
 		List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail( data.getEmailQueues(), null );
 		emailResults.remove( 1 );
 

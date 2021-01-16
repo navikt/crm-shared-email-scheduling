@@ -22,7 +22,7 @@ private without sharing class EmailQueueSchedulerTest {
 	private static void testGetJobStatus() {
 
 		Test.StartTest();
-		List<Id> jobIds = EmailQueueScheduler.processEmailQueue();
+		List<Id> jobIds = EmailQueueScheduler.processEmailQueue( 'Queued' );
 		Test.StopTest();
 
 		System.assertEquals( 1, jobIds.size(), 'should only be one batch, and one job' );

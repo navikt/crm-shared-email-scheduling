@@ -4,7 +4,9 @@
     <active>true</active>
     <errorConditionFormula>ISNEW()
     &amp;&amp;
-!ISPICKVAL( Status__c , &apos;Queued&apos; )
+ISPICKVAL( Status__c , &apos;Sent&apos; )
+    &amp;&amp;
+ISPICKVAL( Status__c , &apos;Error&apos; )
     &amp;&amp;
 !$Permission.IgnoreValidation</errorConditionFormula>
     <errorDisplayField>Status__c</errorDisplayField>

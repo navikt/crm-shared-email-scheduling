@@ -7,7 +7,7 @@ public without sharing class EmailQueueDataTest {
 		createData( 48, null, false );
 
 		Test.StartTest();
-		EmailQueueData data = new EmailQueueData();
+		EmailQueueData data = new EmailQueueData( 'Queued' );
 		List<EmailQueue__c> results = data.getEmailQueues();
 		Test.StopTest();
 
@@ -20,7 +20,7 @@ public without sharing class EmailQueueDataTest {
 		createData( 1245, null, false );
 
 		Test.StartTest();
-		EmailQueueData data = new EmailQueueData();
+		EmailQueueData data = new EmailQueueData( 'Queued' );
 		List<EmailQueue__c> results = data.getEmailQueues();
 		Test.StopTest();
 
@@ -33,7 +33,7 @@ public without sharing class EmailQueueDataTest {
 		createData( 657, null, false );
 
 		Test.StartTest();
-		EmailQueueData data = new EmailQueueData();
+		EmailQueueData data = new EmailQueueData( 'Queued' );
 		List<List<EmailQueue__c> > results = data.getEmailQueuesSeparated();
 		Test.StopTest();
 
@@ -51,7 +51,7 @@ public without sharing class EmailQueueDataTest {
 		createData( 1450, null, false );
 
 		Test.StartTest();
-		EmailQueueData data = new EmailQueueData();
+		EmailQueueData data = new EmailQueueData( 'Queued' );
 		List<List<EmailQueue__c> > results = data.getEmailQueuesSeparated();
 		Test.StopTest();
 
@@ -66,7 +66,7 @@ public without sharing class EmailQueueDataTest {
 	private static void testGetOrgWideEmailId() {
 
 		Test.StartTest();
-		EmailQueueData data = new EmailQueueData();
+		EmailQueueData data = new EmailQueueData( 'Queued' );
 		Id orgWideEmailId = data.getOrgWideEmailId();
 		Test.StopTest();
 

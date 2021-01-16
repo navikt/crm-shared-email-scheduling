@@ -11,7 +11,7 @@ private without sharing class EmailQueueJobTest {
 		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent before jobs' );
 
 		Test.StartTest();
-		EmailQueueData data = new EmailQueueData();
+		EmailQueueData data = new EmailQueueData( 'Queued' );
 		for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
 			System.enqueueJob( new EmailQueueJob( emailQueuesToSend, null ) );
 		}
@@ -34,7 +34,7 @@ private without sharing class EmailQueueJobTest {
 		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent before jobs' );
 
 		Test.StartTest();
-		EmailQueueData data = new EmailQueueData();
+		EmailQueueData data = new EmailQueueData( 'Queued' );
 		for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
 			System.enqueueJob( new EmailQueueJob( emailQueuesToSend, null ) );
 		}
@@ -62,7 +62,7 @@ private without sharing class EmailQueueJobTest {
 		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent before jobs' );
 
 		Test.StartTest();
-		EmailQueueData data = new EmailQueueData();
+		EmailQueueData data = new EmailQueueData( 'Queued' );
 		for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
 			System.enqueueJob( new EmailQueueJob( emailQueuesToSend, null ) );
 		}

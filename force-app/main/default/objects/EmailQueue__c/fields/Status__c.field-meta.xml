@@ -18,6 +18,11 @@
                 <label>Queued</label>
             </value>
             <value>
+                <fullName>Instant</fullName>
+                <default>false</default>
+                <label>Instant</label>
+            </value>
+            <value>
                 <fullName>Sent</fullName>
                 <default>false</default>
                 <label>Sent</label>

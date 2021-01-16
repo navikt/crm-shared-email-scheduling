@@ -10,13 +10,13 @@ public with sharing class EmailQueueData {
 	private List<EmailQueue__c> emailQueues { get; set; }
 	private List<List<EmailQueue__c> > emailQueuesSeparated { get; set; }
 
-	public EmailQueueData() {
-		createEmailQueues();
+	public EmailQueueData( String status ) {
+		createEmailQueues( status );
 		createEmailQueuesSeparated();
 	}
 
-	public void createEmailQueues() {
-		this.emailQueues = [SELECT SaveAsActivity__c, ScheduledPriority__c, WhatId__c, TemplateId__c, TargetObjectId__c, Id FROM EmailQueue__c WHERE Status__c = 'Queued' ORDER BY ScheduledPriority__c DESC NULLS LAST LIMIT : MAX_EMAILS_TO_QUERY];
+	public void createEmailQueues( String status ) {
+		this.emailQueues = [SELECT SaveAsActivity__c, ScheduledPriority__c, WhatId__c, TemplateId__c, TargetObjectId__c, Id FROM EmailQueue__c WHERE Status__c = :status ORDER BY ScheduledPriority__c DESC NULLS LAST LIMIT : MAX_EMAILS_TO_QUERY];
 	}
 
 	public void createEmailQueuesSeparated() {

@@ -2,12 +2,12 @@
 global without sharing class EmailQueueScheduler implements Schedulable {
 
 	global void execute( SchedulableContext ctx ) {
-		processEmailQueue();
+		processEmailQueue( 'Queued' );
 	}
 
 	@AuraEnabled
-	public static List<Id> processEmailQueue() {
-		EmailQueueData data = new EmailQueueData();
+	public static List<Id> processEmailQueue( String status ) {
+		EmailQueueData data = new EmailQueueData( status );
 		List<Id> jobIds = new List<Id>();
 		for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
 			Id jobId = System.enqueueJob( new EmailQueueJob( emailQueuesToSend, data.getOrgWideEmailId() ) );

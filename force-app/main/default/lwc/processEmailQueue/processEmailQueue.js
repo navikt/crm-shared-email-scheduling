@@ -12,13 +12,14 @@ export default class ProcessEmailQueue extends LightningElement {
     @track isRunning;
     @track error;
     @track buttonText = 'Process';
+    status = 'Queued';
 
     processEmails(evt) {
 
         this.isLoading = true;
         this.jobIds = undefined;
 
-        processEmails().then(result => {
+        processEmails({ status: this.status }).then(result => {
             this.isLoading = false;
             this.jobIds = result;
             this.totalJobs = result.length;
