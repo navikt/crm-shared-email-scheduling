@@ -8,6 +8,10 @@
         <apexClass>EmailQueueScheduler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <customSettingAccesses>
+        <enabled>true</enabled>
+        <name>EmailQueueSettings__c</name>
+    </customSettingAccesses>
     <fieldPermissions>
         <editable>false</editable>
         <field>EmailQueue__c.DaysSinceScheduled__c</field>

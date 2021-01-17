@@ -10,6 +10,8 @@ public without sharing class EmailQueueInstantSend {
 			for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
 				Id jobId = System.enqueueJob( new EmailQueueJob( emailQueuesToSend, data.getOrgWideEmailId() ) );
 			}
+
+			EmailQueueJobHelper.updateEmailQueueSettings( data.getEmailQueues() );
 		}
 	}
 

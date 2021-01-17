@@ -7,7 +7,7 @@ private without sharing class EmailQueueSchedulerTest {
 	}
 
 	@isTest
-	private static void testTestSchedule() {
+	private static void testSchedule() {
 
 		Test.StartTest();
 		String CRON_EXP = '0 0 0 3 9 ? 2022';
@@ -16,6 +16,20 @@ private without sharing class EmailQueueSchedulerTest {
 
 		// ! no tests, as queueable is not possible to run inside scheduled class
 		// ! full tests are performed in EmailQueueJobTest
+	}
+
+	@isTest
+	private static void testSettingsTrackers() {
+
+		Test.StartTest();
+		String CRON_EXP = '0 0 0 3 9 ? 2022';
+		System.schedule( 'EmailQueueSchedulerTest', CRON_EXP, new EmailQueueScheduler() );
+		Test.StopTest();
+
+		List<EmailQueueSettings__c> settings = [SELECT Id, AmountSentToday__c FROM EmailQueueSettings__c WHERE LastModifiedDate = TODAY];
+		System.assertEquals( 1, settings.size(), 'should be settings for today' );
+		System.assertEquals( 48, settings[0].AmountSentToday__c, 'should be settings for today' );
+
 	}
 
 	@isTest

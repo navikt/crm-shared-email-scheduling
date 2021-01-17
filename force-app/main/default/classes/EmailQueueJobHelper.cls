@@ -58,4 +58,26 @@ public without sharing class EmailQueueJobHelper {
 
 		update emailQueues;
 	}
+
+	public static void updateEmailQueueSettings( List<EmailQueue__c> emailQueues ) {
+
+		List<EmailQueueSettings__c> settings = [SELECT Id, AmountSentToday__c FROM EmailQueueSettings__c WHERE LastModifiedDate = TODAY ORDER BY LastModifiedDate DESC LIMIT 1];
+
+		if ( settings.size() == 0 ) {
+
+			settings = [SELECT Id, AmountSentToday__c FROM EmailQueueSettings__c ORDER BY LastModifiedDate DESC LIMIT 1];
+
+			if ( settings.size() == 0 ) {
+				insert new EmailQueueSettings__c( AmountSentToday__c = emailQueues.size() );
+			} else {
+				settings[0].AmountSentToday__c = emailQueues.size();
+				update settings;
+			}
+		}
+
+		else {
+			settings[0].AmountSentToday__c += emailQueues.size();
+			update settings;
+		}
+	}
 }

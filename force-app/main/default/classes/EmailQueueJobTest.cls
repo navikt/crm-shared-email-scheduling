@@ -2,6 +2,32 @@
 private without sharing class EmailQueueJobTest {
 
 	@isTest
+	private static void verifyAmountTrackerAdjustsEmailsSent() {
+
+		Integer amount = 15;
+		Integer diff = 5;
+
+		insert new EmailQueueSettings__c( AmountSentToday__c = 5000 - diff );
+		EmailQueueDataTest.createData( amount, null, true );
+
+		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), 'amount emails in queue' );
+		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent before jobs' );
+
+		Test.StartTest();
+		EmailQueueData data = new EmailQueueData( 'Queued' );
+		for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
+			System.enqueueJob( new EmailQueueJob( emailQueuesToSend, null ) );
+		}
+		Test.StopTest();
+
+		System.assertEquals( diff, [SELECT Id FROM EmailMessage].size(), diff + ' emails sent after jobs because capped at 5000 emails' );
+		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), amount + ' emails in queue' );
+		System.assertEquals( diff, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(), 'EmailQueue__c status should have been updated to "Sent" for only 10 records because cap reached' );
+		System.assertEquals( amount - diff, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Queued'].size(), '5 EmailQueue__c records with status "Queued" because max cap reached' );
+		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Error'].size(), 'no EmailQueue__c records with status "Error"' );
+	}
+
+	@isTest
 	private static void testEmailJobs() {
 
 		Integer amount = 15;

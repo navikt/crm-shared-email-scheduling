@@ -48,4 +48,58 @@ private without sharing class EmailQueueInstantSendTest {
 		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Queued'].size(), 'no more EmailQueue__c records with status "Queued"' );
 		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Error'].size(), 'no EmailQueue__c records with status "Error"' );
 	}
+
+	@isTest
+	private static void testCap() {
+
+		insert new EmailQueueSettings__c( AmountSentToday__c = 4995 );
+		EmailQueueDataTest.createData( 15, null, true );
+
+		List<EmailQueue__c> emailQueue = [SELECT Id FROM EmailQueue__c];
+		for ( EmailQueue__c queue : emailQueue ) {
+			queue.Status__c = 'Instant';
+		}
+
+		Test.StartTest();
+		update emailQueue;
+		Test.StopTest();
+
+		System.assertEquals( 5, [SELECT Id FROM EmailMessage].size(), '5 emails sent after jobs' );
+		System.assertEquals( 15, [SELECT Id FROM EmailQueue__c].size(), '5 emails in queue' );
+		System.assertEquals( 5, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(), 'EmailQueue__c status should have been updated to "Sent"' );
+		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Instant'].size(), 'no EmailQueue__c status should still be "Instant"' );
+		System.assertEquals( 10, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Queued'].size(), 'no more EmailQueue__c records with status "Queued"' );
+		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Error'].size(), 'no EmailQueue__c records with status "Error"' );
+
+		List<EmailQueueSettings__c> settings = [SELECT Id, AmountSentToday__c FROM EmailQueueSettings__c WHERE LastModifiedDate = TODAY];
+		System.assertEquals( 1, settings.size(), 'should be settings for today' );
+		System.assertEquals( 5000, settings[0].AmountSentToday__c, 'should be settings for today' );
+	}
+
+	@isTest
+	private static void testCap_exact5000() {
+
+		insert new EmailQueueSettings__c( AmountSentToday__c = 4995 );
+		EmailQueueDataTest.createData( 5, null, true );
+
+		List<EmailQueue__c> emailQueue = [SELECT Id FROM EmailQueue__c];
+		for ( EmailQueue__c queue : emailQueue ) {
+			queue.Status__c = 'Instant';
+		}
+
+		Test.StartTest();
+		update emailQueue;
+		Test.StopTest();
+
+		System.assertEquals( 5, [SELECT Id FROM EmailMessage].size(), '5 emails sent after jobs' );
+		System.assertEquals( 5, [SELECT Id FROM EmailQueue__c].size(), '5 emails in queue' );
+		System.assertEquals( 5, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(), 'EmailQueue__c status should have been updated to "Sent"' );
+		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Instant'].size(), 'no EmailQueue__c status should still be "Instant"' );
+		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Queued'].size(), 'no more EmailQueue__c records with status "Queued"' );
+		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Error'].size(), 'no EmailQueue__c records with status "Error"' );
+
+		List<EmailQueueSettings__c> settings = [SELECT Id, AmountSentToday__c FROM EmailQueueSettings__c WHERE LastModifiedDate = TODAY];
+		System.assertEquals( 1, settings.size(), 'should be settings for today' );
+		System.assertEquals( 5000, settings[0].AmountSentToday__c, 'should be settings for today' );
+	}
 }

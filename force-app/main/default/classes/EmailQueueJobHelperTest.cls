@@ -92,4 +92,41 @@ private without sharing class EmailQueueJobHelperTest {
 		System.assertEquals( 0, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Queued'].size(), 'no more EmailQueue__c records with status "Queued"' );
 		System.assertEquals( 16, [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Error'].size(), 'one EmailQueue__c record with status "Error"' );
 	}
+
+
+	@isTest
+	private static void testUpdateEmailQueueSettings() {
+
+		insert new EmailQueueSettings__c( AmountSentToday__c = 245 );
+
+		List<EmailQueue__c> emailQueues = new List<EmailQueue__c>();
+		for ( Integer i = 0; i < 5; i++ ) {
+			emailQueues.add( new EmailQueue__c() );
+		}
+
+		Test.StartTest();
+		EmailQueueJobHelper.updateEmailQueueSettings( emailQueues );
+		Test.StopTest();
+
+		List<EmailQueueSettings__c> settings = [SELECT Id, AmountSentToday__c FROM EmailQueueSettings__c WHERE LastModifiedDate = TODAY];
+		System.assertEquals( 1, settings.size(), 'should be settings for today' );
+		System.assertEquals( 250, settings[0].AmountSentToday__c, 'should be settings for today' );
+	}
+
+	@isTest
+	private static void testUpdateEmailQueueSettings_empty() {
+
+		List<EmailQueue__c> emailQueues = new List<EmailQueue__c>();
+		for ( Integer i = 0; i < 5; i++ ) {
+			emailQueues.add( new EmailQueue__c() );
+		}
+
+		Test.StartTest();
+		EmailQueueJobHelper.updateEmailQueueSettings( emailQueues );
+		Test.StopTest();
+
+		List<EmailQueueSettings__c> settings = [SELECT Id, AmountSentToday__c FROM EmailQueueSettings__c WHERE LastModifiedDate = TODAY];
+		System.assertEquals( 1, settings.size(), 'should be settings for today' );
+		System.assertEquals( 5, settings[0].AmountSentToday__c, 'should be settings for today' );
+	}
 }
