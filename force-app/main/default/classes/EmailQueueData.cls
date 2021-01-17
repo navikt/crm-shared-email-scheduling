@@ -10,13 +10,20 @@ public with sharing class EmailQueueData {
 	private List<EmailQueue__c> emailQueues { get; set; }
 	private List<List<EmailQueue__c> > emailQueuesSeparated { get; set; }
 
+	// regular fetch of most prioritised email to fetch
 	public EmailQueueData( String status ) {
 		createEmailQueues( status );
 		createEmailQueuesSeparated();
 	}
 
+	// predefined list of emails to send
+	public EmailQueueData( List<EmailQueue__c> emailQueues ) {
+		this.emailQueues = emailQueues;
+		createEmailQueuesSeparated();
+	}
+
 	public void createEmailQueues( String status ) {
-		this.emailQueues = [SELECT SaveAsActivity__c, ScheduledPriority__c, WhatId__c, TemplateId__c, TargetObjectId__c, Id FROM EmailQueue__c WHERE Status__c = :status ORDER BY ScheduledPriority__c DESC NULLS LAST LIMIT : MAX_EMAILS_TO_QUERY];
+		this.emailQueues = [SELECT SaveAsActivity__c, WhatId__c, TemplateId__c, TargetObjectId__c, Id FROM EmailQueue__c WHERE Status__c = :status ORDER BY ScheduledPriority__c DESC NULLS LAST LIMIT : MAX_EMAILS_TO_QUERY];
 	}
 
 	public void createEmailQueuesSeparated() {

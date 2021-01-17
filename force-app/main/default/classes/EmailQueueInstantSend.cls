@@ -1,8 +1,15 @@
 public without sharing class EmailQueueInstantSend {
 
 	public static void process( List<EmailQueue__c> emailQueue ) {
-		if ( findInstantRecords( emailQueue ).size() > 0 ) {
-			EmailQueueScheduler.processEmailQueue( 'Instant' );
+
+		List<EmailQueue__c> filteredRecords = findInstantRecords( emailQueue );
+
+		if ( filteredRecords.size() > 0 ) {
+			EmailQueueData data = new EmailQueueData( filteredRecords );
+
+			for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
+				Id jobId = System.enqueueJob( new EmailQueueJob( emailQueuesToSend, data.getOrgWideEmailId() ) );
+			}
 		}
 	}
 
@@ -16,6 +23,8 @@ public without sharing class EmailQueueInstantSend {
 			}
 		}
 
-		return filteredQueue;
+		Set<Id> queueIds = new Map<Id, EmailQueue__c> ( filteredQueue ).keySet();
+
+		return [SELECT SaveAsActivity__c, WhatId__c, TemplateId__c, TargetObjectId__c, Id FROM EmailQueue__c WHERE Id IN : queueIds];
 	}
 }

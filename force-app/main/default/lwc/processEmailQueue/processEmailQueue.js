@@ -11,7 +11,6 @@ export default class ProcessEmailQueue extends LightningElement {
     @track totalJobs = 1;
     @track isRunning;
     @track error;
-    @track buttonText = 'Process';
 
     @api status;
     @api title;
