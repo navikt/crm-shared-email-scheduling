@@ -1,6 +1,6 @@
 # crm-platform-email-scheduling
 
-[![Build](https://github.com/navikt/crm-platform-email-scheduling/workflows/master/badge.svg)](https://github.com/navikt/crm-platform-email-scheduling/actions?query=workflow%3ABuild)
+[![Build](https://github.com/navikt/crm-platform-email-scheduling/workflows/master/badge.svg)](https://github.com/navikt/crm-platform-email-scheduling/actions?query=workflow%3A%22%5BPUSH%5D+Create+Package%22)
 [![GitHub version](https://badgen.net/github/release/navikt/crm-platform-email-scheduling/stable)](https://github.com/navikt/crm-platform-email-scheduling)
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/navikt/crm-platform-email-scheduling/blob/master/LICENSE)
 
