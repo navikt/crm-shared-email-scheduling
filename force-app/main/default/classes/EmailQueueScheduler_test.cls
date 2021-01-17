@@ -1,9 +1,9 @@
 @isTest
-private without sharing class EmailQueueSchedulerTest {
+private without sharing class EmailQueueScheduler_test {
 
 	@TestSetup
 	static void makeData() {
-		EmailQueueDataTest.createData( 48, null, false );
+		EmailQueueData_test.createData( 48, null, false );
 	}
 
 	@isTest

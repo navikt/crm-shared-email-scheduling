@@ -1,5 +1,5 @@
 @isTest
-public without sharing class EmailQueueDataTest {
+public without sharing class EmailQueueData_test {
 
 	@isTest
 	private static void testGetEmailQueues_queued() {
@@ -137,6 +137,4 @@ public without sharing class EmailQueueDataTest {
 		}
 		insert emailQueues;
 	}
-
-
 }

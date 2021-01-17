@@ -1,5 +1,5 @@
 @isTest
-private without sharing class EmailQueueJobTest {
+private without sharing class EmailQueueJob_test {
 
 	@isTest
 	private static void verifyAmountTrackerAdjustsEmailsSent() {
@@ -8,7 +8,7 @@ private without sharing class EmailQueueJobTest {
 		Integer diff = 5;
 
 		insert new EmailQueueSettings__c( AmountSentToday__c = 5000 - diff );
-		EmailQueueDataTest.createData( amount, null, true );
+		EmailQueueData_test.createData( amount, null, true );
 
 		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), 'amount emails in queue' );
 		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent before jobs' );
@@ -31,7 +31,7 @@ private without sharing class EmailQueueJobTest {
 	private static void testEmailJobs() {
 
 		Integer amount = 15;
-		EmailQueueDataTest.createData( amount, null, true );
+		EmailQueueData_test.createData( amount, null, true );
 
 		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), 'amount emails in queue' );
 		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent before jobs' );
@@ -54,7 +54,7 @@ private without sharing class EmailQueueJobTest {
 	private static void testEmailJobs_overMax() {
 
 		Integer amount = 1005;
-		EmailQueueDataTest.createData( amount, null, true );
+		EmailQueueData_test.createData( amount, null, true );
 
 		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), 'amount emails in queue' );
 		System.assertEquals( 0, [SELECT Id FROM EmailMessage].size(), '0 emails sent before jobs' );
@@ -76,7 +76,7 @@ private without sharing class EmailQueueJobTest {
 	private static void testEmailJobs_malformedId() {
 
 		Integer amount = 15;
-		EmailQueueDataTest.createData( amount, null, true );
+		EmailQueueData_test.createData( amount, null, true );
 
 		List<EmailQueue__c> emailQueues = [SELECT Id FROM EmailQueue__c];
 		for ( EmailQueue__c emailQueue : emailQueues ) {

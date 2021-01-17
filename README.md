@@ -6,37 +6,49 @@
 
 An email scheduling interfaces to queue emails and be within daily email limits from Salesforce.
 
-## Dependencies
+## How to use
 
-Pakken er ikke avhengig av noen andre pakker.
+To use this framework, add the package as a dependency in `sfdx-project.json`
 
-## Komme i gang
+```json
+{
+    "packageDirectories": [
+        {
+            "path": "force-app",
+            "default": true,
+            "package": "my-package",
+            "versionNumber": "0.1.0.NEXT",
+            "dependencies": [
+                {
+                    "package": "crm-platform-email-scheduling",
+                    "versionNumber": "1.1.0.LATEST"
+                }
+            ]
+        }
+    ],
+    "namespace": "",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "50.0",
+    "packageAliases": {
+        "crm-platform-email-scheduling": "0Ho2o000000fxWwCAI"
+    }
+}
+```
 
-1. Salesforce DX-bruker. Kontakt #crm-plattform-team på Slack om du ikke har dette
-2. Installer Salesforce DX CLI (SFDX)
-	- Last ned fra [Salesforce.com](https://developer.salesforce.com/tools/sfdxcli)
-    - Eller benytt npm: `npm install sfdx-cli --global`
-3. Klon dette repoet ([GitHub Desktop](https://desktop.github.com) anbefales for ikke-utviklere)
-4. Installer [SSDX](https://github.com/navikt/ssdx)
-    - Med SSDX kan du lage scratch orger og gjøre deklarative endringer (gjøre endringer i nettleseren på Salesforce, altså ikke-utvikling)
-	- **Trenger du ikke verktøy utvikling kan du stoppe her**
-5. Installer [VS Code](https://code.visualstudio.com) (anbefalt)
-6. Installer [Salesforce Extension Pack](https://marketplace.visualstudio.com/items?itemName=salesforce.salesforcedx-vscode)
-7. Installer [AdoptOpenJDK](https://adoptopenjdk.net) (kun versjon 8 eller 11)
-8. Åpne VS Code Settings og søk etter `salesforcedx-vscode-apex`
-9. Under `Java Home`, legg inn følgende:
-    - macOS: `/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home`
-    - Windows: `C:\\Program Files\\AdoptOpenJDK\\jdk-11.0.3.7-hotspot` (merk at versjonsnummer kan endre seg)
+Then simply create a `EmailQueue__c` record to add it to the Email Queue.
 
-## Utvikling
+```java
+EmailQueue__c email = new EmailQueue__c();
+email.TemplateId__c = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'your_template' LIMIT 1].Id;
+email.TargetObjectId__c = [SELECT Id FROM Contact WHERE Email = 'email@nav.no' LIMIT 1].Id; // Any Contact, Lead or User
+email.WhatId__c = [SELECT Id FROM Case LIMIT 1].Id; // Any SObject for merge fields in EmailTemplate
+email.Status__c = 'Queued'; // 'Queued' is default, choose 'Instant' to skip the queue
+email.Priority__c = '5'; // 1 to 5, where 5 is the highest
+email.SaveAsActivity__c = true; // Save the Email as a Task after sending
 
-Utvikling foregår i hovedsak på to fronter, i nettleseren i din scratch org og på din maskin i din prefererte IDE. Ved endringer i nettleseren på din scratch org (som lever i skyen), så må alle endringer pulles til din maskin. Ved endringer av metadata i din IDE, må endringer pushes til din scratch org.
+insert email;
+```
 
-Ved å bruke VS Code som IDE, er det lagt inn konfigurasjon som automatisk pusher endringer av metadata til din scratch org ved lagring. For å pulle endringer fra kan man enten bruke Salesforce DX CLI til å pulle, men også pushe om man ikke ønsker automatisk push. Se under for kommandoer. Man kan også bruke hjelpeverktøyet SSDX (nevnt over) for å pushe, pulle, åpne scratch org-er, slette gamle, blant annet.
-
-* `sfdx force:org:open` for å åpne instansen(salesforce applikasjonen din).
-* `sfdx force:source:pull` for å hente endringer som du gjør i konfigurasjon i applikasjonen online.
-* `sfdx force:source:push` for å publisere endringer du gjør i kode lokalt til applikasjonen online.
 
 ## Annet
 

@@ -4,22 +4,21 @@ public with sharing class EmailQueueData {
 	private static final Id ORG_WIDE_EMAIL_ID =                         ORG_WIDE_ADDRESSES.size() == 1 ? ORG_WIDE_ADDRESSES[0].Id : null;
 
 	private Integer queryLimit { get; set; }
-
 	private List<EmailQueue__c> emailQueues { get; set; }
 	private List<List<EmailQueue__c> > emailQueuesSeparated { get; set; }
 
 	// regular fetch of most prioritised email to fetch
 	public EmailQueueData( String status ) {
-		this.queryLimit = EmailQueueDataHelper.getEmailLimit();
-		this.emailQueues = EmailQueueDataHelper.getEmailQueue( status, this.queryLimit );
-		this.emailQueuesSeparated = EmailQueueDataHelper.getEmailQueuesSeparated( this.emailQueues );
+		this.queryLimit = EmailQueueDataHelper.calculateEmailLimit();
+		this.emailQueues = EmailQueueDataHelper.fetchEmailQueues( status, this.queryLimit );
+		this.emailQueuesSeparated = EmailQueueDataHelper.separateEmailQueues( this.emailQueues );
 	}
 
 	// predefined list of emails to send
 	public EmailQueueData( List<EmailQueue__c> emailQueues ) {
-		this.queryLimit = EmailQueueDataHelper.getEmailLimit();
-		this.emailQueues = EmailQueueDataHelper.getEmailQueue( emailQueues, this.queryLimit );
-		this.emailQueuesSeparated = EmailQueueDataHelper.getEmailQueuesSeparated( this.emailQueues );
+		this.queryLimit = EmailQueueDataHelper.calculateEmailLimit();
+		this.emailQueues = EmailQueueDataHelper.fetchEmailQueues( emailQueues, this.queryLimit );
+		this.emailQueuesSeparated = EmailQueueDataHelper.separateEmailQueues( this.emailQueues );
 	}
 
 	public List<EmailQueue__c> getEmailQueues() {

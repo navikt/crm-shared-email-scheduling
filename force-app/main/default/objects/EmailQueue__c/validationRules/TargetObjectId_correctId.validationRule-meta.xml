@@ -7,8 +7,10 @@
 (
     !BEGINS(  TargetObjectId__c, &apos;003&apos;)
         ||
+    !BEGINS(  TargetObjectId__c, &apos;005&apos;)
+        ||
     !BEGINS(  TargetObjectId__c, &apos;00Q&apos;)
 )</errorConditionFormula>
     <errorDisplayField>TargetObjectId__c</errorDisplayField>
-    <errorMessage>TargetObjectId__c must be 15 or 18 characters, and being with &apos;003&apos; or &apos;00Q&apos; prefix</errorMessage>
+    <errorMessage>TargetObjectId__c must be 15 or 18 characters, and being with &apos;003&apos;, &apos;005&apos; or &apos;00Q&apos; prefix</errorMessage>
 </ValidationRule>

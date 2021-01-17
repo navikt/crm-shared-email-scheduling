@@ -1,5 +1,5 @@
 @isTest
-private without sharing class EmailQueueInstantSendTest {
+private without sharing class EmailQueueInstantSend_test {
 	@isTest
 	private static void testInsert() {
 
@@ -29,7 +29,7 @@ private without sharing class EmailQueueInstantSendTest {
 	@isTest
 	private static void testUpdate() {
 
-		EmailQueueDataTest.createData( 5, null, true );   // create test data
+		EmailQueueData_test.createData( 5, null, true );   // create test data
 
 		List<EmailQueue__c> emailQueue = [SELECT Id FROM EmailQueue__c];
 		for ( EmailQueue__c queue : emailQueue ) {
@@ -53,7 +53,7 @@ private without sharing class EmailQueueInstantSendTest {
 	private static void testCap() {
 
 		insert new EmailQueueSettings__c( AmountSentToday__c = 4995 );
-		EmailQueueDataTest.createData( 15, null, true );
+		EmailQueueData_test.createData( 15, null, true );
 
 		List<EmailQueue__c> emailQueue = [SELECT Id FROM EmailQueue__c];
 		for ( EmailQueue__c queue : emailQueue ) {
@@ -80,7 +80,7 @@ private without sharing class EmailQueueInstantSendTest {
 	private static void testCap_exact5000() {
 
 		insert new EmailQueueSettings__c( AmountSentToday__c = 4995 );
-		EmailQueueDataTest.createData( 5, null, true );
+		EmailQueueData_test.createData( 5, null, true );
 
 		List<EmailQueue__c> emailQueue = [SELECT Id FROM EmailQueue__c];
 		for ( EmailQueue__c queue : emailQueue ) {

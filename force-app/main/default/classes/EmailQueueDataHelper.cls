@@ -5,7 +5,7 @@ public without sharing class EmailQueueDataHelper {
 	private static final Integer AMOUNT_OF_BATCHES =            10; // can only call sendEmail 10 times
 	private static final Integer MAX_EMAILS_PER_TRANSACTION =   AMOUNT_OF_EMAILS_PER_BATCH * AMOUNT_OF_BATCHES;
 
-	public static Integer getEmailLimit( ) {
+	public static Integer calculateEmailLimit( ) {
 
 		List<EmailQueueSettings__c> settings = [SELECT Id, AmountSentToday__c FROM EmailQueueSettings__c WHERE LastModifiedDate = TODAY ORDER BY AmountSentToday__c DESC];
 
@@ -29,11 +29,11 @@ public without sharing class EmailQueueDataHelper {
 
 	}
 
-	public static List<EmailQueue__c> getEmailQueue( String status, Integer queryLimit ) {
+	public static List<EmailQueue__c> fetchEmailQueues( String status, Integer queryLimit ) {
 		return [SELECT SaveAsActivity__c, WhatId__c, TemplateId__c, TargetObjectId__c, Id FROM EmailQueue__c WHERE Status__c = : status ORDER BY ScheduledPriority__c DESC NULLS LAST LIMIT : queryLimit];
 	}
 
-	public static List<EmailQueue__c>  getEmailQueue( List<EmailQueue__c> emailQueues, Integer queryLimit ) {
+	public static List<EmailQueue__c>  fetchEmailQueues( List<EmailQueue__c> emailQueues, Integer queryLimit ) {
 
 		if ( emailQueues.size() > queryLimit ) {
 
@@ -56,7 +56,7 @@ public without sharing class EmailQueueDataHelper {
 		}
 	}
 
-	public static List<List<EmailQueue__c> > getEmailQueuesSeparated( List<EmailQueue__c> emailQueues ) {
+	public static List<List<EmailQueue__c> > separateEmailQueues( List<EmailQueue__c> emailQueues ) {
 
 		List<List<EmailQueue__c> > emailQueuesBatches = new List<List<EmailQueue__c> >();
 		List<EmailQueue__c> emailQueuesSeparated = new List<EmailQueue__c>();
