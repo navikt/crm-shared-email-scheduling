@@ -7,7 +7,7 @@ private without sharing class EmailQueueJob_test {
 		Integer amount = 15;
 		Integer diff = 5;
 
-		insert new EmailQueueSettings__c( AmountSentToday__c = 5000 - diff );
+		insert new EmailQueueSettings__c( AmountSentToday__c = 5000 - diff, ResetDate__c = Date.today() );
 		EmailQueueData_test.createData( amount, null, true );
 
 		System.assertEquals( amount, [SELECT Id FROM EmailQueue__c].size(), 'amount emails in queue' );

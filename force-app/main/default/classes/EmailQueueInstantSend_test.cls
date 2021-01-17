@@ -52,7 +52,7 @@ private without sharing class EmailQueueInstantSend_test {
 	@isTest
 	private static void testCap() {
 
-		insert new EmailQueueSettings__c( AmountSentToday__c = 4995 );
+		insert new EmailQueueSettings__c( AmountSentToday__c = 4995, ResetDate__c = Date.today() );
 		EmailQueueData_test.createData( 15, null, true );
 
 		List<EmailQueue__c> emailQueue = [SELECT Id FROM EmailQueue__c];
@@ -79,7 +79,7 @@ private without sharing class EmailQueueInstantSend_test {
 	@isTest
 	private static void testCap_exact5000() {
 
-		insert new EmailQueueSettings__c( AmountSentToday__c = 4995 );
+		insert new EmailQueueSettings__c( AmountSentToday__c = 4995, ResetDate__c = Date.today() );
 		EmailQueueData_test.createData( 5, null, true );
 
 		List<EmailQueue__c> emailQueue = [SELECT Id FROM EmailQueue__c];

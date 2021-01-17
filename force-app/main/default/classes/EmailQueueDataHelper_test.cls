@@ -14,7 +14,7 @@ private without sharing class EmailQueueDataHelper_test {
 	@isTest
 	private static void testCalculateEmailLimit_overLimit() {
 
-		insert new EmailQueueSettings__c( AmountSentToday__c = 4995 );
+		insert new EmailQueueSettings__c( AmountSentToday__c = 4995, ResetDate__c = Date.today() );
 
 		Test.StartTest();
 		Integer result = EmailQueueDataHelper.calculateEmailLimit();
@@ -24,9 +24,21 @@ private without sharing class EmailQueueDataHelper_test {
 	}
 
 	@isTest
+	private static void testCalculateEmailLimit_empty() {
+
+		insert new EmailQueueSettings__c( AmountSentToday__c = 5000, ResetDate__c = Date.today() );
+
+		Test.StartTest();
+		Integer result = EmailQueueDataHelper.calculateEmailLimit();
+		Test.StopTest();
+
+		System.assertEquals( 0, result, '5000 sent, so no emails for you ☝️' );
+	}
+
+	@isTest
 	private static void testCalculateEmailLimit_exact() {
 
-		insert new EmailQueueSettings__c( AmountSentToday__c = 4000 );
+		insert new EmailQueueSettings__c( AmountSentToday__c = 4000, ResetDate__c = Date.today() );
 
 		Test.StartTest();
 		Integer result = EmailQueueDataHelper.calculateEmailLimit();
