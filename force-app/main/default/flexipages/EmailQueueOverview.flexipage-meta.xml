@@ -3,27 +3,76 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>dashboardName</name>
-                <value>QblExbuuCWxDbNwAUkKzUBQrAfkMHq</value>
+                <name>cacheAge</name>
+                <value>1440</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
-                <name>hideOnError</name>
+                <name>reportName</name>
+                <value>Sent_Historical_Change_Send_Time_ZS2</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showRefreshButton</name>
                 <value>true</value>
             </componentInstanceProperties>
-            <componentName>desktopDashboards:embeddedDashboard</componentName>
+            <componentName>flexipage:reportChart</componentName>
         </componentInstances>
         <name>top</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>cacheAge</name>
+                <value>1440</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>reportName</name>
+                <value>Email_Queue_Days_since_queued_Iz5</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showRefreshButton</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:reportChart</componentName>
+        </componentInstances>
         <name>left</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>cacheAge</name>
+                <value>1440</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>reportName</name>
+                <value>Email_Queue_Error_Month_View_0qZ</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showRefreshButton</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:reportChart</componentName>
+        </componentInstances>
         <name>middle</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>cacheAge</name>
+                <value>1440</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>reportName</name>
+                <value>Email_Queue_Scheduled_Priority_fPh</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showRefreshButton</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:reportChart</componentName>
+        </componentInstances>
         <name>right</name>
         <type>Region</type>
     </flexiPageRegions>
