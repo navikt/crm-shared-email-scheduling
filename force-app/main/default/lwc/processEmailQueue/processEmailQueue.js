@@ -51,7 +51,7 @@ export default class ProcessEmailQueue extends LightningElement {
                     clearInterval(this._interval);
                 }
             });
-        }, 3000);
+        }, 6000);
 
     }
 

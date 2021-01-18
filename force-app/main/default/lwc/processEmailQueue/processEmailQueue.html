@@ -1,10 +1,19 @@
 <template>
-    <!-- LIGHTNING SPINNER -->
-    <lightning-spinner alternative-text="Loading" size="small" if:true={isLoading}></lightning-spinner>
+
+    <!-- GENERIC LIGHTNING SPINNER -->
+    <lightning-spinner alternative-text="Loading" size="small" if:true={isLoading}>
+    </lightning-spinner>
 
     <div class="slds-p-top_xx-large">
+
+        <!-- LOADING SPINNER -->
+        <div class="slds-is-relative slds-p-top_xx-large" if:true={isRunning}>
+            <lightning-spinner alternative-text="Loading" size="small">
+            </lightning-spinner>
+        </div>
+
         <!-- PROGRESS BAR -->
-        <lightning-progress-bar class="slds-align_absolute-center slds-p-horizontal_large slds-p-top_xx-large"
+        <lightning-progress-bar class="slds-align_absolute-center slds-p-horizontal_large slds-p-top_medium"
             value={progress} if:true={isRunning} size="large" variant="circular"></lightning-progress-bar>
 
         <!-- PROGRESS TEXT -->
