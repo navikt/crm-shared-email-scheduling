@@ -98,15 +98,15 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Errors</tab>
+        <tab>EmailQueueErrors</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Queued</tab>
+        <tab>EmailQueueQueued</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Sent</tab>
+        <tab>EmailQueueSent</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
