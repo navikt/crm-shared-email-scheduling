@@ -83,8 +83,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>Email Scheduling App - Admin</label>
-    <license>Salesforce</license>
+    <label>Email Scheduling App (Admin)</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>

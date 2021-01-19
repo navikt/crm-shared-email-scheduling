@@ -8,6 +8,7 @@
     },
     "permsets_to_assign": [
         "Allow_Audit",
-        "Email_Scheduling_App_Admin"
+        "EmailSchedulingApp_Admin",
+        "EmailTemplateAccess"
     ]
 }
