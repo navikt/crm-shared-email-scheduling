@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="E-postlogg" icon-name="standard:email_chatter">
+        <lightning-spinner alternative-text="Laster" size="medium" if:true={isLoading}></lightning-spinner>
+        <lightning-button-icon icon-name="utility:refresh" onclick={refresh} slot="actions" variant="border-filled"
+            alternative-text="Oppdater" title="Oppdater"></lightning-button-icon>
+        <lightning-datatable if:true={data} key-field="Id" data={data.data} columns={columns}>
+        </lightning-datatable>
+        <div if:true={isEmpty} class="slds-text-heading_medium slds-p-vertical_large slds-align_absolute-center">Ingen
+            e-poster er sendt</div>
+    </lightning-card>
+</template>
