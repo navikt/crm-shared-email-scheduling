@@ -3,7 +3,7 @@ import getLogData from '@salesforce/apex/EmailSchedulingLog.getLogData';
 import { refreshApex } from '@salesforce/apex';
 
 const columns = [
-    { label: 'Name', fieldName: 'TargetObjectId', type: 'url', typeAttributes: { label: { fieldName: 'TargetObjectName' }, target: '_self' }, sortable: true },
+    { label: 'Name', fieldName: 'TargetObjectId', type: 'url', typeAttributes: { label: { fieldName: 'TargetObjectName' }, target: '_self' } },
     { label: 'Status', fieldName: 'Status', type: 'text' },
     { label: 'Subject', fieldName: 'Subject', type: 'text' },
     { label: 'Date', fieldName: 'DateSent', type: 'date-local' },
