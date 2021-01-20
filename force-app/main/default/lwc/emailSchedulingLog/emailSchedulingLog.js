@@ -16,18 +16,12 @@ export default class EmailSchedulingLog extends NavigationMixin(LightningElement
         this.isLoading = true;
         getLogData({ recordId: this.recordId })
             .then(result => {
-
                 var tempData = JSON.parse(JSON.stringify(result));
-
                 for (var i = 0; i < tempData.length; i++) {
-
                     tempData[i]._children = tempData[i]['Children']; // TODO remove tmpdata
                     delete tempData[i].Children;
-
                 }
-
                 this.data = tempData;
-
                 this.isLoading = false;
             }).catch(error => { });
     }
