@@ -1,20 +1,19 @@
 public with sharing class EmailSchedulingLog {
 
 	public class LogData {
-		@AuraEnabled public String Id;
-		@AuraEnabled public String Main;
-		@AuraEnabled public String MainUrl;
-		@AuraEnabled public String Status;
-		@AuraEnabled public DateTime DateSent;
-		@AuraEnabled public List<LogChildren> Children;
+		@AuraEnabled public String name; // id
+		@AuraEnabled public String label;
+		@AuraEnabled public Id TargetObjectId;
+		@AuraEnabled public Boolean expanded;
+		@AuraEnabled public String metatext;
+		@AuraEnabled public List<LogChildren> items;
 	}
 
 	public class LogChildren {
-		@AuraEnabled public Id Id;
-		@AuraEnabled public String MainUrl;
-		@AuraEnabled public String Main;
-		@AuraEnabled public String Status;
-		@AuraEnabled public DateTime DateSent;
+		@AuraEnabled public String name; // id
+		@AuraEnabled public String label;
+		@AuraEnabled public Id TargetObjectId;
+		@AuraEnabled public String metatext;
 	}
 
 	@AuraEnabled(cacheable = true)
@@ -23,9 +22,15 @@ public with sharing class EmailSchedulingLog {
 		List<EmailQueue__c> emailQueue = getEmailQueue( recordId );
 		Map<Id, String> templateSubjects = getTemplateSubjects( emailQueue );
 		Map<Id, String> contactNames = getContactNames( emailQueue );
+		List<LogData> logData = createData( emailQueue, templateSubjects, contactNames );
 
-		return createData( emailQueue, templateSubjects, contactNames );
+		return logData;
 	}
+
+
+	// ------------------------------------------------
+	// --------------- HELPER FUNCTIONS ---------------
+	// ------------------------------------------------
 
 	public static List<EmailQueue__c> getEmailQueue( Id recordId ) {
 		return [SELECT Id, TargetObjectId__c, Status__c, TemplateId__c, LastModifiedDate FROM EmailQueue__c WHERE WhatId__c = : recordId ORDER BY LastModifiedDate DESC];
@@ -67,64 +72,23 @@ public with sharing class EmailSchedulingLog {
 
 	public static List<LogData> createData( List<EmailQueue__c> emailQueue, Map<Id, String> templateSubjects, Map<Id, String> contactNames ) {
 
-		Map<String, List<EmailQueue__c> > emailQueueSubjectKey = new Map<String, List<EmailQueue__c> >();
-
-		for ( EmailQueue__c email : emailQueue ) {
-			if ( emailQueueSubjectKey.containsKey( templateSubjects.get( email.TemplateId__c ) ) ) {
-				emailQueueSubjectKey.get( templateSubjects.get( email.TemplateId__c ) ).add( email );
-			} else {
-				emailQueueSubjectKey.put( templateSubjects.get( email.TemplateId__c ), new List<EmailQueue__c> { email } );
-			}
-		}
+		Map<String, List<EmailQueue__c> > emailQueueSubjectKey = EmailSchedulingLogHelper.getEmailQueueSubjectAsKey( emailQueue, templateSubjects );
 
 		List<LogData> parents = new List<LogData>();
-
 		for ( String subject : emailQueueSubjectKey.keySet() ) {
 
-			List<EmailQueue__c> emailQueueChildren = emailQueueSubjectKey.get( subject );
-
 			LogData parent = new LogData();
-			parent.Id = subject;
-			parent.Main = subject;
-			parent.MainUrl = '';
-			parent.Status = getStatus( emailQueue[0].Status__c );
-			parent.DateSent = emailQueue[0].LastModifiedDate;
+			parent.name = subject;
+			parent.label = subject;
+			parent.expanded = false;
 
-			List<LogChildren> children = new List<LogChildren>();
+			List<EmailQueue__c> emailQueueChildren = emailQueueSubjectKey.get( subject );
+			parent.metatext = EmailSchedulingLogHelper.getParentMetatext( emailQueueChildren );
+			parent.items = EmailSchedulingLogHelper.createChildren( emailQueueChildren, contactNames );
 
-			for ( EmailQueue__c email : emailQueueChildren ) {
-
-				LogChildren child = new LogChildren();
-				child.Id = email.Id;
-
-				child.Main = contactNames.get( email.TargetObjectId__c );
-				child.MainUrl = '/' + email.TargetObjectId__c;
-
-				child.Status = getStatus( email.Status__c );
-				parent.DateSent = email.LastModifiedDate;
-
-				children.add( child );
-			}
-			parent.Children = children;
 			parents.add( parent );
 		}
 
 		return parents;
-	}
-
-	public static String getStatus( String status ) {
-		switch on status {
-			when 'Sent' {
-				return 'Sendt';
-			} when 'Queued' {
-				return 'I utsendingskø';
-			} when 'Instant' {
-				return 'Sender straks';
-			} when 'Error' {
-				return 'Feil';
-			} when else {
-				return status;
-			}
-		}
 	}
 }

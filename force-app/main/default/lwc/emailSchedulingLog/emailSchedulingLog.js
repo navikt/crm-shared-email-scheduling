@@ -1,26 +1,18 @@
 import { LightningElement, wire, api, track } from 'lwc';
 import getLogData from '@salesforce/apex/EmailSchedulingLog.getLogData';
-import { refreshApex } from '@salesforce/apex';
+import { NavigationMixin } from 'lightning/navigation';
 
-const columns = [
-    { label: 'Name', fieldName: 'MainUrl', type: 'url', typeAttributes: { label: { fieldName: 'Main' }, target: '_self' } },
-    { label: 'Status', fieldName: 'Status', type: 'text' },
-    { label: 'Date', fieldName: 'DateSent', type: 'date-local' },
-];
-
-export default class EmailSchedulingLog extends LightningElement {
+export default class EmailSchedulingLog extends NavigationMixin(LightningElement) {
 
     @api recordId;
     @track data;
     @track isLoading = true;
-    columns = columns;
 
     connectedCallback() {
         this.load();
     }
 
     load() {
-        console.log('test');
         this.isLoading = true;
         getLogData({ recordId: this.recordId })
             .then(result => {
@@ -29,7 +21,7 @@ export default class EmailSchedulingLog extends LightningElement {
 
                 for (var i = 0; i < tempData.length; i++) {
 
-                    tempData[i]._children = tempData[i]['Children'];
+                    tempData[i]._children = tempData[i]['Children']; // TODO remove tmpdata
                     delete tempData[i].Children;
 
                 }
@@ -49,7 +41,37 @@ export default class EmailSchedulingLog extends LightningElement {
         setTimeout(() => {
             this.load();
         }, 300);
+    }
 
+    handleOnselect(event) {
+
+        let selectedItemValue = event.detail.name;
+
+        if (!this.data) { return; }
+
+        for (var i = 0; i < this.data.length; i++) {
+            if (this.data[i].name == selectedItemValue) {
+                this.data[i].expanded = !this.data[i].expanded;
+                this.template.querySelector('lightning-tree').items[i].expanded = this.data[i].expanded;
+            }
+
+            if (this.data[i].items) {
+
+                for (var j = 0; j < this.data[i].items.length; j++) {
+
+                    if (this.data[i].items[j].name == selectedItemValue) {
+                        this[NavigationMixin.Navigate]({
+                            type: 'standard__recordPage',
+                            attributes: {
+                                recordId: this.data[i].items[j].TargetObjectId,
+                                objectApiName: 'Contact',
+                                actionName: 'view'
+                            }
+                        });
+                    }
+                }
+            }
+        }
     }
 
     get isEmpty() {
