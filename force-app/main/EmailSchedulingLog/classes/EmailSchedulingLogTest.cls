@@ -2,7 +2,7 @@
 private without sharing class EmailSchedulingLogTest {
 
 	@TestSetup
-	static void makeData() {
+	private static void makeData() {
 		EmailTemplate emailTemplate = new EmailTemplate( DeveloperName = 'MY_UNIQUE_TEMPLATE', Name = 'MY_UNIQUE_TEMPLATE', IsActive = true, FolderId = UserInfo.getOrganizationId(), UiType = 'sfx', TemplateType = 'custom', Subject = 'HEI OG VELKOMMEN', HtmlValue = '<html><head></head><body><p>Hei {{{Recipient.Name}}}!.</p></body></html>' );
 		insert emailTemplate;
 
@@ -117,5 +117,4 @@ private without sharing class EmailSchedulingLogTest {
 		System.assertEquals( con.Name, results[0].items[0].label, 'label should be set' );
 		System.assertEquals( '⏱ I utsendingskø', results[0].items[0].metatext, 'metatext should be set' );
 	}
-
 }

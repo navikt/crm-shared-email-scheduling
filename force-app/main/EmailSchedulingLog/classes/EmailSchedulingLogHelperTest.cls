@@ -76,6 +76,41 @@ private without sharing class EmailSchedulingLogHelperTest {
 		System.assertEquals( eq2.Id, emailQueueTemplateIdAsKey.get( et2.Id )[0].Id, 'only one email queue per template' );
 	}
 
+
+	@isTest
+	private static void testGetEmailQueueTemplateIdAsKey_twoEmails() {
+
+
+		EmailTemplate et1 = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'MY_UNIQUE_TEMPLATE' LIMIT 1];
+
+		Contact con1 = new Contact( LastName = 'McSmith1', Email = 'test1@test.com' );
+		Contact con2 = new Contact( LastName = 'McSmith2', Email = 'test2@test.com' );
+		insert con1;
+		insert con2;
+
+		Case c = new Case();
+		insert c;
+
+		EmailQueue__c eq1 = new EmailQueue__c( Priority__c = '5', SaveAsActivity__c = true, WhatId__c = c.Id, Status__c = 'Queued', TargetObjectId__c = con1.Id, TemplateId__c = et1.Id );
+		EmailQueue__c eq2 = new EmailQueue__c( Priority__c = '5', SaveAsActivity__c = true, WhatId__c = c.Id, Status__c = 'Queued', TargetObjectId__c = con2.Id, TemplateId__c = et1.Id );
+		insert eq1;
+		insert eq2;
+
+
+		List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue( c.Id );
+		Map<Id, String> templateSubjects = EmailSchedulingLog.getTemplateSubjects( emailQueue );
+
+		Test.StartTest();
+		Map<Id, List<EmailQueue__c> > emailQueueTemplateIdAsKey = EmailSchedulingLogHelper.getEmailQueueTemplateIdAsKey( emailQueue, templateSubjects );
+		Test.StopTest();
+
+		System.assertEquals( 1, emailQueueTemplateIdAsKey.size(), 'only one email subject, only one category' );
+		System.assertEquals( 2, emailQueueTemplateIdAsKey.get( et1.Id ).size(), 'only one email queue per template' );
+		System.assertEquals( eq1.Id, emailQueueTemplateIdAsKey.get( et1.Id )[0].Id, 'only one email queue per template' );
+		System.assertEquals( eq2.Id, emailQueueTemplateIdAsKey.get( et1.Id )[1].Id, 'only one email queue per template' );
+
+	}
+
 	@isTest
 	private static void testCreateChildren() {
 
