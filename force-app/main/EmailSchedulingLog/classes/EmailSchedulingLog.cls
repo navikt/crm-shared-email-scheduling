@@ -16,7 +16,7 @@ public with sharing class EmailSchedulingLog {
 		@AuraEnabled public String metatext;
 	}
 
-	@AuraEnabled(cacheable = true)
+	@AuraEnabled
 	public static List<LogData> getLogData( Id recordId ) {
 
 		List<EmailQueue__c> emailQueue = getEmailQueue( recordId );

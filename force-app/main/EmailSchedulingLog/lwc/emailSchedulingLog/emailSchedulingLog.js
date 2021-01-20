@@ -26,17 +26,6 @@ export default class EmailSchedulingLog extends NavigationMixin(LightningElement
             }).catch(error => { });
     }
 
-    refresh() {
-
-        this.isLoading = true;
-
-        // delay to notify user that refresh actually started
-        // eslint-disable-next-line @lwc/lwc/no-async-operation
-        setTimeout(() => {
-            this.load();
-        }, 300);
-    }
-
     handleOnselect(event) {
 
         let selectedItemValue = event.detail.name;
