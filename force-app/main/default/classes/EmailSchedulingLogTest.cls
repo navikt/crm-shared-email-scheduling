@@ -27,16 +27,19 @@ private without sharing class EmailSchedulingLogTest {
 		EmailQueue__c email = [SELECT Id, LastModifiedDate FROM EmailQueue__c LIMIT 1];
 		Contact con = [SELECT Id, Name FROM Contact LIMIT 1];
 
+		// parent
 		System.assertEquals( 1, results.size(), 'one emailqueue for the case' );
-		System.assertEquals( 'HEI OG VELKOMMEN', results[0].Id, 'Id should be set' );
-		System.assertEquals( 'I utsendingskø', results[0].Status, 'Status should be set' );
-		System.assertEquals( email.LastModifiedDate, results[0].DateSent, 'DateSent should be set' );
-		System.assertEquals( 'HEI OG VELKOMMEN', results[0].Main, 'Subject should be set' );
-		System.assertEquals( 1, results[0].Children.size(), 'should have one child' );
-		System.assertEquals( email.Id, results[0].Children[0].Id, 'Id should be set' );
-		System.assertEquals( '/' + con.Id, results[0].Children[0].MainUrl, 'MainUrl should be set' );
-		System.assertEquals( con.Name, results[0].Children[0].Main, 'Main should be set' );
-		System.assertEquals( 'I utsendingskø', results[0].Children[0].Status, 'Status should be set' );
+		System.assertEquals( 'HEI OG VELKOMMEN', results[0].name, 'name should be set' );
+		System.assertEquals( '⏱ I utsendingskø', results[0].metatext, 'metatext should be set' );
+		System.assertEquals( 'HEI OG VELKOMMEN', results[0].label, 'label should be set' );
+		System.assertEquals( false, results[0].expanded, 'expanded should be set' );
+
+		// children
+		System.assertEquals( 1, results[0].items.size(), 'should have one child' );
+		System.assertEquals( email.Id, results[0].items[0].name, 'name should be set' );
+		System.assertEquals( con.Id, results[0].items[0].TargetObjectId, 'TargetObjectId should be set' );
+		System.assertEquals( con.Name, results[0].items[0].label, 'label should be set' );
+		System.assertEquals( '⏱ I utsendingskø', results[0].items[0].metatext, 'metatext should be set' );
 	}
 
 	@isTest
@@ -100,24 +103,19 @@ private without sharing class EmailSchedulingLogTest {
 		EmailQueue__c email = [SELECT Id, LastModifiedDate FROM EmailQueue__c LIMIT 1];
 		Contact con = [SELECT Id, Name FROM Contact LIMIT 1];
 
+		// parent
 		System.assertEquals( 1, results.size(), 'one emailqueue for the case' );
-		System.assertEquals( 'HEI OG VELKOMMEN', results[0].Id, 'Id should be set' );
-		System.assertEquals( 'I utsendingskø', results[0].Status, 'Status should be set' );
-		System.assertEquals( email.LastModifiedDate, results[0].DateSent, 'DateSent should be set' );
-		System.assertEquals( 'HEI OG VELKOMMEN', results[0].Main, 'Subject should be set' );
-		System.assertEquals( 1, results[0].Children.size(), 'should have one child' );
-		System.assertEquals( email.Id, results[0].Children[0].Id, 'Id should be set' );
-		System.assertEquals( '/' + con.Id, results[0].Children[0].MainUrl, 'MainUrl should be set' );
-		System.assertEquals( con.Name, results[0].Children[0].Main, 'Main should be set' );
-		System.assertEquals( 'I utsendingskø', results[0].Children[0].Status, 'Status should be set' );
+		System.assertEquals( 'HEI OG VELKOMMEN', results[0].name, 'name should be set' );
+		System.assertEquals( '⏱ I utsendingskø', results[0].metatext, 'metatext should be set' );
+		System.assertEquals( 'HEI OG VELKOMMEN', results[0].label, 'label should be set' );
+		System.assertEquals( false, results[0].expanded, 'expanded should be set' );
+
+		// children
+		System.assertEquals( 1, results[0].items.size(), 'should have one child' );
+		System.assertEquals( email.Id, results[0].items[0].name, 'name should be set' );
+		System.assertEquals( con.Id, results[0].items[0].TargetObjectId, 'TargetObjectId should be set' );
+		System.assertEquals( con.Name, results[0].items[0].label, 'label should be set' );
+		System.assertEquals( '⏱ I utsendingskø', results[0].items[0].metatext, 'metatext should be set' );
 	}
 
-	@isTest
-	private static void testGetStatus() {
-		System.assertEquals( 'Sendt', EmailSchedulingLog.getStatus( 'Sent' ), 'english sent in should be translated' );
-		System.assertEquals( 'I utsendingskø', EmailSchedulingLog.getStatus( 'Queued' ), 'english sent in should be translated' );
-		System.assertEquals( 'Sender straks', EmailSchedulingLog.getStatus( 'Instant' ), 'english sent in should be translated' );
-		System.assertEquals( 'Feil', EmailSchedulingLog.getStatus( 'Error' ), 'english sent in should be translated' );
-		System.assertEquals( 'wfrefrefefrfr', EmailSchedulingLog.getStatus( 'wfrefrefefrfr' ), 'english sent in should be translated' );
-	}
 }

@@ -1,17 +1,17 @@
 public with sharing class EmailSchedulingLogHelper {
 
-	public static Map<String, List<EmailQueue__c> > getEmailQueueSubjectAsKey( List<EmailQueue__c> emailQueue, Map<Id, String> templateSubjects ) {
-		Map<String, List<EmailQueue__c> > emailQueueSubjectKey = new Map<String, List<EmailQueue__c> >();
+	public static Map<Id, List<EmailQueue__c> > getEmailQueueSubjectAsKey( List<EmailQueue__c> emailQueue, Map<Id, String> templateSubjects ) {
 
+		Map<Id, List<EmailQueue__c> > emailQueueIdAsKey = new Map<Id, List<EmailQueue__c> >();
 		for ( EmailQueue__c email : emailQueue ) {
-			if ( emailQueueSubjectKey.containsKey( templateSubjects.get( email.TemplateId__c ) ) ) {
-				emailQueueSubjectKey.get( templateSubjects.get( email.TemplateId__c ) ).add( email );
+			if ( emailQueueIdAsKey.containsKey( email.TemplateId__c ) ) {
+				emailQueueIdAsKey.get( email.TemplateId__c ).add( email );
 			} else {
-				emailQueueSubjectKey.put( templateSubjects.get( email.TemplateId__c ), new List<EmailQueue__c> { email } );
+				emailQueueIdAsKey.put( email.TemplateId__c, new List<EmailQueue__c> { email } );
 			}
 		}
 
-		return emailQueueSubjectKey;
+		return emailQueueIdAsKey;
 	}
 
 	public static List<EmailSchedulingLog.LogChildren> createChildren( List<EmailQueue__c> emailQueueChildren, Map<Id, String> contactNames ) {
@@ -64,6 +64,6 @@ public with sharing class EmailSchedulingLogHelper {
 
 		Datetime d = emailQueueChildren[0].LastModifiedDate;
 
-		return 'Sendt ' + d.day() + '.' + d.month() + '.' + d.year();
+		return 'Sendt (' + d.day() + '.' + d.month() + '.' + d.year() + ')';
 	}
 }
