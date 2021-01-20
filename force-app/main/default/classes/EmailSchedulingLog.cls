@@ -72,17 +72,19 @@ public with sharing class EmailSchedulingLog {
 
 	public static List<LogData> createData( List<EmailQueue__c> emailQueue, Map<Id, String> templateSubjects, Map<Id, String> contactNames ) {
 
-		Map<String, List<EmailQueue__c> > emailQueueSubjectKey = EmailSchedulingLogHelper.getEmailQueueSubjectAsKey( emailQueue, templateSubjects );
+		Map<Id, List<EmailQueue__c> > emailQueueSubjectKey = EmailSchedulingLogHelper.getEmailQueueTemplateIdAsKey( emailQueue, templateSubjects );
 
 		List<LogData> parents = new List<LogData>();
-		for ( String subject : emailQueueSubjectKey.keySet() ) {
+		for ( Id templateId : emailQueueSubjectKey.keySet() ) {
+
+			String subject = templateSubjects.get( templateId );
 
 			LogData parent = new LogData();
 			parent.name = subject;
 			parent.label = subject;
 			parent.expanded = false;
 
-			List<EmailQueue__c> emailQueueChildren = emailQueueSubjectKey.get( subject );
+			List<EmailQueue__c> emailQueueChildren = emailQueueSubjectKey.get( templateId );
 			parent.metatext = EmailSchedulingLogHelper.getParentMetatext( emailQueueChildren );
 			parent.items = EmailSchedulingLogHelper.createChildren( emailQueueChildren, contactNames );
 

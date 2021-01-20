@@ -20,7 +20,7 @@ private without sharing class EmailSchedulingLogHelperTest {
 	}
 
 	@isTest
-	private static void testGetEmailQueueSubjectAsKey() {
+	private static void testGetEmailQueueTemplateIdAsKey() {
 
 		EmailTemplate et1 = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'MY_UNIQUE_TEMPLATE' LIMIT 1];
 
@@ -29,19 +29,19 @@ private without sharing class EmailSchedulingLogHelperTest {
 		Map<Id, String> templateSubjects = EmailSchedulingLog.getTemplateSubjects( emailQueue );
 
 		Test.StartTest();
-		Map<Id, List<EmailQueue__c> > emailQueueSubjectAsKey = EmailSchedulingLogHelper.getEmailQueueSubjectAsKey( emailQueue, templateSubjects );
+		Map<Id, List<EmailQueue__c> > emailQueueTemplateIdAsKey = EmailSchedulingLogHelper.getEmailQueueTemplateIdAsKey( emailQueue, templateSubjects );
 		Test.StopTest();
 
 		EmailQueue__c email = [SELECT Id, LastModifiedDate FROM EmailQueue__c LIMIT 1];
 
-		System.assertEquals( 1, emailQueueSubjectAsKey.size(), 'only one email subject, only one category' );
+		System.assertEquals( 1, emailQueueTemplateIdAsKey.size(), 'only one email subject, only one category' );
 
-		System.assertEquals( 1, emailQueueSubjectAsKey.get( et1.Id ).size(), 'only one email queue per template' );
-		System.assertEquals( email.Id, emailQueueSubjectAsKey.get( et1.Id )[0].Id, 'only one email queue per template' );
+		System.assertEquals( 1, emailQueueTemplateIdAsKey.get( et1.Id ).size(), 'only one email queue per template' );
+		System.assertEquals( email.Id, emailQueueTemplateIdAsKey.get( et1.Id )[0].Id, 'only one email queue per template' );
 	}
 
 	@isTest
-	private static void testGetEmailQueueSubjectAsKey_twoTemplates() {
+	private static void testGetEmailQueueTemplateIdAsKey_twoTemplates() {
 
 
 		EmailTemplate et1 = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'MY_UNIQUE_TEMPLATE' LIMIT 1];
@@ -65,15 +65,15 @@ private without sharing class EmailSchedulingLogHelperTest {
 		Map<Id, String> templateSubjects = EmailSchedulingLog.getTemplateSubjects( emailQueue );
 
 		Test.StartTest();
-		Map<Id, List<EmailQueue__c> > emailQueueSubjectAsKey = EmailSchedulingLogHelper.getEmailQueueSubjectAsKey( emailQueue, templateSubjects );
+		Map<Id, List<EmailQueue__c> > emailQueueTemplateIdAsKey = EmailSchedulingLogHelper.getEmailQueueTemplateIdAsKey( emailQueue, templateSubjects );
 		Test.StopTest();
 
-		System.assertEquals( 2, emailQueueSubjectAsKey.size(), 'only one email subject, only one category' );
-		System.assertEquals( 1, emailQueueSubjectAsKey.get( et1.Id ).size(), 'only one email queue per template' );
-		System.assertEquals( eq1.Id, emailQueueSubjectAsKey.get( et1.Id )[0].Id, 'only one email queue per template' );
+		System.assertEquals( 2, emailQueueTemplateIdAsKey.size(), 'only one email subject, only one category' );
+		System.assertEquals( 1, emailQueueTemplateIdAsKey.get( et1.Id ).size(), 'only one email queue per template' );
+		System.assertEquals( eq1.Id, emailQueueTemplateIdAsKey.get( et1.Id )[0].Id, 'only one email queue per template' );
 
-		System.assertEquals( 1, emailQueueSubjectAsKey.get( et2.Id ).size(), 'only one email queue per template' );
-		System.assertEquals( eq2.Id, emailQueueSubjectAsKey.get( et2.Id )[0].Id, 'only one email queue per template' );
+		System.assertEquals( 1, emailQueueTemplateIdAsKey.get( et2.Id ).size(), 'only one email queue per template' );
+		System.assertEquals( eq2.Id, emailQueueTemplateIdAsKey.get( et2.Id )[0].Id, 'only one email queue per template' );
 	}
 
 	@isTest
@@ -103,7 +103,7 @@ private without sharing class EmailSchedulingLogHelperTest {
 		System.assertEquals( 'Sendt', EmailSchedulingLogHelper.getStatus( 'Sent' ), 'english sent in should be translated' );
 		System.assertEquals( '⏱ I utsendingskø', EmailSchedulingLogHelper.getStatus( 'Queued' ), 'english sent in should be translated' );
 		System.assertEquals( '⏱ Sendes straks', EmailSchedulingLogHelper.getStatus( 'Instant' ), 'english sent in should be translated' );
-		System.assertEquals( '❌ Feil', EmailSchedulingLogHelper.getStatus( 'Error' ), 'english sent in should be translated' );
+		System.assertEquals( '❌ Feilet ved utsending, kontakt en administrator', EmailSchedulingLogHelper.getStatus( 'Error' ), 'english sent in should be translated' );
 		System.assertEquals( 'wfrefrefefrfr', EmailSchedulingLogHelper.getStatus( 'wfrefrefefrfr' ), 'english sent in should be translated' );
 	}
 

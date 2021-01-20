@@ -1,6 +1,6 @@
 public with sharing class EmailSchedulingLogHelper {
 
-	public static Map<Id, List<EmailQueue__c> > getEmailQueueSubjectAsKey( List<EmailQueue__c> emailQueue, Map<Id, String> templateSubjects ) {
+	public static Map<Id, List<EmailQueue__c> > getEmailQueueTemplateIdAsKey( List<EmailQueue__c> emailQueue, Map<Id, String> templateSubjects ) {
 
 		Map<Id, List<EmailQueue__c> > emailQueueIdAsKey = new Map<Id, List<EmailQueue__c> >();
 		for ( EmailQueue__c email : emailQueue ) {
