@@ -18,7 +18,7 @@ export default class EmailSchedulingLog extends NavigationMixin(LightningElement
             .then(result => {
                 var tempData = JSON.parse(JSON.stringify(result));
                 for (var i = 0; i < tempData.length; i++) {
-                    tempData[i]._children = tempData[i]['Children']; // TODO remove tmpdata
+                    tempData[i]._children = tempData[i]['Children'];
                     delete tempData[i].Children;
                 }
                 this.data = tempData;
