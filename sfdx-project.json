@@ -12,7 +12,7 @@
             "path": "force-app",
             "default": true,
             "package": "crm-platform-email-scheduling",
-            "versionNumber": "1.4.0.NEXT"
+            "versionNumber": "1.5.0.NEXT"
         }
     ],
     "namespace": "",
