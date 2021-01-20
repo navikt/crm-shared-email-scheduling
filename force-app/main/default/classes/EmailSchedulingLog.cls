@@ -1,12 +1,20 @@
 public with sharing class EmailSchedulingLog {
 
 	public class LogData {
-		@AuraEnabled public Id Id;
-		@AuraEnabled public String TargetObjectId;
-		@AuraEnabled public String TargetObjectName;
+		@AuraEnabled public String Id;
+		@AuraEnabled public String Main;
+		@AuraEnabled public String MainUrl;
 		@AuraEnabled public String Status;
 		@AuraEnabled public DateTime DateSent;
-		@AuraEnabled public String Subject;
+		@AuraEnabled public List<LogChildren> Children;
+	}
+
+	public class LogChildren {
+		@AuraEnabled public Id Id;
+		@AuraEnabled public String MainUrl;
+		@AuraEnabled public String Main;
+		@AuraEnabled public String Status;
+		@AuraEnabled public DateTime DateSent;
 	}
 
 	@AuraEnabled(cacheable = true)
@@ -59,20 +67,49 @@ public with sharing class EmailSchedulingLog {
 
 	public static List<LogData> createData( List<EmailQueue__c> emailQueue, Map<Id, String> templateSubjects, Map<Id, String> contactNames ) {
 
-		List<LogData> data = new List<LogData>();
+		Map<String, List<EmailQueue__c> > emailQueueSubjectKey = new Map<String, List<EmailQueue__c> >();
 
 		for ( EmailQueue__c email : emailQueue ) {
-			LogData ld = new LogData();
-			ld.Id = email.Id;
-			ld.TargetObjectId = '/' + email.TargetObjectId__c;
-			ld.TargetObjectName = contactNames.get( email.TargetObjectId__c );
-			ld.Status = getStatus( email.Status__c );
-			ld.DateSent = email.LastModifiedDate;
-			ld.Subject = templateSubjects.get( email.TemplateId__c );
-			data.add( ld );
+			if ( emailQueueSubjectKey.containsKey( templateSubjects.get( email.TemplateId__c ) ) ) {
+				emailQueueSubjectKey.get( templateSubjects.get( email.TemplateId__c ) ).add( email );
+			} else {
+				emailQueueSubjectKey.put( templateSubjects.get( email.TemplateId__c ), new List<EmailQueue__c> { email } );
+			}
 		}
 
-		return data;
+		List<LogData> parents = new List<LogData>();
+
+		for ( String subject : emailQueueSubjectKey.keySet() ) {
+
+			List<EmailQueue__c> emailQueueChildren = emailQueueSubjectKey.get( subject );
+
+			LogData parent = new LogData();
+			parent.Id = subject;
+			parent.Main = subject;
+			parent.MainUrl = '';
+			parent.Status = getStatus( emailQueue[0].Status__c );
+			parent.DateSent = emailQueue[0].LastModifiedDate;
+
+			List<LogChildren> children = new List<LogChildren>();
+
+			for ( EmailQueue__c email : emailQueueChildren ) {
+
+				LogChildren child = new LogChildren();
+				child.Id = email.Id;
+
+				child.Main = contactNames.get( email.TargetObjectId__c );
+				child.MainUrl = '/' + email.TargetObjectId__c;
+
+				child.Status = getStatus( email.Status__c );
+				parent.DateSent = email.LastModifiedDate;
+
+				children.add( child );
+			}
+			parent.Children = children;
+			parents.add( parent );
+		}
+
+		return parents;
 	}
 
 	public static String getStatus( String status ) {

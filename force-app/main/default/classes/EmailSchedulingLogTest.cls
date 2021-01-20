@@ -25,17 +25,19 @@ private without sharing class EmailSchedulingLogTest {
 		Test.StopTest();
 
 		EmailQueue__c email = [SELECT Id, LastModifiedDate FROM EmailQueue__c LIMIT 1];
-		Contact con = [SELECT Id FROM Contact LIMIT 1];
+		Contact con = [SELECT Id, Name FROM Contact LIMIT 1];
 
 		System.assertEquals( 1, results.size(), 'one emailqueue for the case' );
-		System.assertEquals( email.Id, results[0].Id, 'Id should be set' );
-		System.assertEquals( '/' +  con.Id, results[0].TargetObjectId, 'TargetObjectId should be set' );
-		System.assertEquals( 'McSmith', results[0].TargetObjectName, 'TargetObjectName should be set' );
+		System.assertEquals( 'HEI OG VELKOMMEN', results[0].Id, 'Id should be set' );
 		System.assertEquals( 'I utsendingskø', results[0].Status, 'Status should be set' );
 		System.assertEquals( email.LastModifiedDate, results[0].DateSent, 'DateSent should be set' );
-		System.assertEquals( 'HEI OG VELKOMMEN', results[0].Subject, 'Subject should be set' );
+		System.assertEquals( 'HEI OG VELKOMMEN', results[0].Main, 'Subject should be set' );
+		System.assertEquals( 1, results[0].Children.size(), 'should have one child' );
+		System.assertEquals( email.Id, results[0].Children[0].Id, 'Id should be set' );
+		System.assertEquals( '/' + con.Id, results[0].Children[0].MainUrl, 'MainUrl should be set' );
+		System.assertEquals( con.Name, results[0].Children[0].Main, 'Main should be set' );
+		System.assertEquals( 'I utsendingskø', results[0].Children[0].Status, 'Status should be set' );
 	}
-
 
 	@isTest
 	private static void testGetEmailQueue() {
@@ -96,15 +98,18 @@ private without sharing class EmailSchedulingLogTest {
 		Test.StopTest();
 
 		EmailQueue__c email = [SELECT Id, LastModifiedDate FROM EmailQueue__c LIMIT 1];
-		Contact con = [SELECT Id FROM Contact LIMIT 1];
+		Contact con = [SELECT Id, Name FROM Contact LIMIT 1];
 
 		System.assertEquals( 1, results.size(), 'one emailqueue for the case' );
-		System.assertEquals( email.Id, results[0].Id, 'Id should be set' );
-		System.assertEquals( '/' + con.Id, results[0].TargetObjectId, 'TargetObjectId should be set' );
-		System.assertEquals( 'McSmith', results[0].TargetObjectName, 'TargetObjectName should be set' );
+		System.assertEquals( 'HEI OG VELKOMMEN', results[0].Id, 'Id should be set' );
 		System.assertEquals( 'I utsendingskø', results[0].Status, 'Status should be set' );
 		System.assertEquals( email.LastModifiedDate, results[0].DateSent, 'DateSent should be set' );
-		System.assertEquals( 'HEI OG VELKOMMEN', results[0].Subject, 'Subject should be set' );
+		System.assertEquals( 'HEI OG VELKOMMEN', results[0].Main, 'Subject should be set' );
+		System.assertEquals( 1, results[0].Children.size(), 'should have one child' );
+		System.assertEquals( email.Id, results[0].Children[0].Id, 'Id should be set' );
+		System.assertEquals( '/' + con.Id, results[0].Children[0].MainUrl, 'MainUrl should be set' );
+		System.assertEquals( con.Name, results[0].Children[0].Main, 'Main should be set' );
+		System.assertEquals( 'I utsendingskø', results[0].Children[0].Status, 'Status should be set' );
 	}
 
 	@isTest
@@ -116,10 +121,3 @@ private without sharing class EmailSchedulingLogTest {
 		System.assertEquals( 'wfrefrefefrfr', EmailSchedulingLog.getStatus( 'wfrefrefefrfr' ), 'english sent in should be translated' );
 	}
 }
-
-
-
-
-
-
-
