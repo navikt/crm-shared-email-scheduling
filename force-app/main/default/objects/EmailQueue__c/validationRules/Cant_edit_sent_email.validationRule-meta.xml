@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Cant_edit_sent_email</fullName>
     <active>true</active>
-    <errorConditionFormula>!ISCHANGED( Status__c ) &amp;&amp; ISPICKVAL( Status__c, &quot;Sent&quot;) &amp;&amp; !ISNEW()</errorConditionFormula>
-    <errorMessage>You can&apos;t edit the record if has already been sent</errorMessage>
+    <errorConditionFormula
+    >!ISCHANGED( Status__c ) &amp;&amp; ISPICKVAL( Status__c, &quot;Sent&quot;) &amp;&amp; !ISNEW()</errorConditionFormula>
+    <errorMessage
+    >You can&apos;t edit the record if has already been sent</errorMessage>
 </ValidationRule>

@@ -1,11 +1,13 @@
 <template>
-
     <!-- GENERIC LIGHTNING SPINNER -->
-    <lightning-spinner alternative-text="Loading" size="small" if:true={isLoading}>
+    <lightning-spinner
+        alternative-text="Loading"
+        size="small"
+        if:true={isLoading}
+    >
     </lightning-spinner>
 
     <div class="slds-p-top_xx-large">
-
         <!-- LOADING SPINNER -->
         <div class="slds-is-relative slds-p-top_xx-large" if:true={isRunning}>
             <lightning-spinner alternative-text="Loading" size="small">
@@ -13,41 +15,65 @@
         </div>
 
         <!-- PROGRESS BAR -->
-        <lightning-progress-bar class="slds-align_absolute-center slds-p-horizontal_large slds-p-top_medium"
-            value={progress} if:true={isRunning} size="large" variant="circular"></lightning-progress-bar>
+        <lightning-progress-bar
+            class="slds-align_absolute-center slds-p-horizontal_large slds-p-top_medium"
+            value={progress}
+            if:true={isRunning}
+            size="large"
+            variant="circular"
+        ></lightning-progress-bar>
 
         <!-- PROGRESS TEXT -->
-        <div class="slds-text-title_caps slds-p-top_small slds-align_absolute-center" if:true={isRunning}>
-            {completedJobs}/{totalJobs} batches complete</div>
+        <div
+            class="slds-text-title_caps slds-p-top_small slds-align_absolute-center"
+            if:true={isRunning}
+        >
+            {completedJobs}/{totalJobs} batches complete
+        </div>
 
         <!-- COMPLETED ICON -->
         <div class="slds-align_absolute-center" if:true={isJobComplete}>
-            <lightning-icon icon-name="action:approval" alternative-text="Success" title="Success"></lightning-icon>
+            <lightning-icon
+                icon-name="action:approval"
+                alternative-text="Success"
+                title="Success"
+            ></lightning-icon>
         </div>
 
         <!-- COMPLETED JOBS -->
-        <div class="slds-text-title_caps slds-p-top_small slds-align_absolute-center" if:true={isJobComplete}>
+        <div
+            class="slds-text-title_caps slds-p-top_small slds-align_absolute-center"
+            if:true={isJobComplete}
+        >
             {completedJobs}/{totalJobs} batches completed
         </div>
     </div>
 
-
     <div class="slds-p-top_x-large">
         <!-- TITLE -->
-        <div class="slds-text-heading_medium slds-p-bottom_small slds-align_absolute-center" if:true={showTitle}>
+        <div
+            class="slds-text-heading_medium slds-p-bottom_small slds-align_absolute-center"
+            if:true={showTitle}
+        >
             {title}
         </div>
 
         <!-- BUTTON -->
-        <lightning-button class="slds-p-top_small slds-align_absolute-center" variant="brand" label={buttonName}
-            onclick={processEmails} if:false={isRunning}>
+        <lightning-button
+            class="slds-p-top_small slds-align_absolute-center"
+            variant="brand"
+            label={buttonName}
+            onclick={processEmails}
+            if:false={isRunning}
+        >
         </lightning-button>
     </div>
 
-
     <!-- ERROR -->
-    <div class="slds-text-title_caps slds-p-top_large slds-align_absolute-center slds-text-color_destructive"
-        if:true={error}>
-        {error}</div>
-
+    <div
+        class="slds-text-title_caps slds-p-top_large slds-align_absolute-center slds-text-color_destructive"
+        if:true={error}
+    >
+        {error}
+    </div>
 </template>

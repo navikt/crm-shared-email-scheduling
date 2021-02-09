@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>50.0</apiVersion>
     <isExposed>true</isExposed>
@@ -9,9 +9,28 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__UtilityBar">
-            <property name="status" type="String" label="Status to Process" placeholder="Queued" datasource="Queued,Instant,Error" default="Queued" />
-            <property name="title" type="String" label="Title" placeholder="Title" required="true" />
-            <property name="buttonName" type="String" label="Button Name" placeholder="Button Name"  required="true" />
+            <property
+                name="status"
+                type="String"
+                label="Status to Process"
+                placeholder="Queued"
+                datasource="Queued,Instant,Error"
+                default="Queued"
+            />
+            <property
+                name="title"
+                type="String"
+                label="Title"
+                placeholder="Title"
+                required="true"
+            />
+            <property
+                name="buttonName"
+                type="String"
+                label="Button Name"
+                placeholder="Button Name"
+                required="true"
+            />
         </targetConfig>
     </targetConfigs>
   </LightningComponentBundle>

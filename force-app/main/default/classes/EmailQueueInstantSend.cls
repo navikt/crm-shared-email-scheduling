@@ -1,32 +1,47 @@
 public without sharing class EmailQueueInstantSend {
+    public static void process(List<EmailQueue__c> emailQueue) {
+        List<EmailQueue__c> filteredRecords = findInstantRecords(emailQueue);
 
-	public static void process( List<EmailQueue__c> emailQueue ) {
+        if (filteredRecords.size() > 0) {
+            EmailQueueData data = new EmailQueueData(filteredRecords);
 
-		List<EmailQueue__c> filteredRecords = findInstantRecords( emailQueue );
+            for (
+                List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated()
+            ) {
+                Id jobId = System.enqueueJob(
+                    new EmailQueueJob(
+                        emailQueuesToSend,
+                        data.getOrgWideEmailId()
+                    )
+                );
+            }
 
-		if ( filteredRecords.size() > 0 ) {
-			EmailQueueData data = new EmailQueueData( filteredRecords );
+            EmailQueueJobHelper.updateEmailQueueSettings(data.getEmailQueues());
+        }
+    }
 
-			for ( List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated() ) {
-				Id jobId = System.enqueueJob( new EmailQueueJob( emailQueuesToSend, data.getOrgWideEmailId() ) );
-			}
+    public static List<EmailQueue__c> findInstantRecords(
+        List<EmailQueue__c> emailQueue
+    ) {
+        List<EmailQueue__c> filteredQueue = new List<EmailQueue__c>();
 
-			EmailQueueJobHelper.updateEmailQueueSettings( data.getEmailQueues() );
-		}
-	}
+        for (EmailQueue__c queue : emailQueue) {
+            if (queue.Status__c == 'Instant') {
+                filteredQueue.add(queue);
+            }
+        }
 
-	public static List<EmailQueue__c> findInstantRecords( List<EmailQueue__c> emailQueue ) {
+        Set<Id> queueIds = new Map<Id, EmailQueue__c>(filteredQueue).keySet();
 
-		List<EmailQueue__c> filteredQueue = new List<EmailQueue__c>();
-
-		for ( EmailQueue__c queue : emailQueue ) {
-			if ( queue.Status__c == 'Instant' ) {
-				filteredQueue.add( queue );
-			}
-		}
-
-		Set<Id> queueIds = new Map<Id, EmailQueue__c> ( filteredQueue ).keySet();
-
-		return [SELECT SaveAsActivity__c, WhatId__c, TemplateId__c, TargetObjectId__c, Id FROM EmailQueue__c WHERE Id IN : queueIds];
-	}
+        return [
+            SELECT
+                SaveAsActivity__c,
+                WhatId__c,
+                TemplateId__c,
+                TargetObjectId__c,
+                Id
+            FROM EmailQueue__c
+            WHERE Id IN :queueIds
+        ];
+    }
 }

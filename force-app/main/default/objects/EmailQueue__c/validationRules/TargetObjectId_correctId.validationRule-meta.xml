@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TargetObjectId_correctId</fullName>
     <active>true</active>
-    <errorConditionFormula>!REGEX( TargetObjectId__c, &apos;[a-zA-Z0-9]{18}|[a-zA-Z0-9]{15}&apos; ) 
+    <errorConditionFormula
+    >!REGEX( TargetObjectId__c, &apos;[a-zA-Z0-9]{18}|[a-zA-Z0-9]{15}&apos; ) 
   &amp;&amp;
 (
     !BEGINS(  TargetObjectId__c, &apos;003&apos;)
@@ -12,5 +13,6 @@
     !BEGINS(  TargetObjectId__c, &apos;00Q&apos;)
 )</errorConditionFormula>
     <errorDisplayField>TargetObjectId__c</errorDisplayField>
-    <errorMessage>TargetObjectId__c must be 15 or 18 characters, and being with &apos;003&apos;, &apos;005&apos; or &apos;00Q&apos; prefix</errorMessage>
+    <errorMessage
+    >TargetObjectId__c must be 15 or 18 characters, and being with &apos;003&apos;, &apos;005&apos; or &apos;00Q&apos; prefix</errorMessage>
 </ValidationRule>

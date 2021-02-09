@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>SendTime__c</fullName>
     <externalId>false</externalId>
-    <formula>IF ( ROUND( (LastModifiedDate - CreatedDate)*24*60, 0 ) &lt; 60, TEXT(ROUND((LastModifiedDate - CreatedDate)*24*60, 0)) &amp; &quot; minute(s)&quot;,
+    <formula
+    >IF ( ROUND( (LastModifiedDate - CreatedDate)*24*60, 0 ) &lt; 60, TEXT(ROUND((LastModifiedDate - CreatedDate)*24*60, 0)) &amp; &quot; minute(s)&quot;,
   IF ( ROUND( (LastModifiedDate - CreatedDate)*24, 0 ) &lt; 24, TEXT(ROUND((LastModifiedDate - CreatedDate)*24, 0)) &amp; &quot; hour(s)&quot;,
     TEXT(ROUND(LastModifiedDate - CreatedDate, 0)) &amp; &quot; day(s)&quot;
   )

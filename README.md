@@ -49,7 +49,6 @@ email.SaveAsActivity__c = true; // Save the Email as a Task after sending
 insert email;
 ```
 
-
 ## Annet
 
 For spørsmål om denne applikasjonen, bruk #arbeidsgiver-crm på Slack.

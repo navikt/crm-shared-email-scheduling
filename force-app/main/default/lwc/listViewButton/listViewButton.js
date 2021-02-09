@@ -2,7 +2,6 @@ import { LightningElement, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 export default class ListViewButton extends NavigationMixin(LightningElement) {
-
     @api listViewApiName;
     @api sObjectApiName;
 

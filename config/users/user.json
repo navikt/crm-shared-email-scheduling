@@ -6,8 +6,6 @@
     "EmailEncodingKey": "UTF-8",
     "LanguageLocaleKey": "en_US",
     "profileName": "Standard User",
-    "permsets": [
-        "Email_Scheduling_App_User"
-    ],
+    "permsets": ["Email_Scheduling_App_User"],
     "generatePassword": true
 }

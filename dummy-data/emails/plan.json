@@ -3,41 +3,31 @@
         "sobject": "Account",
         "saveRefs": true,
         "resolveRefs": true,
-        "files": [
-            "Account.json"
-        ]
+        "files": ["Account.json"]
     },
     {
         "sobject": "Contact",
         "saveRefs": true,
         "resolveRefs": true,
-        "files": [
-            "Contacts.json"
-        ]
+        "files": ["Contacts.json"]
     },
     {
         "sobject": "Lead",
         "saveRefs": true,
         "resolveRefs": true,
-        "files": [
-            "Leads.json"
-        ]
+        "files": ["Leads.json"]
     },
     {
         "sobject": "Case",
         "saveRefs": true,
         "resolveRefs": true,
-        "files": [
-            "Cases.json"
-        ]
+        "files": ["Cases.json"]
     },
     {
         "sobject": "EmailTemplate",
         "saveRefs": true,
         "resolveRefs": true,
-        "files": [
-            "EmailTemplates.json"
-        ]
+        "files": ["EmailTemplates.json"]
     },
     {
         "sobject": "EmailQueue__c",

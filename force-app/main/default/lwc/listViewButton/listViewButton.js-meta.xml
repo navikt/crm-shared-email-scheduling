@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>50.0</apiVersion>
     <isExposed>true</isExposed>
@@ -9,8 +9,20 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__AppPage">
-            <property name="sObjectApiName" type="String" label="SObject API Name" placeholder="Account" required="true"/>
-            <property name="listViewApiName" type="String" label="List View API Name" placeholder="Recent" required="true"/>
+            <property
+                name="sObjectApiName"
+                type="String"
+                label="SObject API Name"
+                placeholder="Account"
+                required="true"
+            />
+            <property
+                name="listViewApiName"
+                type="String"
+                label="List View API Name"
+                placeholder="Recent"
+                required="true"
+            />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
