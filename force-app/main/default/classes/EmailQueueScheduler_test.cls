@@ -9,11 +9,7 @@ private without sharing class EmailQueueScheduler_test {
     private static void testSchedule() {
         Test.StartTest();
         String CRON_EXP = '0 0 0 3 9 ? 2022';
-        System.schedule(
-            'EmailQueueSchedulerTest',
-            CRON_EXP,
-            new EmailQueueScheduler()
-        );
+        System.schedule('EmailQueueSchedulerTest', CRON_EXP, new EmailQueueScheduler());
         Test.StopTest();
 
         // ! no tests, as queueable is not possible to run inside scheduled class
@@ -24,11 +20,7 @@ private without sharing class EmailQueueScheduler_test {
     private static void testSettingsTrackers() {
         Test.StartTest();
         String CRON_EXP = '0 0 0 3 9 ? 2022';
-        System.schedule(
-            'EmailQueueSchedulerTest',
-            CRON_EXP,
-            new EmailQueueScheduler()
-        );
+        System.schedule('EmailQueueSchedulerTest', CRON_EXP, new EmailQueueScheduler());
         Test.StopTest();
 
         List<EmailQueueSettings__c> settings = [
@@ -37,11 +29,7 @@ private without sharing class EmailQueueScheduler_test {
             WHERE LastModifiedDate = TODAY
         ];
         System.assertEquals(1, settings.size(), 'should be settings for today');
-        System.assertEquals(
-            48,
-            settings[0].AmountSentToday__c,
-            'should be settings for today'
-        );
+        System.assertEquals(48, settings[0].AmountSentToday__c, 'should be settings for today');
     }
 
     @isTest
@@ -50,18 +38,10 @@ private without sharing class EmailQueueScheduler_test {
         List<Id> jobIds = EmailQueueScheduler.processEmailQueue('Queued');
         Test.StopTest();
 
-        System.assertEquals(
-            1,
-            jobIds.size(),
-            'should only be one batch, and one job'
-        );
+        System.assertEquals(1, jobIds.size(), 'should only be one batch, and one job');
 
         Integer finishedJobs = EmailQueueScheduler.getJobStatus(jobIds);
 
-        System.assertEquals(
-            1,
-            finishedJobs,
-            'should only be one batch, and one job which should be finished'
-        );
+        System.assertEquals(1, finishedJobs, 'should only be one batch, and one job which should be finished');
     }
 }

@@ -8,12 +8,8 @@ global without sharing class EmailQueueScheduler implements Schedulable {
         EmailQueueData data = new EmailQueueData(status);
         List<Id> jobIds = new List<Id>();
 
-        for (
-            List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated()
-        ) {
-            Id jobId = System.enqueueJob(
-                new EmailQueueJob(emailQueuesToSend, data.getOrgWideEmailId())
-            );
+        for (List<EmailQueue__c> emailQueuesToSend : data.getEmailQueuesSeparated()) {
+            Id jobId = System.enqueueJob(new EmailQueueJob(emailQueuesToSend, data.getOrgWideEmailId()));
             jobIds.add(jobId);
         }
 
@@ -28,10 +24,7 @@ global without sharing class EmailQueueScheduler implements Schedulable {
         return [
             SELECT COUNT()
             FROM AsyncApexJob
-            WHERE
-                JobType = 'Queueable'
-                AND Status = 'Completed'
-                AND Id IN :jobIds
+            WHERE JobType = 'Queueable' AND Status = 'Completed' AND Id IN :jobIds
         ];
     }
 }

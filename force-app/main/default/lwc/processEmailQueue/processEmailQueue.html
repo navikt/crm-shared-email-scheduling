@@ -1,17 +1,11 @@
 <template>
     <!-- GENERIC LIGHTNING SPINNER -->
-    <lightning-spinner
-        alternative-text="Loading"
-        size="small"
-        if:true={isLoading}
-    >
-    </lightning-spinner>
+    <lightning-spinner alternative-text="Loading" size="small" if:true={isLoading}> </lightning-spinner>
 
     <div class="slds-p-top_xx-large">
         <!-- LOADING SPINNER -->
         <div class="slds-is-relative slds-p-top_xx-large" if:true={isRunning}>
-            <lightning-spinner alternative-text="Loading" size="small">
-            </lightning-spinner>
+            <lightning-spinner alternative-text="Loading" size="small"> </lightning-spinner>
         </div>
 
         <!-- PROGRESS BAR -->
@@ -24,37 +18,24 @@
         ></lightning-progress-bar>
 
         <!-- PROGRESS TEXT -->
-        <div
-            class="slds-text-title_caps slds-p-top_small slds-align_absolute-center"
-            if:true={isRunning}
-        >
+        <div class="slds-text-title_caps slds-p-top_small slds-align_absolute-center" if:true={isRunning}>
             {completedJobs}/{totalJobs} batches complete
         </div>
 
         <!-- COMPLETED ICON -->
         <div class="slds-align_absolute-center" if:true={isJobComplete}>
-            <lightning-icon
-                icon-name="action:approval"
-                alternative-text="Success"
-                title="Success"
-            ></lightning-icon>
+            <lightning-icon icon-name="action:approval" alternative-text="Success" title="Success"></lightning-icon>
         </div>
 
         <!-- COMPLETED JOBS -->
-        <div
-            class="slds-text-title_caps slds-p-top_small slds-align_absolute-center"
-            if:true={isJobComplete}
-        >
+        <div class="slds-text-title_caps slds-p-top_small slds-align_absolute-center" if:true={isJobComplete}>
             {completedJobs}/{totalJobs} batches completed
         </div>
     </div>
 
     <div class="slds-p-top_x-large">
         <!-- TITLE -->
-        <div
-            class="slds-text-heading_medium slds-p-bottom_small slds-align_absolute-center"
-            if:true={showTitle}
-        >
+        <div class="slds-text-heading_medium slds-p-bottom_small slds-align_absolute-center" if:true={showTitle}>
             {title}
         </div>
 

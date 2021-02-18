@@ -9,11 +9,7 @@ public without sharing class EmailQueueData_test {
         List<EmailQueue__c> results = data.getEmailQueues();
         Test.StopTest();
 
-        System.assertEquals(
-            48,
-            results.size(),
-            '48 emails should have been fetched'
-        );
+        System.assertEquals(48, results.size(), '48 emails should have been fetched');
     }
 
     @isTest
@@ -25,11 +21,7 @@ public without sharing class EmailQueueData_test {
         List<EmailQueue__c> results = data.getEmailQueues();
         Test.StopTest();
 
-        System.assertEquals(
-            0,
-            results.size(),
-            '0 emails should have been fetched'
-        );
+        System.assertEquals(0, results.size(), '0 emails should have been fetched');
     }
 
     @isTest
@@ -41,11 +33,7 @@ public without sharing class EmailQueueData_test {
         List<EmailQueue__c> results = data.getEmailQueues();
         Test.StopTest();
 
-        System.assertEquals(
-            0,
-            results.size(),
-            '0 emails should have been fetched'
-        );
+        System.assertEquals(0, results.size(), '0 emails should have been fetched');
     }
 
     @isTest
@@ -63,11 +51,7 @@ public without sharing class EmailQueueData_test {
         List<EmailQueue__c> results = data.getEmailQueues();
         Test.StopTest();
 
-        System.assertEquals(
-            48,
-            results.size(),
-            '48 emails should have been fetched'
-        );
+        System.assertEquals(48, results.size(), '48 emails should have been fetched');
     }
 
     @isTest
@@ -79,11 +63,7 @@ public without sharing class EmailQueueData_test {
         List<EmailQueue__c> results = data.getEmailQueues();
         Test.StopTest();
 
-        System.assertEquals(
-            1000,
-            results.size(),
-            '1000 emails should have been fetched, because that\'s the cap'
-        );
+        System.assertEquals(1000, results.size(), '1000 emails should have been fetched, because that\'s the cap');
     }
 
     @isTest
@@ -95,24 +75,12 @@ public without sharing class EmailQueueData_test {
         List<List<EmailQueue__c>> results = data.getEmailQueuesSeparated();
         Test.StopTest();
 
-        System.assertEquals(
-            7,
-            results.size(),
-            '7 batches of emails should have been fetched'
-        );
+        System.assertEquals(7, results.size(), '7 batches of emails should have been fetched');
 
         for (Integer i = 0; i < results.size() - 1; i++) {
-            System.assertEquals(
-                100,
-                results[i].size(),
-                '100 emails in each batch'
-            );
+            System.assertEquals(100, results[i].size(), '100 emails in each batch');
         }
-        System.assertEquals(
-            57,
-            results[results.size() - 1].size(),
-            '57 emails in the last batch'
-        );
+        System.assertEquals(57, results[results.size() - 1].size(), '57 emails in the last batch');
     }
 
     @isTest
@@ -124,18 +92,10 @@ public without sharing class EmailQueueData_test {
         List<List<EmailQueue__c>> results = data.getEmailQueuesSeparated();
         Test.StopTest();
 
-        System.assertEquals(
-            10,
-            results.size(),
-            '10 batches of emails should have been fetched'
-        );
+        System.assertEquals(10, results.size(), '10 batches of emails should have been fetched');
 
         for (Integer i = 0; i < results.size(); i++) {
-            System.assertEquals(
-                100,
-                results[i].size(),
-                '100 emails in each batch'
-            );
+            System.assertEquals(100, results[i].size(), '100 emails in each batch');
         }
     }
 
@@ -152,11 +112,7 @@ public without sharing class EmailQueueData_test {
     // TEST DATA
     // -----------------------------------
 
-    public static void createData(
-        Integer amount,
-        String priority,
-        Boolean saveAsActivity
-    ) {
+    public static void createData(Integer amount, String priority, Boolean saveAsActivity) {
         EmailTemplate emailTemplate = new EmailTemplate(
             DeveloperName = 'MY_UNIQUE_TEMPLATE',
             Name = 'MY_UNIQUE_TEMPLATE',
@@ -174,9 +130,7 @@ public without sharing class EmailQueueData_test {
 
         List<EmailQueue__c> emailQueues = new List<EmailQueue__c>();
         for (Integer i = 0; i < amount; i++) {
-            priority = priority != null
-                ? priority
-                : String.valueOf(Math.mod(i, 5) + 1); // set fixed priority from parameter if not null
+            priority = priority != null ? priority : String.valueOf(Math.mod(i, 5) + 1); // set fixed priority from parameter if not null
             emailQueues.add(
                 new EmailQueue__c(
                     Priority__c = priority,

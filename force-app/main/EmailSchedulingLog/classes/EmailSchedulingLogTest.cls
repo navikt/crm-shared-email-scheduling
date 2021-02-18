@@ -14,10 +14,7 @@ private without sharing class EmailSchedulingLogTest {
         );
         insert emailTemplate;
 
-        Contact con = new Contact(
-            LastName = 'McSmith',
-            Email = 'test@test.com'
-        );
+        Contact con = new Contact(LastName = 'McSmith', Email = 'test@test.com');
         insert con;
 
         Case c = new Case();
@@ -38,67 +35,25 @@ private without sharing class EmailSchedulingLogTest {
         Id recordId = [SELECT Id FROM Case LIMIT 1].Id;
 
         Test.StartTest();
-        List<EmailSchedulingLog.LogData> results = EmailSchedulingLog.getLogData(
-            recordId
-        );
+        List<EmailSchedulingLog.LogData> results = EmailSchedulingLog.getLogData(recordId);
         Test.StopTest();
 
-        EmailQueue__c email = [
-            SELECT Id, LastModifiedDate
-            FROM EmailQueue__c
-            LIMIT 1
-        ];
+        EmailQueue__c email = [SELECT Id, LastModifiedDate FROM EmailQueue__c LIMIT 1];
         Contact con = [SELECT Id, Name FROM Contact LIMIT 1];
 
         // parent
         System.assertEquals(1, results.size(), 'one emailqueue for the case');
-        System.assertEquals(
-            'HEI OG VELKOMMEN',
-            results[0].name,
-            'name should be set'
-        );
-        System.assertEquals(
-            '⏱ I utsendingskø',
-            results[0].metatext,
-            'metatext should be set'
-        );
-        System.assertEquals(
-            'HEI OG VELKOMMEN',
-            results[0].label,
-            'label should be set'
-        );
-        System.assertEquals(
-            false,
-            results[0].expanded,
-            'expanded should be set'
-        );
+        System.assertEquals('HEI OG VELKOMMEN', results[0].name, 'name should be set');
+        System.assertEquals('⏱ I utsendingskø', results[0].metatext, 'metatext should be set');
+        System.assertEquals('HEI OG VELKOMMEN', results[0].label, 'label should be set');
+        System.assertEquals(false, results[0].expanded, 'expanded should be set');
 
         // children
-        System.assertEquals(
-            1,
-            results[0].items.size(),
-            'should have one child'
-        );
-        System.assertEquals(
-            email.Id,
-            results[0].items[0].name,
-            'name should be set'
-        );
-        System.assertEquals(
-            con.Id,
-            results[0].items[0].TargetObjectId,
-            'TargetObjectId should be set'
-        );
-        System.assertEquals(
-            con.Name,
-            results[0].items[0].label,
-            'label should be set'
-        );
-        System.assertEquals(
-            '⏱ I utsendingskø',
-            results[0].items[0].metatext,
-            'metatext should be set'
-        );
+        System.assertEquals(1, results[0].items.size(), 'should have one child');
+        System.assertEquals(email.Id, results[0].items[0].name, 'name should be set');
+        System.assertEquals(con.Id, results[0].items[0].TargetObjectId, 'TargetObjectId should be set');
+        System.assertEquals(con.Name, results[0].items[0].label, 'label should be set');
+        System.assertEquals('⏱ I utsendingskø', results[0].items[0].metatext, 'metatext should be set');
     }
 
     @isTest
@@ -106,9 +61,7 @@ private without sharing class EmailSchedulingLogTest {
         Id recordId = [SELECT Id FROM Case LIMIT 1].Id;
 
         Test.StartTest();
-        List<EmailQueue__c> results = EmailSchedulingLog.getEmailQueue(
-            recordId
-        );
+        List<EmailQueue__c> results = EmailSchedulingLog.getEmailQueue(recordId);
         Test.StopTest();
 
         System.assertEquals(1, results.size(), 'only one email queue created');
@@ -117,28 +70,15 @@ private without sharing class EmailSchedulingLogTest {
     @isTest
     private static void testGetTemplateSubjects() {
         Id recordId = [SELECT Id FROM Case LIMIT 1].Id;
-        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(
-            recordId
-        );
+        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(recordId);
 
         Test.StartTest();
-        Map<Id, String> results = EmailSchedulingLog.getTemplateSubjects(
-            emailQueue
-        );
+        Map<Id, String> results = EmailSchedulingLog.getTemplateSubjects(emailQueue);
         Test.StopTest();
 
-        EmailTemplate emailTemplate = [
-            SELECT Id
-            FROM EmailTemplate
-            WHERE DeveloperName = 'MY_UNIQUE_TEMPLATE'
-            LIMIT 1
-        ];
+        EmailTemplate emailTemplate = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'MY_UNIQUE_TEMPLATE' LIMIT 1];
 
-        System.assertEquals(
-            1,
-            results.size(),
-            'only one email queue created and only one email template on it'
-        );
+        System.assertEquals(1, results.size(), 'only one email queue created and only one email template on it');
         System.assert(
             results.containsKey(emailTemplate.Id),
             'only one email queue created and only one email template on it'
@@ -153,46 +93,25 @@ private without sharing class EmailSchedulingLogTest {
     @isTest
     private static void testGetContactNames() {
         Id recordId = [SELECT Id FROM Case LIMIT 1].Id;
-        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(
-            recordId
-        );
+        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(recordId);
 
         Test.StartTest();
-        Map<Id, String> results = EmailSchedulingLog.getContactNames(
-            emailQueue
-        );
+        Map<Id, String> results = EmailSchedulingLog.getContactNames(emailQueue);
         Test.StopTest();
 
         Contact con = [SELECT Id FROM Contact LIMIT 1];
 
-        System.assertEquals(
-            1,
-            results.size(),
-            'only one email queue created and only one contact on it'
-        );
-        System.assert(
-            results.containsKey(con.Id),
-            'only one email queue created and only one contact on it'
-        );
-        System.assertEquals(
-            'McSmith',
-            results.get(con.Id),
-            'only one email queue created and only one contact on it'
-        );
+        System.assertEquals(1, results.size(), 'only one email queue created and only one contact on it');
+        System.assert(results.containsKey(con.Id), 'only one email queue created and only one contact on it');
+        System.assertEquals('McSmith', results.get(con.Id), 'only one email queue created and only one contact on it');
     }
 
     @isTest
     private static void testCreateData() {
         Id recordId = [SELECT Id FROM Case LIMIT 1].Id;
-        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(
-            recordId
-        );
-        Map<Id, String> templateSubjects = EmailSchedulingLog.getTemplateSubjects(
-            emailQueue
-        );
-        Map<Id, String> contactNames = EmailSchedulingLog.getContactNames(
-            emailQueue
-        );
+        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(recordId);
+        Map<Id, String> templateSubjects = EmailSchedulingLog.getTemplateSubjects(emailQueue);
+        Map<Id, String> contactNames = EmailSchedulingLog.getContactNames(emailQueue);
 
         Test.StartTest();
         List<EmailSchedulingLog.LogData> results = EmailSchedulingLog.createData(
@@ -202,61 +121,21 @@ private without sharing class EmailSchedulingLogTest {
         );
         Test.StopTest();
 
-        EmailQueue__c email = [
-            SELECT Id, LastModifiedDate
-            FROM EmailQueue__c
-            LIMIT 1
-        ];
+        EmailQueue__c email = [SELECT Id, LastModifiedDate FROM EmailQueue__c LIMIT 1];
         Contact con = [SELECT Id, Name FROM Contact LIMIT 1];
 
         // parent
         System.assertEquals(1, results.size(), 'one emailqueue for the case');
-        System.assertEquals(
-            'HEI OG VELKOMMEN',
-            results[0].name,
-            'name should be set'
-        );
-        System.assertEquals(
-            '⏱ I utsendingskø',
-            results[0].metatext,
-            'metatext should be set'
-        );
-        System.assertEquals(
-            'HEI OG VELKOMMEN',
-            results[0].label,
-            'label should be set'
-        );
-        System.assertEquals(
-            false,
-            results[0].expanded,
-            'expanded should be set'
-        );
+        System.assertEquals('HEI OG VELKOMMEN', results[0].name, 'name should be set');
+        System.assertEquals('⏱ I utsendingskø', results[0].metatext, 'metatext should be set');
+        System.assertEquals('HEI OG VELKOMMEN', results[0].label, 'label should be set');
+        System.assertEquals(false, results[0].expanded, 'expanded should be set');
 
         // children
-        System.assertEquals(
-            1,
-            results[0].items.size(),
-            'should have one child'
-        );
-        System.assertEquals(
-            email.Id,
-            results[0].items[0].name,
-            'name should be set'
-        );
-        System.assertEquals(
-            con.Id,
-            results[0].items[0].TargetObjectId,
-            'TargetObjectId should be set'
-        );
-        System.assertEquals(
-            con.Name,
-            results[0].items[0].label,
-            'label should be set'
-        );
-        System.assertEquals(
-            '⏱ I utsendingskø',
-            results[0].items[0].metatext,
-            'metatext should be set'
-        );
+        System.assertEquals(1, results[0].items.size(), 'should have one child');
+        System.assertEquals(email.Id, results[0].items[0].name, 'name should be set');
+        System.assertEquals(con.Id, results[0].items[0].TargetObjectId, 'TargetObjectId should be set');
+        System.assertEquals(con.Name, results[0].items[0].label, 'label should be set');
+        System.assertEquals('⏱ I utsendingskø', results[0].items[0].metatext, 'metatext should be set');
     }
 }

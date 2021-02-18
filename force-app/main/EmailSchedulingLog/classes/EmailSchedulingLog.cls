@@ -30,11 +30,7 @@ public with sharing class EmailSchedulingLog {
         List<EmailQueue__c> emailQueue = getEmailQueue(recordId);
         Map<Id, String> templateSubjects = getTemplateSubjects(emailQueue);
         Map<Id, String> contactNames = getContactNames(emailQueue);
-        List<LogData> logData = createData(
-            emailQueue,
-            templateSubjects,
-            contactNames
-        );
+        List<LogData> logData = createData(emailQueue, templateSubjects, contactNames);
 
         return logData;
     }
@@ -45,31 +41,20 @@ public with sharing class EmailSchedulingLog {
 
     public static List<EmailQueue__c> getEmailQueue(Id recordId) {
         return [
-            SELECT
-                Id,
-                TargetObjectId__c,
-                Status__c,
-                TemplateId__c,
-                LastModifiedDate
+            SELECT Id, TargetObjectId__c, Status__c, TemplateId__c, LastModifiedDate
             FROM EmailQueue__c
             WHERE WhatId__c = :recordId
             ORDER BY LastModifiedDate DESC
         ];
     }
 
-    public static Map<Id, String> getTemplateSubjects(
-        List<EmailQueue__c> emailQueue
-    ) {
+    public static Map<Id, String> getTemplateSubjects(List<EmailQueue__c> emailQueue) {
         Set<Id> templateIds = new Set<Id>();
         for (EmailQueue__c email : emailQueue) {
             templateIds.add(email.TemplateId__c);
         }
 
-        List<EmailTemplate> emailTemplates = [
-            SELECT Id, Subject
-            FROM EmailTemplate
-            WHERE Id IN :templateIds
-        ];
+        List<EmailTemplate> emailTemplates = [SELECT Id, Subject FROM EmailTemplate WHERE Id IN :templateIds];
 
         Map<Id, String> templateSubjects = new Map<Id, String>();
         for (EmailTemplate emailTemplate : emailTemplates) {
@@ -79,19 +64,13 @@ public with sharing class EmailSchedulingLog {
         return templateSubjects;
     }
 
-    public static Map<Id, String> getContactNames(
-        List<EmailQueue__c> emailQueue
-    ) {
+    public static Map<Id, String> getContactNames(List<EmailQueue__c> emailQueue) {
         Set<Id> contactIds = new Set<Id>();
         for (EmailQueue__c email : emailQueue) {
             contactIds.add(email.TargetObjectId__c);
         }
 
-        List<Contact> contacts = [
-            SELECT Id, Name
-            FROM Contact
-            WHERE Id IN :contactIds
-        ];
+        List<Contact> contacts = [SELECT Id, Name FROM Contact WHERE Id IN :contactIds];
 
         Map<Id, String> contactNames = new Map<Id, String>();
         for (Contact contact : contacts) {
@@ -120,16 +99,9 @@ public with sharing class EmailSchedulingLog {
             parent.label = subject;
             parent.expanded = false;
 
-            List<EmailQueue__c> emailQueueChildren = emailQueueSubjectKey.get(
-                templateId
-            );
-            parent.metatext = EmailSchedulingLogHelper.getParentMetatext(
-                emailQueueChildren
-            );
-            parent.items = EmailSchedulingLogHelper.createChildren(
-                emailQueueChildren,
-                contactNames
-            );
+            List<EmailQueue__c> emailQueueChildren = emailQueueSubjectKey.get(templateId);
+            parent.metatext = EmailSchedulingLogHelper.getParentMetatext(emailQueueChildren);
+            parent.items = EmailSchedulingLogHelper.createChildren(emailQueueChildren, contactNames);
 
             parents.add(parent);
         }

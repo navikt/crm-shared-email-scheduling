@@ -4,6 +4,5 @@
     <active>true</active>
     <errorConditionFormula
     >!ISCHANGED( Status__c ) &amp;&amp; ISPICKVAL( Status__c, &quot;Sent&quot;) &amp;&amp; !ISNEW()</errorConditionFormula>
-    <errorMessage
-    >You can&apos;t edit the record if has already been sent</errorMessage>
+    <errorMessage>You can&apos;t edit the record if has already been sent</errorMessage>
 </ValidationRule>

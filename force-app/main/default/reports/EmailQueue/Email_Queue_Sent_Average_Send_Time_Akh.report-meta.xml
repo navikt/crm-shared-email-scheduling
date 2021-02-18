@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <aggregates>
-        <calculatedFormula
-        >EmailQueue__c.SendTimeInHours__c:AVG</calculatedFormula>
+        <calculatedFormula>EmailQueue__c.SendTimeInHours__c:AVG</calculatedFormula>
         <datatype>number</datatype>
         <developerName>FORMULA1</developerName>
         <isActive>false</isActive>

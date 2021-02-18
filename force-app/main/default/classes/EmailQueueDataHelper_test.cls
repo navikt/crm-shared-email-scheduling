@@ -11,10 +11,7 @@ private without sharing class EmailQueueDataHelper_test {
 
     @isTest
     private static void testCalculateEmailLimit_overLimit() {
-        insert new EmailQueueSettings__c(
-            AmountSentToday__c = 4995,
-            ResetDate__c = Date.today()
-        );
+        insert new EmailQueueSettings__c(AmountSentToday__c = 4995, ResetDate__c = Date.today());
 
         Test.StartTest();
         Integer result = EmailQueueDataHelper.calculateEmailLimit();
@@ -25,10 +22,7 @@ private without sharing class EmailQueueDataHelper_test {
 
     @isTest
     private static void testCalculateEmailLimit_empty() {
-        insert new EmailQueueSettings__c(
-            AmountSentToday__c = 5000,
-            ResetDate__c = Date.today()
-        );
+        insert new EmailQueueSettings__c(AmountSentToday__c = 5000, ResetDate__c = Date.today());
 
         Test.StartTest();
         Integer result = EmailQueueDataHelper.calculateEmailLimit();
@@ -39,10 +33,7 @@ private without sharing class EmailQueueDataHelper_test {
 
     @isTest
     private static void testCalculateEmailLimit_exact() {
-        insert new EmailQueueSettings__c(
-            AmountSentToday__c = 4000,
-            ResetDate__c = Date.today()
-        );
+        insert new EmailQueueSettings__c(AmountSentToday__c = 4000, ResetDate__c = Date.today());
 
         Test.StartTest();
         Integer result = EmailQueueDataHelper.calculateEmailLimit();
@@ -56,10 +47,7 @@ private without sharing class EmailQueueDataHelper_test {
         EmailQueueData_test.createData(5, null, true); // create test data
 
         Test.StartTest();
-        List<EmailQueue__c> results = EmailQueueDataHelper.fetchEmailQueues(
-            'Queued',
-            5
-        );
+        List<EmailQueue__c> results = EmailQueueDataHelper.fetchEmailQueues('Queued', 5);
         Test.StopTest();
 
         System.assertEquals(5, results.size(), 'queried for 5, got 5');
@@ -75,24 +63,13 @@ private without sharing class EmailQueueDataHelper_test {
 
         List<EmailQueue__c> emailQueues = [SELECT Id FROM EmailQueue__c];
 
-        System.assertEquals(
-            5,
-            [SELECT Id FROM EmailQueue__c].size(),
-            '5 emails in queue'
-        );
+        System.assertEquals(5, [SELECT Id FROM EmailQueue__c].size(), '5 emails in queue');
 
-        List<EmailQueue__c> results = EmailQueueDataHelper.fetchEmailQueues(
-            EmailQueues,
-            5
-        );
+        List<EmailQueue__c> results = EmailQueueDataHelper.fetchEmailQueues(EmailQueues, 5);
         Test.StartTest();
         Test.StopTest();
 
-        System.assertEquals(
-            5,
-            [SELECT Id FROM EmailQueue__c].size(),
-            '5 emails in queue'
-        );
+        System.assertEquals(5, [SELECT Id FROM EmailQueue__c].size(), '5 emails in queue');
         System.assertEquals(
             5,
             [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Queued'].size(),
@@ -111,10 +88,7 @@ private without sharing class EmailQueueDataHelper_test {
         List<EmailQueue__c> emailQueues = [SELECT Id FROM EmailQueue__c];
 
         Test.StartTest();
-        List<EmailQueue__c> results = EmailQueueDataHelper.fetchEmailQueues(
-            EmailQueues,
-            7
-        );
+        List<EmailQueue__c> results = EmailQueueDataHelper.fetchEmailQueues(EmailQueues, 7);
         Test.StopTest();
 
         System.assertEquals(5, results.size(), 'queried for 5, got 5');
@@ -129,24 +103,13 @@ private without sharing class EmailQueueDataHelper_test {
         }
         update emailQueue;
 
-        System.assertEquals(
-            10,
-            [SELECT Id FROM EmailQueue__c].size(),
-            '5 emails in queue'
-        );
+        System.assertEquals(10, [SELECT Id FROM EmailQueue__c].size(), '5 emails in queue');
 
         Test.StartTest();
-        List<EmailQueue__c> results = EmailQueueDataHelper.fetchEmailQueues(
-            EmailQueue,
-            5
-        );
+        List<EmailQueue__c> results = EmailQueueDataHelper.fetchEmailQueues(EmailQueue, 5);
         Test.StopTest();
 
-        System.assertEquals(
-            10,
-            [SELECT Id FROM EmailQueue__c].size(),
-            '5 emails in queue'
-        );
+        System.assertEquals(10, [SELECT Id FROM EmailQueue__c].size(), '5 emails in queue');
         System.assertEquals(
             5,
             [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Queued'].size(),
@@ -162,45 +125,30 @@ private without sharing class EmailQueueDataHelper_test {
     @isTest
     private static void testSeparateEmailQueues() {
         EmailQueueData_test.createData(5, null, true); // create test data
-        List<EmailQueue__c> emailQueues = EmailQueueDataHelper.fetchEmailQueues(
-            'Queued ',
-            5
-        );
+        List<EmailQueue__c> emailQueues = EmailQueueDataHelper.fetchEmailQueues('Queued ', 5);
 
         Test.StartTest();
-        List<List<EmailQueue__c>> results = EmailQueueDataHelper.separateEmailQueues(
-            emailQueues
-        );
+        List<List<EmailQueue__c>> results = EmailQueueDataHelper.separateEmailQueues(emailQueues);
         Test.StopTest();
     }
 
     @isTest
     private static void testSeparateEmailQueues_empty() {
         EmailQueueData_test.createData(5, null, true); // create test data
-        List<EmailQueue__c> emailQueues = EmailQueueDataHelper.fetchEmailQueues(
-            'Queued',
-            5
-        );
+        List<EmailQueue__c> emailQueues = EmailQueueDataHelper.fetchEmailQueues('Queued', 5);
 
         Test.StartTest();
-        List<List<EmailQueue__c>> results = EmailQueueDataHelper.separateEmailQueues(
-            emailQueues
-        );
+        List<List<EmailQueue__c>> results = EmailQueueDataHelper.separateEmailQueues(emailQueues);
         Test.StopTest();
     }
 
     @isTest
     private static void testSeparateEmailQueues_null() {
         EmailQueueData_test.createData(5, null, true); // create test data
-        List<EmailQueue__c> emailQueues = EmailQueueDataHelper.fetchEmailQueues(
-            'Queued',
-            5
-        );
+        List<EmailQueue__c> emailQueues = EmailQueueDataHelper.fetchEmailQueues('Queued', 5);
 
         Test.StartTest();
-        List<List<EmailQueue__c>> results = EmailQueueDataHelper.separateEmailQueues(
-            emailQueues
-        );
+        List<List<EmailQueue__c>> results = EmailQueueDataHelper.separateEmailQueues(emailQueues);
         Test.StopTest();
     }
 }
