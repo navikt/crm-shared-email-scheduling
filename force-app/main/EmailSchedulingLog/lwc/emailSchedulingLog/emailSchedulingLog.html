@@ -12,27 +12,15 @@
         ></lightning-button-icon>
 
         <!-- LIGHTNING-SPINNER -->
-        <lightning-spinner
-            alternative-text="Laster"
-            size="medium"
-            if:true={isLoading}
-        ></lightning-spinner>
+        <lightning-spinner alternative-text="Laster" size="medium" if:true={isLoading}></lightning-spinner>
 
         <!-- LIGHTNING-TREE -->
         <div class="slds-p-horizontal_large">
-            <lightning-tree
-                if:true={data}
-                items={data}
-                onselect={handleOnselect}
-            >
-            </lightning-tree>
+            <lightning-tree if:true={data} items={data} onselect={handleOnselect}> </lightning-tree>
         </div>
 
         <!-- EMPTY -->
-        <div
-            if:true={isEmpty}
-            class="slds-text-heading_medium slds-p-vertical_large slds-align_absolute-center"
-        >
+        <div if:true={isEmpty} class="slds-text-heading_medium slds-p-vertical_large slds-align_absolute-center">
             Ingen e-poster er sendt
         </div>
     </lightning-card>

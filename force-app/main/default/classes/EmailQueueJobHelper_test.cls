@@ -9,18 +9,12 @@ private without sharing class EmailQueueJobHelper_test {
         EmailQueueData data = new EmailQueueData('Queued'); // fetch data
 
         Test.StartTest();
-        List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail(
-            data.getEmailQueues(),
-            null
-        );
+        List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail(data.getEmailQueues(), null);
         Test.StopTest();
 
         System.assertEquals(10, emailResults.size(), '10 records, 10 emails');
         for (Messaging.SendEmailResult emailResult : emailResults) {
-            System.assert(
-                emailResult.isSuccess(),
-                'All emails should have been sent successfully'
-            );
+            System.assert(emailResult.isSuccess(), 'All emails should have been sent successfully');
         }
     }
 
@@ -28,16 +22,10 @@ private without sharing class EmailQueueJobHelper_test {
     private static void testUpdateEmailQueues() {
         EmailQueueData_test.createData(10, null, false); // create test data
         EmailQueueData data = new EmailQueueData('Queued'); // fetch data
-        List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail(
-            data.getEmailQueues(),
-            null
-        );
+        List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail(data.getEmailQueues(), null);
 
         Test.StartTest();
-        EmailQueueJobHelper.updateEmailQueues(
-            data.getEmailQueues(),
-            emailResults
-        );
+        EmailQueueJobHelper.updateEmailQueues(data.getEmailQueues(), emailResults);
         Test.StopTest();
 
         System.assertEquals(
@@ -61,23 +49,14 @@ private without sharing class EmailQueueJobHelper_test {
         EmailQueueData data = new EmailQueueData('Queued'); // fetch data
 
         Test.StartTest();
-        List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail(
-            data.getEmailQueues(),
-            null
-        );
+        List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail(data.getEmailQueues(), null);
         Test.StopTest();
 
         System.assertEquals(16, emailResults.size(), '16 records, 16 emails');
         for (Integer i = 0; i < emailResults.size() - 1; i++) {
-            System.assert(
-                emailResults[i].isSuccess(),
-                'All emails but the last should have been sent successfully'
-            );
+            System.assert(emailResults[i].isSuccess(), 'All emails but the last should have been sent successfully');
         }
-        System.assert(
-            !emailResults[emailResults.size() - 1].isSuccess(),
-            'Last email should have an error'
-        );
+        System.assert(!emailResults[emailResults.size() - 1].isSuccess(), 'Last email should have an error');
         System.assertEquals(
             'Email limit exceeded',
             emailResults[15].getErrors()[0].getMessage(),
@@ -89,16 +68,10 @@ private without sharing class EmailQueueJobHelper_test {
     private static void testUpdateEmailQueues_oneError() {
         EmailQueueData_test.createData(16, null, false); // create test data
         EmailQueueData data = new EmailQueueData('Queued'); // fetch data
-        List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail(
-            data.getEmailQueues(),
-            null
-        );
+        List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail(data.getEmailQueues(), null);
 
         Test.StartTest();
-        EmailQueueJobHelper.updateEmailQueues(
-            data.getEmailQueues(),
-            emailResults
-        );
+        EmailQueueJobHelper.updateEmailQueues(data.getEmailQueues(), emailResults);
         Test.StopTest();
 
         System.assertEquals(
@@ -125,17 +98,11 @@ private without sharing class EmailQueueJobHelper_test {
     private static void testUpdateEmailQueues_sizeMismatch() {
         EmailQueueData_test.createData(16, null, false); // create test data
         EmailQueueData data = new EmailQueueData('Queued'); // fetch data
-        List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail(
-            data.getEmailQueues(),
-            null
-        );
+        List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail(data.getEmailQueues(), null);
         emailResults.remove(1);
 
         Test.StartTest();
-        EmailQueueJobHelper.updateEmailQueues(
-            data.getEmailQueues(),
-            emailResults
-        );
+        EmailQueueJobHelper.updateEmailQueues(data.getEmailQueues(), emailResults);
         Test.StopTest();
 
         System.assertEquals(
@@ -157,10 +124,7 @@ private without sharing class EmailQueueJobHelper_test {
 
     @isTest
     private static void testUpdateEmailQueueSettings() {
-        insert new EmailQueueSettings__c(
-            AmountSentToday__c = 245,
-            ResetDate__c = Date.today()
-        );
+        insert new EmailQueueSettings__c(AmountSentToday__c = 245, ResetDate__c = Date.today());
 
         List<EmailQueue__c> emailQueues = new List<EmailQueue__c>();
         for (Integer i = 0; i < 5; i++) {
@@ -177,35 +141,20 @@ private without sharing class EmailQueueJobHelper_test {
             WHERE LastModifiedDate = TODAY
         ];
         System.assertEquals(1, settings.size(), 'should be settings for today');
-        System.assertEquals(
-            250,
-            settings[0].AmountSentToday__c,
-            'should be settings for today'
-        );
+        System.assertEquals(250, settings[0].AmountSentToday__c, 'should be settings for today');
     }
 
     @isTest
     private static void testUpdateEmailQueueSettings_updatedPreviousDay() {
-        insert new EmailQueueSettings__c(
-            AmountSentToday__c = 245,
-            ResetDate__c = Date.today().addDays(-1)
-        );
+        insert new EmailQueueSettings__c(AmountSentToday__c = 245, ResetDate__c = Date.today().addDays(-1));
 
         List<EmailQueueSettings__c> settings = [
             SELECT Id, ResetDate__c, AmountSentToday__c
             FROM EmailQueueSettings__c
             WHERE LastModifiedDate = TODAY
         ];
-        System.assertEquals(
-            245,
-            settings[0].AmountSentToday__c,
-            'should be settings for today'
-        );
-        System.assertEquals(
-            Date.today().addDays(-1),
-            settings[0].ResetDate__c,
-            'should be settings for today'
-        );
+        System.assertEquals(245, settings[0].AmountSentToday__c, 'should be settings for today');
+        System.assertEquals(Date.today().addDays(-1), settings[0].ResetDate__c, 'should be settings for today');
 
         List<EmailQueue__c> emailQueues = new List<EmailQueue__c>();
         for (Integer i = 0; i < 5; i++) {
@@ -222,16 +171,8 @@ private without sharing class EmailQueueJobHelper_test {
             WHERE LastModifiedDate = TODAY
         ];
         System.assertEquals(1, settings.size(), 'should be settings for today');
-        System.assertEquals(
-            5,
-            settings[0].AmountSentToday__c,
-            'should be settings for today'
-        );
-        System.assertEquals(
-            Date.today(),
-            settings[0].ResetDate__c,
-            'should be settings for today'
-        );
+        System.assertEquals(5, settings[0].AmountSentToday__c, 'should be settings for today');
+        System.assertEquals(Date.today(), settings[0].ResetDate__c, 'should be settings for today');
     }
 
     @isTest
@@ -251,10 +192,6 @@ private without sharing class EmailQueueJobHelper_test {
             WHERE LastModifiedDate = TODAY
         ];
         System.assertEquals(1, settings.size(), 'should be settings for today');
-        System.assertEquals(
-            5,
-            settings[0].AmountSentToday__c,
-            'should be settings for today'
-        );
+        System.assertEquals(5, settings[0].AmountSentToday__c, 'should be settings for today');
     }
 }

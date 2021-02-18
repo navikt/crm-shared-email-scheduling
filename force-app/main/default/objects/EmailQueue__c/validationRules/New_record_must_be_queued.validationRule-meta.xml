@@ -10,6 +10,5 @@ ISPICKVAL( Status__c , &apos;Error&apos; )
     &amp;&amp;
 !$Permission.IgnoreValidation</errorConditionFormula>
     <errorDisplayField>Status__c</errorDisplayField>
-    <errorMessage
-    >Cannot create new record and not have status as queued</errorMessage>
+    <errorMessage>Cannot create new record and not have status as queued</errorMessage>
 </ValidationRule>

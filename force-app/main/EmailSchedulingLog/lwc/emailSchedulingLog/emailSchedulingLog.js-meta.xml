@@ -3,8 +3,7 @@
     <apiVersion>50.0</apiVersion>
     <isExposed>true</isExposed>
     <masterLabel>Email Scheduling Log</masterLabel>
-    <description
-    >View related (WhatId__c) EmailQueue__c records in a datatable</description>
+    <description>View related (WhatId__c) EmailQueue__c records in a datatable</description>
     <targets>
         <target>lightning__RecordPage</target>
     </targets>

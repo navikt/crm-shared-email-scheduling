@@ -17,20 +17,8 @@
                 datasource="Queued,Instant,Error"
                 default="Queued"
             />
-            <property
-                name="title"
-                type="String"
-                label="Title"
-                placeholder="Title"
-                required="true"
-            />
-            <property
-                name="buttonName"
-                type="String"
-                label="Button Name"
-                placeholder="Button Name"
-                required="true"
-            />
+            <property name="title" type="String" label="Title" placeholder="Title" required="true" />
+            <property name="buttonName" type="String" label="Button Name" placeholder="Button Name" required="true" />
         </targetConfig>
     </targetConfigs>
   </LightningComponentBundle>

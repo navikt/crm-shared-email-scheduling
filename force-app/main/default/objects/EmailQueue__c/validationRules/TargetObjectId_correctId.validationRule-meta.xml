@@ -2,8 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TargetObjectId_correctId</fullName>
     <active>true</active>
-    <errorConditionFormula
-    >!REGEX( TargetObjectId__c, &apos;[a-zA-Z0-9]{18}|[a-zA-Z0-9]{15}&apos; ) 
+    <errorConditionFormula>!REGEX( TargetObjectId__c, &apos;[a-zA-Z0-9]{18}|[a-zA-Z0-9]{15}&apos; ) 
   &amp;&amp;
 (
     !BEGINS(  TargetObjectId__c, &apos;003&apos;)

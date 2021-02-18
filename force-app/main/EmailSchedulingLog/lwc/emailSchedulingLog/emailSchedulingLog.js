@@ -2,9 +2,7 @@ import { LightningElement, wire, api, track } from 'lwc';
 import getLogData from '@salesforce/apex/EmailSchedulingLog.getLogData';
 import { NavigationMixin } from 'lightning/navigation';
 
-export default class EmailSchedulingLog extends NavigationMixin(
-    LightningElement
-) {
+export default class EmailSchedulingLog extends NavigationMixin(LightningElement) {
     @api recordId;
     @track data;
     @track isLoading = true;
@@ -38,9 +36,7 @@ export default class EmailSchedulingLog extends NavigationMixin(
         for (var i = 0; i < this.data.length; i++) {
             if (this.data[i].name == selectedItemValue) {
                 this.data[i].expanded = !this.data[i].expanded;
-                this.template.querySelector('lightning-tree').items[
-                    i
-                ].expanded = this.data[i].expanded;
+                this.template.querySelector('lightning-tree').items[i].expanded = this.data[i].expanded;
             }
 
             if (this.data[i].items) {

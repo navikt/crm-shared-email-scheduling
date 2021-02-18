@@ -34,16 +34,8 @@ private without sharing class EmailQueueInstantSend_test {
         insert emailQueues;
         Test.StopTest();
 
-        System.assertEquals(
-            5,
-            [SELECT Id FROM EmailMessage].size(),
-            '5 emails sent after jobs'
-        );
-        System.assertEquals(
-            5,
-            [SELECT Id FROM EmailQueue__c].size(),
-            '5 emails in queue'
-        );
+        System.assertEquals(5, [SELECT Id FROM EmailMessage].size(), '5 emails sent after jobs');
+        System.assertEquals(5, [SELECT Id FROM EmailQueue__c].size(), '5 emails in queue');
         System.assertEquals(
             5,
             [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(),
@@ -79,16 +71,8 @@ private without sharing class EmailQueueInstantSend_test {
         update emailQueue;
         Test.StopTest();
 
-        System.assertEquals(
-            5,
-            [SELECT Id FROM EmailMessage].size(),
-            '5 emails sent after jobs'
-        );
-        System.assertEquals(
-            5,
-            [SELECT Id FROM EmailQueue__c].size(),
-            '5 emails in queue'
-        );
+        System.assertEquals(5, [SELECT Id FROM EmailMessage].size(), '5 emails sent after jobs');
+        System.assertEquals(5, [SELECT Id FROM EmailQueue__c].size(), '5 emails in queue');
         System.assertEquals(
             5,
             [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(),
@@ -113,10 +97,7 @@ private without sharing class EmailQueueInstantSend_test {
 
     @isTest
     private static void testCap() {
-        insert new EmailQueueSettings__c(
-            AmountSentToday__c = 4995,
-            ResetDate__c = Date.today()
-        );
+        insert new EmailQueueSettings__c(AmountSentToday__c = 4995, ResetDate__c = Date.today());
         EmailQueueData_test.createData(15, null, true);
 
         List<EmailQueue__c> emailQueue = [SELECT Id FROM EmailQueue__c];
@@ -128,16 +109,8 @@ private without sharing class EmailQueueInstantSend_test {
         update emailQueue;
         Test.StopTest();
 
-        System.assertEquals(
-            5,
-            [SELECT Id FROM EmailMessage].size(),
-            '5 emails sent after jobs'
-        );
-        System.assertEquals(
-            15,
-            [SELECT Id FROM EmailQueue__c].size(),
-            '5 emails in queue'
-        );
+        System.assertEquals(5, [SELECT Id FROM EmailMessage].size(), '5 emails sent after jobs');
+        System.assertEquals(15, [SELECT Id FROM EmailQueue__c].size(), '5 emails in queue');
         System.assertEquals(
             5,
             [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(),
@@ -165,19 +138,12 @@ private without sharing class EmailQueueInstantSend_test {
             WHERE LastModifiedDate = TODAY
         ];
         System.assertEquals(1, settings.size(), 'should be settings for today');
-        System.assertEquals(
-            5000,
-            settings[0].AmountSentToday__c,
-            'should be settings for today'
-        );
+        System.assertEquals(5000, settings[0].AmountSentToday__c, 'should be settings for today');
     }
 
     @isTest
     private static void testCap_exact5000() {
-        insert new EmailQueueSettings__c(
-            AmountSentToday__c = 4995,
-            ResetDate__c = Date.today()
-        );
+        insert new EmailQueueSettings__c(AmountSentToday__c = 4995, ResetDate__c = Date.today());
         EmailQueueData_test.createData(5, null, true);
 
         List<EmailQueue__c> emailQueue = [SELECT Id FROM EmailQueue__c];
@@ -189,16 +155,8 @@ private without sharing class EmailQueueInstantSend_test {
         update emailQueue;
         Test.StopTest();
 
-        System.assertEquals(
-            5,
-            [SELECT Id FROM EmailMessage].size(),
-            '5 emails sent after jobs'
-        );
-        System.assertEquals(
-            5,
-            [SELECT Id FROM EmailQueue__c].size(),
-            '5 emails in queue'
-        );
+        System.assertEquals(5, [SELECT Id FROM EmailMessage].size(), '5 emails sent after jobs');
+        System.assertEquals(5, [SELECT Id FROM EmailQueue__c].size(), '5 emails in queue');
         System.assertEquals(
             5,
             [SELECT Id FROM EmailQueue__c WHERE Status__c = 'Sent'].size(),
@@ -226,10 +184,6 @@ private without sharing class EmailQueueInstantSend_test {
             WHERE LastModifiedDate = TODAY
         ];
         System.assertEquals(1, settings.size(), 'should be settings for today');
-        System.assertEquals(
-            5000,
-            settings[0].AmountSentToday__c,
-            'should be settings for today'
-        );
+        System.assertEquals(5000, settings[0].AmountSentToday__c, 'should be settings for today');
     }
 }

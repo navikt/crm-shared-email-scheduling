@@ -1,8 +1,5 @@
 public without sharing class EmailQueueJobHelper {
-    public static List<Messaging.SendEmailResult> sendEmail(
-        List<EmailQueue__c> emailQueues,
-        Id orgWideEmailId
-    ) {
+    public static List<Messaging.SendEmailResult> sendEmail(List<EmailQueue__c> emailQueues, Id orgWideEmailId) {
         List<Messaging.SingleEmailMessage> messages = new List<Messaging.SingleEmailMessage>();
         for (EmailQueue__c emailQueue : emailQueues) {
             Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
@@ -30,10 +27,7 @@ public without sharing class EmailQueueJobHelper {
 
                     List<String> errorMsg = new List<String>();
                     List<String> errorType = new List<String>();
-                    for (
-                        Messaging.SendEmailError error : emailResults[i]
-                            .getErrors()
-                    ) {
+                    for (Messaging.SendEmailError error : emailResults[i].getErrors()) {
                         errorType.add(error.getStatusCode().name());
                         errorMsg.add(error.getMessage());
                     }
@@ -59,9 +53,7 @@ public without sharing class EmailQueueJobHelper {
         update emailQueues;
     }
 
-    public static void updateEmailQueueSettings(
-        List<EmailQueue__c> emailQueues
-    ) {
+    public static void updateEmailQueueSettings(List<EmailQueue__c> emailQueues) {
         List<EmailQueueSettings__c> settings = [
             SELECT Id, LastModifiedDate, ResetDate__c, AmountSentToday__c
             FROM EmailQueueSettings__c
@@ -71,10 +63,7 @@ public without sharing class EmailQueueJobHelper {
 
         // never created before
         if (settings.size() == 0) {
-            insert new EmailQueueSettings__c(
-                AmountSentToday__c = emailQueues.size(),
-                ResetDate__c = Date.today()
-            );
+            insert new EmailQueueSettings__c(AmountSentToday__c = emailQueues.size(), ResetDate__c = Date.today());
         } else {
             // was updated previously today
             if (settings[0].ResetDate__c == Date.today()) {

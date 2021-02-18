@@ -2,8 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TemplateIdURL__c</fullName>
     <externalId>false</externalId>
-    <formula
-    >HYPERLINK( &quot;/&quot; + TemplateId__c, TemplateId__c, &quot;_self&quot;)</formula>
+    <formula>HYPERLINK( &quot;/&quot; + TemplateId__c, TemplateId__c, &quot;_self&quot;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Template ID</label>
     <required>false</required>

@@ -8,10 +8,7 @@ public with sharing class EmailSchedulingLogHelper {
             if (emailQueueIdAsKey.containsKey(email.TemplateId__c)) {
                 emailQueueIdAsKey.get(email.TemplateId__c).add(email);
             } else {
-                emailQueueIdAsKey.put(
-                    email.TemplateId__c,
-                    new List<EmailQueue__c>{ email }
-                );
+                emailQueueIdAsKey.put(email.TemplateId__c, new List<EmailQueue__c>{ email });
             }
         }
 
@@ -58,9 +55,7 @@ public with sharing class EmailSchedulingLogHelper {
         }
     }
 
-    public static String getParentMetatext(
-        List<EmailQueue__c> emailQueueChildren
-    ) {
+    public static String getParentMetatext(List<EmailQueue__c> emailQueueChildren) {
         for (EmailQueue__c children : emailQueueChildren) {
             switch on children.Status__c {
                 when 'Queued' {

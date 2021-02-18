@@ -26,10 +26,7 @@ private without sharing class EmailSchedulingLogHelperTest {
         );
         insert emailTemplate2;
 
-        Contact con = new Contact(
-            LastName = 'McSmith',
-            Email = 'test@test.com'
-        );
+        Contact con = new Contact(LastName = 'McSmith', Email = 'test@test.com');
         insert con;
 
         Case c = new Case();
@@ -47,20 +44,11 @@ private without sharing class EmailSchedulingLogHelperTest {
 
     @isTest
     private static void testGetEmailQueueTemplateIdAsKey() {
-        EmailTemplate et1 = [
-            SELECT Id
-            FROM EmailTemplate
-            WHERE DeveloperName = 'MY_UNIQUE_TEMPLATE'
-            LIMIT 1
-        ];
+        EmailTemplate et1 = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'MY_UNIQUE_TEMPLATE' LIMIT 1];
 
         Id recordId = [SELECT Id FROM Case LIMIT 1].Id;
-        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(
-            recordId
-        );
-        Map<Id, String> templateSubjects = EmailSchedulingLog.getTemplateSubjects(
-            emailQueue
-        );
+        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(recordId);
+        Map<Id, String> templateSubjects = EmailSchedulingLog.getTemplateSubjects(emailQueue);
 
         Test.StartTest();
         Map<Id, List<EmailQueue__c>> emailQueueTemplateIdAsKey = EmailSchedulingLogHelper.getEmailQueueTemplateIdAsKey(
@@ -69,53 +57,21 @@ private without sharing class EmailSchedulingLogHelperTest {
         );
         Test.StopTest();
 
-        EmailQueue__c email = [
-            SELECT Id, LastModifiedDate
-            FROM EmailQueue__c
-            LIMIT 1
-        ];
+        EmailQueue__c email = [SELECT Id, LastModifiedDate FROM EmailQueue__c LIMIT 1];
 
-        System.assertEquals(
-            1,
-            emailQueueTemplateIdAsKey.size(),
-            'only one email subject, only one category'
-        );
+        System.assertEquals(1, emailQueueTemplateIdAsKey.size(), 'only one email subject, only one category');
 
-        System.assertEquals(
-            1,
-            emailQueueTemplateIdAsKey.get(et1.Id).size(),
-            'only one email queue per template'
-        );
-        System.assertEquals(
-            email.Id,
-            emailQueueTemplateIdAsKey.get(et1.Id)[0].Id,
-            'only one email queue per template'
-        );
+        System.assertEquals(1, emailQueueTemplateIdAsKey.get(et1.Id).size(), 'only one email queue per template');
+        System.assertEquals(email.Id, emailQueueTemplateIdAsKey.get(et1.Id)[0].Id, 'only one email queue per template');
     }
 
     @isTest
     private static void testGetEmailQueueTemplateIdAsKey_twoTemplates() {
-        EmailTemplate et1 = [
-            SELECT Id
-            FROM EmailTemplate
-            WHERE DeveloperName = 'MY_UNIQUE_TEMPLATE'
-            LIMIT 1
-        ];
-        EmailTemplate et2 = [
-            SELECT Id
-            FROM EmailTemplate
-            WHERE DeveloperName = 'MY_UNIQUE_TEMPLATE2'
-            LIMIT 1
-        ];
+        EmailTemplate et1 = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'MY_UNIQUE_TEMPLATE' LIMIT 1];
+        EmailTemplate et2 = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'MY_UNIQUE_TEMPLATE2' LIMIT 1];
 
-        Contact con1 = new Contact(
-            LastName = 'McSmith1',
-            Email = 'test1@test.com'
-        );
-        Contact con2 = new Contact(
-            LastName = 'McSmith2',
-            Email = 'test2@test.com'
-        );
+        Contact con1 = new Contact(LastName = 'McSmith1', Email = 'test1@test.com');
+        Contact con2 = new Contact(LastName = 'McSmith2', Email = 'test2@test.com');
         insert con1;
         insert con2;
 
@@ -142,9 +98,7 @@ private without sharing class EmailSchedulingLogHelperTest {
         insert eq2;
 
         List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(c.Id);
-        Map<Id, String> templateSubjects = EmailSchedulingLog.getTemplateSubjects(
-            emailQueue
-        );
+        Map<Id, String> templateSubjects = EmailSchedulingLog.getTemplateSubjects(emailQueue);
 
         Test.StartTest();
         Map<Id, List<EmailQueue__c>> emailQueueTemplateIdAsKey = EmailSchedulingLogHelper.getEmailQueueTemplateIdAsKey(
@@ -153,51 +107,20 @@ private without sharing class EmailSchedulingLogHelperTest {
         );
         Test.StopTest();
 
-        System.assertEquals(
-            2,
-            emailQueueTemplateIdAsKey.size(),
-            'only one email subject, only one category'
-        );
-        System.assertEquals(
-            1,
-            emailQueueTemplateIdAsKey.get(et1.Id).size(),
-            'only one email queue per template'
-        );
-        System.assertEquals(
-            eq1.Id,
-            emailQueueTemplateIdAsKey.get(et1.Id)[0].Id,
-            'only one email queue per template'
-        );
+        System.assertEquals(2, emailQueueTemplateIdAsKey.size(), 'only one email subject, only one category');
+        System.assertEquals(1, emailQueueTemplateIdAsKey.get(et1.Id).size(), 'only one email queue per template');
+        System.assertEquals(eq1.Id, emailQueueTemplateIdAsKey.get(et1.Id)[0].Id, 'only one email queue per template');
 
-        System.assertEquals(
-            1,
-            emailQueueTemplateIdAsKey.get(et2.Id).size(),
-            'only one email queue per template'
-        );
-        System.assertEquals(
-            eq2.Id,
-            emailQueueTemplateIdAsKey.get(et2.Id)[0].Id,
-            'only one email queue per template'
-        );
+        System.assertEquals(1, emailQueueTemplateIdAsKey.get(et2.Id).size(), 'only one email queue per template');
+        System.assertEquals(eq2.Id, emailQueueTemplateIdAsKey.get(et2.Id)[0].Id, 'only one email queue per template');
     }
 
     @isTest
     private static void testGetEmailQueueTemplateIdAsKey_twoEmails() {
-        EmailTemplate et1 = [
-            SELECT Id
-            FROM EmailTemplate
-            WHERE DeveloperName = 'MY_UNIQUE_TEMPLATE'
-            LIMIT 1
-        ];
+        EmailTemplate et1 = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'MY_UNIQUE_TEMPLATE' LIMIT 1];
 
-        Contact con1 = new Contact(
-            LastName = 'McSmith1',
-            Email = 'test1@test.com'
-        );
-        Contact con2 = new Contact(
-            LastName = 'McSmith2',
-            Email = 'test2@test.com'
-        );
+        Contact con1 = new Contact(LastName = 'McSmith1', Email = 'test1@test.com');
+        Contact con2 = new Contact(LastName = 'McSmith2', Email = 'test2@test.com');
         insert con1;
         insert con2;
 
@@ -224,9 +147,7 @@ private without sharing class EmailSchedulingLogHelperTest {
         insert eq2;
 
         List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(c.Id);
-        Map<Id, String> templateSubjects = EmailSchedulingLog.getTemplateSubjects(
-            emailQueue
-        );
+        Map<Id, String> templateSubjects = EmailSchedulingLog.getTemplateSubjects(emailQueue);
 
         Test.StartTest();
         Map<Id, List<EmailQueue__c>> emailQueueTemplateIdAsKey = EmailSchedulingLogHelper.getEmailQueueTemplateIdAsKey(
@@ -235,37 +156,17 @@ private without sharing class EmailSchedulingLogHelperTest {
         );
         Test.StopTest();
 
-        System.assertEquals(
-            1,
-            emailQueueTemplateIdAsKey.size(),
-            'only one email subject, only one category'
-        );
-        System.assertEquals(
-            2,
-            emailQueueTemplateIdAsKey.get(et1.Id).size(),
-            'only one email queue per template'
-        );
-        System.assertEquals(
-            eq1.Id,
-            emailQueueTemplateIdAsKey.get(et1.Id)[0].Id,
-            'only one email queue per template'
-        );
-        System.assertEquals(
-            eq2.Id,
-            emailQueueTemplateIdAsKey.get(et1.Id)[1].Id,
-            'only one email queue per template'
-        );
+        System.assertEquals(1, emailQueueTemplateIdAsKey.size(), 'only one email subject, only one category');
+        System.assertEquals(2, emailQueueTemplateIdAsKey.get(et1.Id).size(), 'only one email queue per template');
+        System.assertEquals(eq1.Id, emailQueueTemplateIdAsKey.get(et1.Id)[0].Id, 'only one email queue per template');
+        System.assertEquals(eq2.Id, emailQueueTemplateIdAsKey.get(et1.Id)[1].Id, 'only one email queue per template');
     }
 
     @isTest
     private static void testCreateChildren() {
         Id recordId = [SELECT Id FROM Case LIMIT 1].Id;
-        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(
-            recordId
-        );
-        Map<Id, String> contactNames = EmailSchedulingLog.getContactNames(
-            emailQueue
-        );
+        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(recordId);
+        Map<Id, String> contactNames = EmailSchedulingLog.getContactNames(emailQueue);
 
         Test.StartTest();
         List<EmailSchedulingLog.LogChildren> children = EmailSchedulingLogHelper.createChildren(
@@ -274,30 +175,14 @@ private without sharing class EmailSchedulingLogHelperTest {
         );
         Test.StopTest();
 
-        EmailQueue__c email = [
-            SELECT Id, LastModifiedDate
-            FROM EmailQueue__c
-            LIMIT 1
-        ];
+        EmailQueue__c email = [SELECT Id, LastModifiedDate FROM EmailQueue__c LIMIT 1];
         Contact con = [SELECT Id, Name FROM Contact LIMIT 1];
 
-        System.assertEquals(
-            1,
-            children.size(),
-            'only one email queue, only one child'
-        );
+        System.assertEquals(1, children.size(), 'only one email queue, only one child');
         System.assertEquals(email.Id, children[0].name, 'name should be set');
-        System.assertEquals(
-            con.Id,
-            children[0].TargetObjectId,
-            'TargetObjectId should be set'
-        );
+        System.assertEquals(con.Id, children[0].TargetObjectId, 'TargetObjectId should be set');
         System.assertEquals(con.Name, children[0].label, 'label should be set');
-        System.assertEquals(
-            '⏱ I utsendingskø',
-            children[0].metatext,
-            'metatext should be set'
-        );
+        System.assertEquals('⏱ I utsendingskø', children[0].metatext, 'metatext should be set');
     }
 
     @isTest
@@ -332,47 +217,33 @@ private without sharing class EmailSchedulingLogHelperTest {
     @isTest
     private static void testGetParentMetatext_queued() {
         Id recordId = [SELECT Id FROM Case LIMIT 1].Id;
-        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(
-            recordId
-        );
+        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(recordId);
         emailQueue[0].Status__c = 'Queued';
 
         Test.StartTest();
         String results = EmailSchedulingLogHelper.getParentMetatext(emailQueue);
         Test.StopTest();
 
-        System.assertEquals(
-            '⏱ I utsendingskø',
-            results,
-            'queued status should be received'
-        );
+        System.assertEquals('⏱ I utsendingskø', results, 'queued status should be received');
     }
 
     @isTest
     private static void testGetParentMetatext_instant() {
         Id recordId = [SELECT Id FROM Case LIMIT 1].Id;
-        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(
-            recordId
-        );
+        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(recordId);
         emailQueue[0].Status__c = 'Instant';
 
         Test.StartTest();
         String results = EmailSchedulingLogHelper.getParentMetatext(emailQueue);
         Test.StopTest();
 
-        System.assertEquals(
-            '⏱ Sendes straks',
-            results,
-            'instant status should be received'
-        );
+        System.assertEquals('⏱ Sendes straks', results, 'instant status should be received');
     }
 
     @isTest
     private static void testGetParentMetatext_error() {
         Id recordId = [SELECT Id FROM Case LIMIT 1].Id;
-        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(
-            recordId
-        );
+        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(recordId);
         emailQueue[0].Status__c = 'Error';
 
         Test.StartTest();
@@ -389,9 +260,7 @@ private without sharing class EmailSchedulingLogHelperTest {
     @isTest
     private static void testGetParentMetatext_sent() {
         Id recordId = [SELECT Id FROM Case LIMIT 1].Id;
-        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(
-            recordId
-        );
+        List<EmailQueue__c> emailQueue = EmailSchedulingLog.getEmailQueue(recordId);
         emailQueue[0].Status__c = 'Sent';
 
         Test.StartTest();
