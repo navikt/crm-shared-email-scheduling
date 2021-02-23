@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TemplateId_correctId</fullName>
     <active>true</active>
-    <errorConditionFormula>!REGEX( TemplateId__c, &apos;[a-zA-Z0-9]{18}|[a-zA-Z0-9]{15}&apos; ) 
+    <errorConditionFormula>!REGEX( TemplateId__c, &apos;[a-zA-Z0-9]{18}|[a-zA-Z0-9]{15}|^$&apos; ) 
   &amp;&amp;
 !BEGINS( TemplateId__c, &apos;00X&apos;)</errorConditionFormula>
     <errorDisplayField>TemplateId__c</errorDisplayField>
