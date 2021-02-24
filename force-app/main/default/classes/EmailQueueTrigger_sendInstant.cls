@@ -1,4 +1,4 @@
-public without sharing class EmailQueueInstantSend {
+public inherited sharing class EmailQueueTrigger_sendInstant {
     public static void process(List<EmailQueue__c> emailQueue) {
         List<EmailQueue__c> filteredRecords = findInstantRecords(emailQueue);
 

@@ -1,5 +1,5 @@
 @isTest
-private without sharing class EmailQueueInstantSend_test {
+private without sharing class EmailQueueTrigger_sendInstantTest {
     @isTest
     private static void testInsert() {
         EmailTemplate emailTemplate = new EmailTemplate(
