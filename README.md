@@ -39,7 +39,8 @@ Then simply create a `EmailQueue__c` record to add it to the Email Queue.
 
 ```java
 EmailQueue__c email = new EmailQueue__c();
-email.TemplateId__c = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'your_template' LIMIT 1].Id;
+email.TemplateId__c = [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'your_template' LIMIT 1].Id; // Either Id or Name must be set
+email.TemplateName__c = 'DEVELOPER_NAME_OF_EMAIL_TEMPLATE'; // Either Id or Name must be set
 email.TargetObjectId__c = [SELECT Id FROM Contact WHERE Email = 'email@nav.no' LIMIT 1].Id; // Any Contact, Lead or User
 email.WhatId__c = [SELECT Id FROM Case LIMIT 1].Id; // Any SObject for merge fields in EmailTemplate
 email.Status__c = 'Queued'; // 'Queued' is default, choose 'Instant' to skip the queue
