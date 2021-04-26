@@ -158,8 +158,16 @@ private without sharing class EmailSchedulingLogHelperTest {
 
         System.assertEquals(1, emailQueueTemplateIdAsKey.size(), 'only one email subject, only one category');
         System.assertEquals(2, emailQueueTemplateIdAsKey.get(et1.Id).size(), 'only one email queue per template');
-        System.assertEquals(eq1.Id, emailQueueTemplateIdAsKey.get(et1.Id)[0].Id, 'only one email queue per template');
-        System.assertEquals(eq2.Id, emailQueueTemplateIdAsKey.get(et1.Id)[1].Id, 'only one email queue per template');
+        System.assert(
+            emailQueueTemplateIdAsKey.get(et1.Id)[0].Id == eq1.Id ||
+            emailQueueTemplateIdAsKey.get(et1.Id)[0].Id == eq2.Id,
+            'only one email queue per template'
+        );
+        System.assert(
+            emailQueueTemplateIdAsKey.get(et1.Id)[1].Id == eq1.Id ||
+            emailQueueTemplateIdAsKey.get(et1.Id)[1].Id == eq2.Id,
+            'only one email queue per template'
+        );
     }
 
     @isTest
