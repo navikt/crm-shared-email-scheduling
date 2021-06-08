@@ -4,7 +4,9 @@
 [![GitHub version](https://badgen.net/github/release/navikt/crm-platform-email-scheduling/stable)](https://github.com/navikt/crm-platform-email-scheduling)
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/navikt/crm-platform-email-scheduling/blob/master/LICENSE)
 
-An email scheduling interfaces to queue emails and be within daily email limits from Salesforce.
+An email scheduling interfaces to queue emails and be within daily email limits from Salesforce. Simple Salesforce App to view queued and sent emails, as well as failed attempts to send an email. You can also retry failed emails.
+
+After getting access to the app using the permission set `EmailSchedulingApp_Admin`, open the `Email Scheduling` app.
 
 ## How to use
 
