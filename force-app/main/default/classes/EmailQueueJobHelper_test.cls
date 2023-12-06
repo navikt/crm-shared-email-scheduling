@@ -17,6 +17,21 @@ private without sharing class EmailQueueJobHelper_test {
             System.assert(emailResult.isSuccess(), 'All emails should have been sent successfully');
         }
     }
+    @isTest
+    private static void testSendEmailToAddress() {
+        EmailQueueData_test.createDataWithToAddress(10, null, false); // create test data
+        EmailQueueData data = new EmailQueueData('Queued'); // fetch data
+
+        Test.StartTest();
+        List<Messaging.SendEmailResult> emailResults = EmailQueueJobHelper.sendEmail(data.getEmailQueues(), null);
+        Test.StopTest();
+
+        System.assertEquals(10, emailResults.size(), '10 records, 10 emails');
+        for (Messaging.SendEmailResult emailResult : emailResults) {
+            System.debug(JSON.serializePretty(emailResult.getErrors()));
+            System.assert(emailResult.isSuccess(), 'All emails should have been sent successfully');
+        }
+    }
 
     @isTest
     private static void testUpdateEmailQueues() {
@@ -58,7 +73,7 @@ private without sharing class EmailQueueJobHelper_test {
         }
         System.assert(!emailResults[emailResults.size() - 1].isSuccess(), 'Last email should have an error');
         System.assertEquals(
-            'Email limit exceeded',
+            'Email limit exceeded.',
             emailResults[15].getErrors()[0].getMessage(),
             'Last email have exceeded email limit'
         );
