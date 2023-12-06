@@ -143,4 +143,38 @@ public without sharing class EmailQueueData_test {
         }
         insert emailQueues;
     }
+    public static void createDataWithToAddress(Integer amount, String priority, Boolean saveAsActivity) {
+        String HTMLBody = '<html><head></head><body><p>Hello, World!</p></body></html>';
+        EmailTemplate emailTemplate = new EmailTemplate(
+            DeveloperName = 'MY_UNIQUE_TEMPLATE_STUB',
+            Name = 'MY_UNIQUE_TEMPLATE_STUB',
+            IsActive = true,
+            FolderId = UserInfo.getOrganizationId(),
+            UiType = 'sfx',
+            TemplateType = 'custom',
+            Subject = 'Test',
+            HtmlValue = '<html><head></head><body><p>STUB TEMPLATE</p></body></html>'
+        );
+        insert emailTemplate;
+
+        Contact con = new Contact(LastName = 'test', Email = 'test@test.com');
+        insert con;
+
+        List<EmailQueue__c> emailQueues = new List<EmailQueue__c>();
+        for (Integer i = 0; i < amount; i++) {
+            priority = priority != null ? priority : String.valueOf(Math.mod(i, 5) + 1); // set fixed priority from parameter if not null
+            emailQueues.add(
+                new EmailQueue__c(
+                    Priority__c = priority,
+                    SaveAsActivity__c = saveAsActivity,
+                    Status__c = 'Queued',
+                    ToAddress__c = 'test1@test.com',
+                    HTMLBody__c = HTMLBody,
+                    TargetObjectId__c = con.Id,
+                    TemplateId__c = emailTemplate.Id
+                )
+            );
+        }
+        insert emailQueues;
+    }
 }
