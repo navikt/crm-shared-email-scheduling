@@ -29,7 +29,7 @@ public without sharing class EmailQueueDataHelper {
 
     public static List<EmailQueue__c> fetchEmailQueues(String status, Integer queryLimit) {
         return [
-            SELECT SaveAsActivity__c, WhatId__c, TemplateId__c, TargetObjectId__c, Id
+            SELECT SaveAsActivity__c, WhatId__c, TemplateId__c, TargetObjectId__c, ToAddress__c, HTMLBody__c, Id
             FROM EmailQueue__c
             WHERE Status__c = :status
             ORDER BY ScheduledPriority__c DESC NULLS LAST
