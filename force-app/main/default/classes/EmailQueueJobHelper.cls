@@ -5,6 +5,9 @@ public without sharing class EmailQueueJobHelper {
             Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
             if(String.isNotBlank(emailQueue.HTMLBody__c)){
                 message.setHtmlBody(emailQueue.HTMLBody__c);
+                if(String.isNotBlank(emailQueue.Subject__c)){
+                    message.setSubject(emailQueue.Subject__c);
+                }
             }else{
                 message.setWhatId(emailQueue.WhatId__c);
                 message.setTemplateId(emailQueue.TemplateId__c);

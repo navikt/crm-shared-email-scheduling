@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Subject__c</fullName>
-    <description>Subject, overrides subject if not blank</description>
+    <description>Sets subject if HTMLBody is not blank</description>
     <externalId>false</externalId>
     <label>Subject</label>
     <length>100</length>
