@@ -25,7 +25,7 @@ public inherited sharing class EmailQueueTrigger_sendInstant {
         Set<Id> queueIds = new Map<Id, EmailQueue__c>(filteredQueue).keySet();
 
         return [
-            SELECT SaveAsActivity__c, WhatId__c, TemplateId__c, TargetObjectId__c, ToAddress__c, HTMLBody__c, Id
+            SELECT SaveAsActivity__c, WhatId__c, TemplateId__c, TargetObjectId__c, ToAddress__c, HTMLBody__c, Subject__c, Id
             FROM EmailQueue__c
             WHERE Id IN :queueIds
         ];
