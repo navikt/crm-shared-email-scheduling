@@ -1,10 +1,17 @@
 public with sharing class EmailQueueData {
-    private static final List<OrgWideEmailAddress> ORG_WIDE_ADDRESSES = [
-        SELECT Id
-        FROM OrgWideEmailAddress
-        WHERE Address = 'do-not-reply@info.nav.no'
-        LIMIT 1
-    ];
+    private static final Boolean isSandbox = [SELECT isSandbox FROM Organization LIMIT 1].isSandbox;
+    private static final List<OrgWideEmailAddress> ORG_WIDE_ADDRESSES = isSandbox ? 
+        [
+            SELECT Id
+            FROM OrgWideEmailAddress
+            LIMIT 1
+        ]:[
+            SELECT Id
+            FROM OrgWideEmailAddress
+            WHERE Address = 'do-not-reply@info.nav.no'
+            LIMIT 1
+        ]
+    ;
     private static final Id ORG_WIDE_EMAIL_ID = ORG_WIDE_ADDRESSES.size() == 1 ? ORG_WIDE_ADDRESSES[0].Id : null;
 
     private Integer queryLimit { get; set; }

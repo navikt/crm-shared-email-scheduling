@@ -8,7 +8,7 @@ private without sharing class EmailQueueScheduler_test {
     @isTest
     private static void testSchedule() {
         Test.StartTest();
-        String CRON_EXP = '0 0 0 3 9 ? 2022';
+        String CRON_EXP = '0 0 0 3 9 ? 2024';
         System.schedule('EmailQueueSchedulerTest', CRON_EXP, new EmailQueueScheduler());
         Test.StopTest();
 
@@ -19,7 +19,7 @@ private without sharing class EmailQueueScheduler_test {
     @isTest
     private static void testSettingsTrackers() {
         Test.StartTest();
-        String CRON_EXP = '0 0 0 3 9 ? 2022';
+        String CRON_EXP = '0 0 0 3 9 ? 2024';
         System.schedule('EmailQueueSchedulerTest', CRON_EXP, new EmailQueueScheduler());
         Test.StopTest();
 

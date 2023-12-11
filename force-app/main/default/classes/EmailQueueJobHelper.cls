@@ -3,9 +3,20 @@ public without sharing class EmailQueueJobHelper {
         List<Messaging.SingleEmailMessage> messages = new List<Messaging.SingleEmailMessage>();
         for (EmailQueue__c emailQueue : emailQueues) {
             Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
-            message.setWhatId(emailQueue.WhatId__c);
-            message.setTemplateId(emailQueue.TemplateId__c);
+            if(String.isNotBlank(emailQueue.HTMLBody__c)){
+                message.setHtmlBody(emailQueue.HTMLBody__c);
+                if(String.isNotBlank(emailQueue.Subject__c)){
+                    message.setSubject(emailQueue.Subject__c);
+                }
+            }else{
+                message.setWhatId(emailQueue.WhatId__c);
+                message.setTemplateId(emailQueue.TemplateId__c);
+            }
             message.setTargetObjectId(emailQueue.TargetObjectId__c);
+            if(String.isNotBlank(emailQueue.ToAddress__c)){
+                message.setToAddresses(new List<String>{emailQueue.ToAddress__c});
+                message.setTreatTargetObjectAsRecipient(false);
+            }
             message.setSaveAsActivity(emailQueue.SaveAsActivity__c);
             message.setOrgWideEmailAddressId(orgWideEmailId);
             messages.add(message);
