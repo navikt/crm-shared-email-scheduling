@@ -9,7 +9,7 @@ public without sharing class EmailQueueTrigger_setTemplate {
         Set<String> templateNames = new Set<String>();
 
         for (EmailQueue__c emailQueue : emailQueues) {
-            if (emailQueue.TemplateId__c == null) {
+            if (emailQueue.TemplateId__c == null && emailQueue.TemplateName__c != null) {
                 templateNames.add(emailQueue.TemplateName__c);
             }
         }
@@ -18,13 +18,17 @@ public without sharing class EmailQueueTrigger_setTemplate {
     }
 
     public static Map<String, Id> getTemplates(Set<String> templateNames) {
+        Map<String, Id> emailTemplateMap = new Map<String, Id>();
+
+        if(templateNames.isEmpty()){
+            return emailTemplateMap;
+        }
+
         List<EmailTemplate> emailTemplates = [
             SELECT Id, DeveloperName
             FROM EmailTemplate
             WHERE DeveloperName IN :templateNames
         ];
-
-        Map<String, Id> emailTemplateMap = new Map<String, Id>();
 
         for (EmailTemplate emailTemplate : emailTemplates) {
             emailTemplateMap.put(emailTemplate.DeveloperName, emailTemplate.Id);

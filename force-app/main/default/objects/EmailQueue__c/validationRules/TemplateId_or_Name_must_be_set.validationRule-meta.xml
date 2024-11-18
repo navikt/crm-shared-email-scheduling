@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TemplateId_or_Name_must_be_set</fullName>
     <active>true</active>
-    <errorConditionFormula>ISBLANK( TemplateId__c ) &amp;&amp; ISBLANK( TemplateName__c )</errorConditionFormula>
+    <description>TemplateId or Name or HTMLBody must be set</description>
+    <errorConditionFormula>ISBLANK( TemplateId__c ) &amp;&amp; ISBLANK( TemplateName__c ) &amp;&amp; ISBLANK( HTMLBody__c )</errorConditionFormula>
     <errorMessage>Must set either TemplateId__c or TemplateName__c</errorMessage>
 </ValidationRule>
