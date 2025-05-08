@@ -42,6 +42,7 @@ public with sharing class EmailSchedulingLog {
     public static List<EmailQueue__c> getEmailQueue(Id recordId) {
         Set<Id> courseRegistrationIds = new Set<Id>();
 
+        //query canceled course emails where whatId is the course registration
         for (CourseRegistration__c reg : [
             SELECT Id
             FROM CourseRegistration__c
