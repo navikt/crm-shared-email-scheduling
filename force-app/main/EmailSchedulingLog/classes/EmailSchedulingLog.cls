@@ -40,10 +40,20 @@ public with sharing class EmailSchedulingLog {
     // ------------------------------------------------
 
     public static List<EmailQueue__c> getEmailQueue(Id recordId) {
+        Set<Id> courseRegistrationIds = new Set<Id>();
+
+        for (CourseRegistration__c reg : [
+            SELECT Id
+            FROM CourseRegistration__c
+            WHERE Course__c = :recordId
+        ]) {
+            courseRegistrationIds.add(reg.Id);
+        }
+
         return [
             SELECT Id, TargetObjectId__c, Status__c, TemplateId__c, LastModifiedDate
             FROM EmailQueue__c
-            WHERE WhatId__c = :recordId
+            WHERE WhatId__c = :recordId OR WhatId__c IN :courseRegistrationIds
             ORDER BY LastModifiedDate DESC
         ];
     }
@@ -51,7 +61,9 @@ public with sharing class EmailSchedulingLog {
     public static Map<Id, String> getTemplateSubjects(List<EmailQueue__c> emailQueue) {
         Set<Id> templateIds = new Set<Id>();
         for (EmailQueue__c email : emailQueue) {
-            templateIds.add(email.TemplateId__c);
+            if (email.TemplateId__c != null) {
+                templateIds.add(email.TemplateId__c);
+            }
         }
 
         List<EmailTemplate> emailTemplates = [SELECT Id, Subject FROM EmailTemplate WHERE Id IN :templateIds];
@@ -67,7 +79,9 @@ public with sharing class EmailSchedulingLog {
     public static Map<Id, String> getContactNames(List<EmailQueue__c> emailQueue) {
         Set<Id> contactIds = new Set<Id>();
         for (EmailQueue__c email : emailQueue) {
-            contactIds.add(email.TargetObjectId__c);
+            if (email.TargetObjectId__c != null) {
+                contactIds.add(email.TargetObjectId__c);
+            }
         }
 
         List<Contact> contacts = [SELECT Id, Name FROM Contact WHERE Id IN :contactIds];
